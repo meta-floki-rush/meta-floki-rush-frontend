@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,500;1,300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Montserrat:ital,wght@0,100;0,500;1,300&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  /* box-shadow: ; */
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  min-height: 100vh;
+}
+
+/* body > iframe[style*="2147483647"]:not([id="webpack-dev-server-client-overlay"]) {
+  display: none;
+} */
