@@ -123,7 +123,7 @@ const ItemDetails = () => {
                 </div>
               </div>
               {/* </div> */}
-              {/* <div style={{ marginBottom: "80px" }}>
+              <div style={{ marginBottom: "80px" }}>
                 <TableTabs
                   metadata={metadata}
                   address={asset}
@@ -132,7 +132,7 @@ const ItemDetails = () => {
                   order={order}
                   orderHistory={orderHistory}
                 />
-              </div> */}
+              </div>
               {/* <DataTable />
                */}
             </Box>
