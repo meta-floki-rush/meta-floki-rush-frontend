@@ -160,24 +160,16 @@ const useStyles = makeStyles((theme) => ({
     //   display: "none",
     // },
   },
-  __tebs: {
+  __tabs: {
     display: "flex",
     alignItems: "center",
+    position: "relative",
     justifyContent: "space-between",
   },
-  // filter_sort: {
-  //   // width: "155px",
-  //   alignItems: "center",
-  //   justifyContent: "space-around",
-  //   display: "none !important",
-  //   [theme.breakpoints.down("md")]: {
-  //     display: "flex",
-
-  //     height: "50px",
-  //     alignItems: "flex-end",
-  //   },
-  // },
-
+  filterTabs: {
+    position: "absolute",
+    
+  },
   __headerbackground: {
     width: "100%",
     paddingBottom: "14px",

@@ -13,8 +13,8 @@ import icons4 from "../../../assets/images/icons4.png";
 import icons5 from "../../../assets/images/icons5.png";
 
 // const useStyles = makeStyles((theme) => ({}));
-import { PriceRange } from "./PriceRange";
-import SortPrice  from "./SortPrice";
+import PriceRange from "./PriceRange";
+import SortPrice from "./SortPrice";
 import { useRef } from "react";
 import Slider from "@mui/material/Slider";
 import { Typography } from "@mui/material";
@@ -57,10 +57,23 @@ const Navigation = ({ filterState, setFilterState, applyFilter }) => {
 
   const [priceRange, setpriceRange] = React.useState([20, 37]);
   const [applyFilterRange, setApplyFilterRange] = React.useState({});
+  const [category, setCategory] = React.useState(false);
+  const [salesType, setsalesType] = React.useState(false);
+  const [priceRangeOpt, setpriceRangeOpt] = React.useState(false);
   const handleRange = (e, newValue) => {
     setpriceRange(newValue);
   };
-
+  const handleOptions = (active) => {
+    if (active === "category") {
+      setCategory(true);
+    }
+    if (active === "salesType") {
+      setsalesType(true);
+    }
+    if (active === "priceRange") {
+      setpriceRangeOpt(true);
+    }
+  };
   const handleChange = (event, newValue) => {
     // setpriceRange(newValue);
     console.log("newValue", newValue);
@@ -87,6 +100,9 @@ const Navigation = ({ filterState, setFilterState, applyFilter }) => {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           setfilterOptions(false);
+          setCategory(false);
+          setsalesType(false);
+          setpriceRangeOpt(false);
         }
       }
 
@@ -127,21 +143,79 @@ const Navigation = ({ filterState, setFilterState, applyFilter }) => {
         />
 
         <div className={classes.__navTabs}>
-          {navData.map((x) => (
-            <div className={classes.__tebs}>
-              <Button
+          <div className={classes.__tebs} style={{ position: "relative" }}>
+            <Button
+              onClick={() => handleOptions("category")}
+              style={{
+                color: "white",
+                fontWeight: "bolder",
+              }}
+              size="large"
+              disableElevation>
+              <img src={icons3} alt="navigation Icon" />
+              <span className={classes.__icons}>Sort</span>
+            </Button>
+            {category && (
+              <span
+                ref={wrapperRef}
                 style={{
-                  color: "white",
-
-                  fontWeight: "bolder",
-                }}
-                size="large"
-                disableElevation>
-                <img src={x.icon} alt="navigation Icon" />
-                <span className={classes.__icons}>{x.title}</span>
-              </Button>
-            </div>
-          ))}
+                  position: "absolute",
+                  top: "47px",
+                  left: " 7px",
+                }}>
+                hello
+              </span>
+            )}
+          </div>
+          <div className={classes.__tebs} style={{ position: "relative" }}>
+            <Button
+              onClick={() => handleOptions("salesType")}
+              style={{
+                color: "white",
+                fontWeight: "bolder",
+              }}
+              size="large"
+              disableElevation>
+              <img src={icons1} alt="navigation Icon" />
+              <span className={classes.__icons}>Rarity</span>
+            </Button>
+            {salesType && (
+              <span
+                ref={wrapperRef}
+                style={{
+                  position: "absolute",
+                  top: "47px",
+                  left: " 7px",
+                }}>
+                hello
+              </span>
+            )}
+          </div>
+          <div className={classes.__tebs} style={{ position: "relative" }}>
+            <Button
+              onClick={() => handleOptions("priceRange")}
+              style={{
+                color: "white",
+                fontWeight: "bolder",
+              }}
+              size="large"
+              disableElevation>
+              <img src={icons5} alt="navigation Icon" />
+              <span className={classes.__icons}>Price Range</span>
+            </Button>
+            {priceRangeOpt && (
+              <span
+                ref={wrapperRef}
+                style={{
+                  background: "white",
+                  position: "absolute",
+                  top: "47px",
+                  left: " 7px",
+                }}>
+                <PriceRange filterState={filterState} setFilterState={setFilterState} applyFilter={applyFilter} />
+              </span>
+            )}
+          </div>
         </div>
         <div className={classes.filter_sort}>
           <Button
@@ -155,7 +229,7 @@ const Navigation = ({ filterState, setFilterState, applyFilter }) => {
           </Button>
           {filterOptions && (
             <div ref={wrapperRef} className={classes.filterContainer}>
-              <SortPrice  />
+              <SortPrice />
               <span style={{ width: "100%", padding: "0px 16px" }}>
                 {/* <PriceRange filterState={filterState} setFilterState={setFilterState} /> */}
 
