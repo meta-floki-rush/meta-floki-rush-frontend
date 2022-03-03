@@ -74,7 +74,7 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
 
   React.useEffect(() => {
     let totalBalance = availableAmount || 0;
-    order?.forEach((order) => {
+    order?.filter((order)=> order.order.maker === account).forEach((order) => {
       totalBalance -= order?.order?.assetAmount || 0;
     });
     setAdminBalance(totalBalance);

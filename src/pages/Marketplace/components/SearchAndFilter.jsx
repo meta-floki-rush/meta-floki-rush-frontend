@@ -1,4 +1,4 @@
-import { Hidden } from "@mui/material";
+import { Hidden, makeStyles } from "@mui/material";
 import React, { useState } from "react";
 import { Autocomplete, Box, Button, IconButton, OutlinedInput, TextField } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
@@ -12,6 +12,12 @@ import icons3 from "../../../assets/images/icons3.png";
 import icons4 from "../../../assets/images/icons4.png";
 import icons5 from "../../../assets/images/icons5.png";
 
+// const useStyles = makeStyles((theme) => ({}));
+import { PriceRange } from "./PriceRange";
+import SortPrice  from "./SortPrice";
+import { useRef } from "react";
+import Slider from "@mui/material/Slider";
+import { Typography } from "@mui/material";
 export const navData = [
   {
     title: "Category",
@@ -31,22 +37,67 @@ export const navData = [
   },
 ];
 
-const NavigationStyle = () => {
+const NavigationStyle = ({ filterState, setFilterState, applyFilter }) => {
   const classes = useStyles();
   return (
     <>
-      <Navigation />
+      <Navigation filterState={filterState} setFilterState={setFilterState} applyFilter={applyFilter} />
     </>
   );
 };
 
-const Navigation = () => {
+const Navigation = ({ filterState, setFilterState, applyFilter }) => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const [search, setSearch] = React.useState(params.get("search"));
-
+  const [filterOptions, setfilterOptions] = React.useState(false);
+  const wrapperRef = useRef(null);
   const classes = useStyles();
   const navigate = useNavigate();
+
+  const [priceRange, setpriceRange] = React.useState([20, 37]);
+  const [applyFilterRange, setApplyFilterRange] = React.useState({});
+  const handleRange = (e, newValue) => {
+    setpriceRange(newValue);
+  };
+
+  const handleChange = (event, newValue) => {
+    // setpriceRange(newValue);
+    console.log("newValue", newValue);
+    setApplyFilterRange({
+      minPrice: newValue[0].toString(),
+      maxPrice: newValue[1].toString(),
+    });
+  };
+  const applyFilterButton = () => {
+    console.log("button");
+    setFilterState &&
+      setFilterState({
+        ...filterState,
+        ...applyFilterRange,
+      });
+  };
+
+  const handlefilterOptions = () => {
+    setfilterOptions(true);
+  };
+
+  function useOutsideAlerter(ref) {
+    React.useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setfilterOptions(false);
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  useOutsideAlerter(wrapperRef);
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       navigate(`/marketplace?search=${search}`);
@@ -94,6 +145,7 @@ const Navigation = () => {
         </div>
         <div className={classes.filter_sort}>
           <Button
+            onClick={handlefilterOptions}
             style={{
               color: "white",
               fontWeight: "bolder",
@@ -101,6 +153,43 @@ const Navigation = () => {
             <img src={filterIcon} alt="filter icons" />
             <span className={classes._Icons_text}>Filter & sort</span>
           </Button>
+          {filterOptions && (
+            <div ref={wrapperRef} className={classes.filterContainer}>
+              <SortPrice  />
+              <span style={{ width: "100%", padding: "0px 16px" }}>
+                {/* <PriceRange filterState={filterState} setFilterState={setFilterState} /> */}
+
+                <Box>
+                  <Slider
+                    getAriaLabel={() => "Temperature range"}
+                    value={[applyFilterRange.minPrice || 0, applyFilterRange.maxPrice || 1000]}
+                    onChange={handleChange}
+                    min={0}
+                    max={1000}
+                  />
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between", fontStyle: "italic", fontSize: "15px" }}>
+                    <Typography>Min: {applyFilterRange?.minPrice || 0}</Typography>
+                    <Typography>Max: {applyFilterRange?.maxPrice || 500}</Typography>
+                  </div>
+                </Box>
+              </span>
+              <Button
+                onClick={() => {
+                  applyFilterButton();
+                  applyFilter();
+                }}
+                style={{
+                  fontWeight: "bolder",
+                  background: "#f4c84c",
+                  color: "#922626",
+                  borderRadius: " 5px",
+                  padding: "0px 13px",
+                }}>
+                Apply Filter
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

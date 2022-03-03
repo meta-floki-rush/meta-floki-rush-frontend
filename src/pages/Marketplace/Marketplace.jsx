@@ -18,7 +18,7 @@ const Marketplace = () => {
   const [filterState, setFilterState] = React.useState({
     minPrice: "0",
     type: AssetType.ERC1155,
-    // address: POOL_CARD_ADDRESS,
+    address: POOL_CARD_ADDRESS,
   });
   const [orders, setOrders] = React.useState([]);
   const { filterMarketPlace } = useFilterMarketPlace();
@@ -39,7 +39,7 @@ const Marketplace = () => {
     fetchOrders();
   }, [account, filterState]);
 
-  console.log("filterState", filterState);
+  console.log("filterState", filterState, "orders", orders);
   React.useEffect(() => {
     if (searchQuery !== filterState.name) {
       setFilterState({
@@ -54,29 +54,19 @@ const Marketplace = () => {
   const selectCard = (assetId, asset) => {
     navigate(`/item/${assetId}/${asset}`);
   };
-
-  // let orders = [
-  //   {
-  //     image: cardImage,
-  //     name: "Crazy Ape",
-  //     price: "1.2 Eth",
-  //     date: "4 hr ago",
-  //   },
-  // ];
-
-  // orders = [...orders, ...orders, ...orders, ...orders, ...orders, ...orders];
+  console.log("filterState", filterState);
 
   return (
     <>
-      <SearchAndFilter />
+      <SearchAndFilter filterState={filterState} setFilterState={setFilterState} applyFilter={fetchOrders} />
       <Backgroundfram
         childrens={
           <>
             <div className={classes.__cards}>
-              <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
+              {/* <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
                 <i>Marketplace is coming soon Stay Tuned, and Mint your frst NFTs!</i>
-              </h2>
-              {/* {orders?.map((order, index) => (
+              </h2>  */}
+              {orders?.map((order, index) => (
                 <React.Fragment key={index}>
                   {loading && (
                     <Card
@@ -137,7 +127,7 @@ const Marketplace = () => {
                     />
                   )}
                 </React.Fragment>
-              ))} */}
+              ))}
             </div>
           </>
         }

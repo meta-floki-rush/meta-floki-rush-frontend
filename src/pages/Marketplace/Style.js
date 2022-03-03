@@ -165,16 +165,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  filter_sort: {
-    // width: "155px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("md")]: {
-      height: "50px",
-      alignItems: "flex-end",
-    },
-  },
+  // filter_sort: {
+  //   // width: "155px",
+  //   alignItems: "center",
+  //   justifyContent: "space-around",
+  //   display: "none !important",
+  //   [theme.breakpoints.down("md")]: {
+  //     display: "flex",
+
+  //     height: "50px",
+  //     alignItems: "flex-end",
+  //   },
+  // },
 
   __headerbackground: {
     width: "100%",
@@ -240,13 +242,34 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "49px",
     alignItems: "center",
-    justifyContent: "space-around",
+    padding: "0px 15px",
     width: "100%",
+    justifyContent: "space-between",
     [theme.breakpoints.down("md")]: {
-      justifyContent: "space-between",
       flexDirection: "row-reverse",
       padding: "0px 6px",
     },
+  },
+  filter_sort: {
+    position: "relative",
+    display: "none",
+    [theme.breakpoints.down("md")]: {
+      display: "block ",
+    },
+  },
+  filterContainer: {
+    position: "absolute",
+    width: "250px",
+    height: " 200px",
+    marginTop: "6px",
+    border: "1px solid #8080807d",
+    background: "#e7f3e7de",
+    display: "flex",
+    borderRadius: "6px",
+    justifyContent: "space-around",
+    alignItems: "flex-start",
+    flexDirection: "column-reverse",
+    padding: " 0px 10px",
   },
 }));
 export default useStyles;

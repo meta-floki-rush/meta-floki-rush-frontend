@@ -44,6 +44,7 @@ const useCreateOrder = (asset: string) => {
       },
       metadata: {
         ...metadata,
+        address: asset,
         collectionName: "MetaFlokiRushNFT",
         makerAddress: account || "",
       },
