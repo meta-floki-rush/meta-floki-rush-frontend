@@ -168,7 +168,6 @@ const useStyles = makeStyles((theme) => ({
   },
   filterTabs: {
     position: "absolute",
-    
   },
   __headerbackground: {
     width: "100%",
@@ -262,6 +261,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     flexDirection: "column-reverse",
     padding: " 0px 10px",
+  },
+  priceRange: {
+    background: "#e7f3e7de",
+    position: "absolute",
+    top: "47px",
+    border: "1px solid #8080807d",
+    left: "-52px",
+    width: "206px",
+    padding: "0px 26px",
+    display: "flex",
+    borderRadius: "6px",
+    height: "100px",
+    justifyContent: "space-around",
+    // alignItems: "flex-start",
+    flexDirection: "column",
   },
 }));
 export default useStyles;

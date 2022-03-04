@@ -58,7 +58,7 @@ const Marketplace = () => {
 
   return (
     <>
-      <SearchAndFilter filterState={filterState} setFilterState={setFilterState} applyFilter={fetchOrders} />
+      <SearchAndFilter orders={orders} filterState={filterState} setFilterState={setFilterState} applyFilter={fetchOrders} />
       <Backgroundfram
         childrens={
           <>

@@ -26,7 +26,7 @@ const All = () => {
 
   oders = [...oders, ...oders, ...oders, ...oders, ...oders, ...oders];
   const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 16);
-
+  console.log("results", results);
   const navigate = useNavigate();
   const handleClick = (assetId, asset) => {
     console.log("asset", asset, "assetId", assetId);

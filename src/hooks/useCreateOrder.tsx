@@ -49,6 +49,7 @@ const useCreateOrder = (asset: string) => {
         makerAddress: account || "",
       },
     };
+    console.log("order creating",ord)
     if (!isApproved) {
       let res = await approve(asset);
       if (!res) return;

@@ -18,7 +18,8 @@ const theme = createTheme({
     },
     background: {
       default: "#ede2d6",
-      paper: "#00A651",
+      paper: "#e7f3e7de",
+      //bgc
     },
     action: {
       hover: primaryhover,

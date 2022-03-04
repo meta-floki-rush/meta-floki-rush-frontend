@@ -32,6 +32,9 @@ const Inventory = () => {
                   { name: "In Order", id: 2 },
                 ]}
               />
+
+
+              
               <All />
               {/* <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

@@ -2013,10 +2013,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@nftvillage/marketplace-sdk@^0.0.61":
-  version "0.0.61"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.61.tgz#4ef113c396e75e7d843a27d21661c42d27959c78"
-  integrity sha512-efDy5C+UbMFboize7klvwWxUnIVoKhbqkEicsC8QnwN/87ZepBQxeATRfs3QLIYwpZ3TfQC+dPxMdWrZzfIi5w==
+"@nftvillage/marketplace-sdk@^0.0.63":
+  version "0.0.63"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.63.tgz#259487349d392eb24bd682a6990536cd6fa4c5b3"
+  integrity sha512-SlE+W3di8RgSvHdvD1geq2HwO4r76PNks3CrSqxVPFzXCZT1cYBuJu2TX8J/B+G9KVQ3q7GTYv/rpN9jrq+VGQ==
   dependencies:
     rollup-plugin-sourcemaps "^0.6.3"
 

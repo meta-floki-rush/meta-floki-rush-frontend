@@ -79,16 +79,16 @@ const useStyles = makeStyles((theme) => ({
   left__details: {
     display: "flex",
     width: "100%",
-    maxWidth: "427px",
+    maxWidth: "500px",
     padding: "20px",
     height: "272px",
     justifyContent: "space-around",
     alignItems: "flex-start",
     flexDirection: "column",
-    borderRight: "2px solid gray",
+    border: "2px dotted gray",
+    borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
       padding: "5px",
-      borderRight: "none",
     },
   },
   _avatar: {

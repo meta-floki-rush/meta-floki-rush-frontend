@@ -108,11 +108,11 @@ const ItemDetails = () => {
                   </span>
                   <p>{metadata?.description}</p>
                 </div>
-                <div className={classes.right__details}>
-                  {/* <span>Current Price</span>
-                  <h2>BNB 12.11</h2> */}
+                {/* <div className={classes.right__details}>
+                  <span>Current Price</span>
+                  <h2>BNB 12.11</h2>
                   <Button
-                    // onClick={handleBuy}
+                    onClick={handleBuy}
                     disabled
                     variant="contained"
                     size="large"
@@ -120,7 +120,7 @@ const ItemDetails = () => {
                     startIcon={<ShoppingBagOutlinedIcon />}>
                     Buy Now
                   </Button>
-                </div>
+                </div> */}
               </div>
               {/* </div> */}
               <div style={{ marginBottom: "80px" }}>
