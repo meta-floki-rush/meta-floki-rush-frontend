@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     maxWidth: "418px",
     /* background: red, */
-    minHeight: "300px",
+    minHeight: "307px",
     border: "3px dashed black",
     display: "flex",
     justifyContent: "space-around ",

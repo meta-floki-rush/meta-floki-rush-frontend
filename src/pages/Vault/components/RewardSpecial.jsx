@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import useStyles from "../Style";
 import valtSizeicon from "../../../assets/images/valtSizeicon.png";
@@ -100,8 +100,8 @@ const ClaimReward = ({
   const [timeLeft, setTimeLeft] = useState(null);
 
   const getTimeLeft = (delta) => {
+    console.log("delta", delta);
     if (!delta || delta <= 0 || delta === "0") return null;
-
     // calculate (and subtract) whole days
     var days = Math.floor(delta / 86400);
     delta -= days * 86400;
@@ -146,10 +146,11 @@ const ClaimReward = ({
   };
 
   React.useEffect(() => {
+    let seconds = 3600;
     const interval = setInterval(() => {
-      const time = getTimeLeft(claimTimeLeft - Math.floor(new Date().getTime() / 1000));
+      const time = getTimeLeft(seconds--);
+      console.log("time", time);
       setTimeLeft(getTimeText(time));
-
       if (!time) clearInterval(interval);
     }, 1000);
   }, [claimTimeLeft]);
@@ -163,9 +164,9 @@ const ClaimReward = ({
         disabled={pending || timeLeft || !userInfo?.signature}
         onClick={handleClaim}
         style={style}>
-        {/* Claim */}
-        {!userInfo?.signature ? "Not Eligible" : pending ? "Pending.." : `Claim ${timeLeft ? `in ${timeLeft}` : ""}`}
+        {userInfo?.signature ? "Not Eligible" : pending ? "Pending.." : `Claim`}
       </Button>
+      <Typography>Enable in {timeLeft}</Typography>
     </>
   );
 };
