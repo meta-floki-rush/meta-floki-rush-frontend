@@ -32,7 +32,6 @@ const TreasureChest = () => {
       });
     } else {
       setLoading(false);
-      console.log("Error Occur");
     }
   };
   const { openModal } = useContext(ModalContext);

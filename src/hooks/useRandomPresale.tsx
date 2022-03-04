@@ -42,7 +42,7 @@ const useBuyPack = () => {
       reload();
       setTxPending(false);
       console.log(txResponse.error);
-      if (!txResponse.status) notifyError("Oops! Something went wrong");
+      if (!txResponse.status) notifyError(txResponse.error);
       return txResponse;
     } catch (error) {
       console.log("error", error);

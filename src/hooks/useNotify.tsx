@@ -11,13 +11,7 @@ const useNotify = () => {
     let chekLength = chekMessage.length;
     notify({
       // @ts-ignore
-      message: (
-        <NotificationComponent
-          title={"Error!"}
-          message={chekLength <= 30 ? message : "Oops! Something went wrong."}
-          image={notificationError}
-        />
-      ),
+      message: <NotificationComponent title={"Error!"} message={message} image={notificationError} />,
     });
   };
 
