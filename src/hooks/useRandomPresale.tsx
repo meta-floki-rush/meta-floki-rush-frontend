@@ -15,9 +15,13 @@ const useBuyPack = () => {
 
   useEffect(() => {
     const init = async () => {
-      if (!randomSale || !account) return;
-      setEnabled(await randomSale.enabled());
-      setPrice(ethers.utils.formatEther(await randomSale.price()));
+      try {
+        if (!randomSale || !account) return;
+        setEnabled(await randomSale.enabled());
+        setPrice(ethers.utils.formatEther(await randomSale.price()));
+      } catch (error) {
+        console.log(error);
+      }
     };
     init();
   }, [randomSale, account, reloadable]);
