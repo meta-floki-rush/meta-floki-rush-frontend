@@ -4,7 +4,7 @@ import dodgeCoin from "../../../assets/images/dodgeCoin.png";
 import tokenbalance from "../../../assets/images/tokenbalance.png";
 import rank from "../../../assets/images/rank.png";
 import useStyles from "../Style";
-import useTokenInfo from "../../../hooks/useTokenInfo";
+import useRewardInfo from "../../../hooks/useRewardInfo";
 
 const VaultContainer = () => {
   const classes = useStyles();
@@ -14,7 +14,7 @@ const VaultContainer = () => {
     topHolderTotalRewards, //50 club reward
     totalRewards, //dodge bank
     top50Club,
-  } = useTokenInfo();
+  } = useRewardInfo();
   return (
     <>
       <div className={classes.vaultContainer}>

@@ -5,7 +5,7 @@ import valtSizeicon from "../../../assets/images/valtSizeicon.png";
 import rewardIcon from "../../../assets/images/rewardIcon.png";
 import dodgeCoin from "../../../assets/images/dodgeCoin.png";
 import { useNormalRewardClaim, useTopHolderRewardClaim } from "../../../hooks/useRewardClaim";
-import useTokenInfo from "../../../hooks/useTokenInfo";
+import useRewardInfo from "../../../hooks/useRewardInfo";
 import { toLowerUnit } from "@react-dapp/utils";
 
 const RewardSpecial = () => {
@@ -19,7 +19,7 @@ const RewardSpecial = () => {
     reload,
     totalRewards, //dodge bank
     userRewardInfo,
-  } = useTokenInfo();
+  } = useRewardInfo();
 
   const { claim, txPending } = useTopHolderRewardClaim(reload);
 

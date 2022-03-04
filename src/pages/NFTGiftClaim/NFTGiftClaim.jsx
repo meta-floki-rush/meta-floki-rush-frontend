@@ -6,7 +6,7 @@ import emptygift from "../../assets/images/empty gift.png";
 import giftcard from "../../assets/images/minting.png";
 import { Button } from "@mui/material";
 import clsx from "clsx";
-import useTokenInfo from "../../hooks/useTokenInfo";
+import useRewardInfo from "../../hooks/useRewardInfo";
 import { useNFTRewardClaim } from "../../hooks/useNftRewardClaim";
 import confetti from "canvas-confetti";
 

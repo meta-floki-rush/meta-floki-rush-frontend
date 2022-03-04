@@ -19,7 +19,7 @@ const useReload = () => {
   return { reload, reloadable: value };
 };
 
-const useTokenInfo = () => {
+const useRewardInfo = () => {
   const { reload, reloadable } = useReload();
   const { ethers, account } = useEthers();
   const rewardContract = useContract(rewardClaimAbi, REWARD_CLAIM_ADDRESS);
@@ -218,4 +218,4 @@ const useTokenInfo = () => {
   };
 };
 
-export default useTokenInfo;
+export default useRewardInfo;
