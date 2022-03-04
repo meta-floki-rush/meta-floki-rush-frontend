@@ -93,7 +93,7 @@ const ClaimReward = ({
   // claim,
   pending,
   userInfo,
-  claimTimeLeft,
+  claimTimeLeft = 0,
   style,
   handleClaim,
 }) => {
@@ -146,7 +146,7 @@ const ClaimReward = ({
   };
 
   React.useEffect(() => {
-    let seconds = 3600;
+    let seconds = claimTimeLeft;
     const interval = setInterval(() => {
       const time = getTimeLeft(seconds--);
       console.log("time", time);

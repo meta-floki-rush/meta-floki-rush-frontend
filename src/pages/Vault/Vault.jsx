@@ -18,6 +18,7 @@ import { Button, Grid } from "@mui/material";
 import useTopHolders from "./../../hooks/useTopHolders";
 import { useEthers } from "@react-dapp/utils";
 import { ordinalSuffixOf } from "../../utils/utils";
+import useRewardInfo from "../../hooks/useRewardInfo";
 const Vault = () => {
   const classes = useStyles();
 
@@ -25,6 +26,14 @@ const Vault = () => {
   const topHolders = useTopHolders();
   const [topHolderStanding, setTopHolderStanding] = React.useState(message);
   const { account } = useEthers();
+  console.log(topHolders);
+  const {
+    reward, //doge reward
+    topHolderTotalRewards, //50 club reward
+    totalRewards, //dodge bank
+    top50Club,
+    claimTimeLeft,
+  } = useRewardInfo();
 
   React.useEffect(() => {
     const calculateTopHoldersStanding = () => {
@@ -34,6 +43,8 @@ const Vault = () => {
 
     if (topHolders?.length > 0) calculateTopHoldersStanding();
   }, [topHolders]);
+
+  console.log(claimTimeLeft, "claimTimeLeft");
 
   return (
     <div style={{ position: "relative" }}>
@@ -60,11 +71,16 @@ const Vault = () => {
             <img src={MetaFlokiRush} className={classes.MetaFlokiRush} alt="tree2" />
             <div className={classes.vault}>
               <h1 className={classes.title}>DOGE BANK</h1>
-              <VaultContainer />
+              <VaultContainer
+                reward={reward}
+                topHolderTotalRewards={topHolderTotalRewards}
+                totalRewards={totalRewards}
+                top50Club={top50Club}
+              />
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <center>
-                    <Reward />
+                    <Reward claimTimeLeft={claimTimeLeft} />
                   </center>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -83,9 +99,9 @@ const Vault = () => {
                   }}>
                   Top 50 Holders
                 </h1>
-                <TopHolders rows={[]} />
+                <TopHolders rows={topHolders ?? []} />
               </div>
-              {/* <ClaimHistory /> */}
+              <ClaimHistory />
               {/* <BottomNav /> */}
             </div>
           </div>

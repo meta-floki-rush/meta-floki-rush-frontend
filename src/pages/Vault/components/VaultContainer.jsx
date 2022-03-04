@@ -6,15 +6,14 @@ import rank from "../../../assets/images/rank.png";
 import useStyles from "../Style";
 import useRewardInfo from "../../../hooks/useRewardInfo";
 
-const VaultContainer = () => {
+const VaultContainer = ({
+  reward, //doge reward
+  topHolderTotalRewards, //50 club reward
+  totalRewards, //dodge bank
+  top50Club,
+}) => {
   const classes = useStyles();
 
-  const {
-    reward, //doge reward
-    topHolderTotalRewards, //50 club reward
-    totalRewards, //dodge bank
-    top50Club,
-  } = useRewardInfo();
   return (
     <>
       <div className={classes.vaultContainer}>
@@ -54,8 +53,8 @@ const VaultContainer = () => {
               }}>
               Top 50 Club{" "}
             </span>
-            <span className={classes.number}>{"0"}</span>
-            {/* <span className={classes.number}>{top50Club}</span> */}
+            {/* <span className={classes.number}>{"0"}</span> */}
+            <span className={classes.number}>{top50Club}</span>
           </span>
         </span>
         <span className={classes.vaultContent}>
