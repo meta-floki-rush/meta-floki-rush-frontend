@@ -107,6 +107,7 @@ const FarmCard = ({ onSelect = () => {} }) => {
                 <span>Stacked Amount: </span>
                 <span>1023USDT</span>
               </div>
+            </div>
               <span
                 style={{
                   display: "flex",
@@ -114,10 +115,30 @@ const FarmCard = ({ onSelect = () => {} }) => {
                   alignItems: "center",
                   width: "100%",
                 }}>
-                <Button>deposite</Button>
-                <Button>widral</Button>
+                <Button
+                  style={{
+                    zIndex: "999",
+                    fontSize: " 12px",
+                    color: "#922626",
+                    // backgroundColor: "rgb(244 200 76)",
+                  }}
+                  variant="text"
+
+                  size="small">
+                  Deposite
+                </Button>
+                <Button
+                  style={{
+                    zIndex: "999",
+                    fontSize: " 12px",
+                    color: "#922626",
+                    // backgroundColor: "rgb(244 200 76)",
+                  }}
+                  variant="text"
+                  size="small">
+                  Withdraw
+                </Button>
               </span>
-            </div>
           </div>
         </div>
       </div>
