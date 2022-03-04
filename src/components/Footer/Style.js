@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-evenly",
     flexDirection: "column",
-    marginTop: -250,
+    // marginTop: -250,
     // alignItems: "center",
   },
   bg: {
