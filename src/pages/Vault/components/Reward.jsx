@@ -42,7 +42,7 @@ const Reward = () => {
           <span className={classes.rewardsCoin}>
             <img src={dodgeCoin} className={classes._dodgeCoin} alt="dodge coin" />
             <span className={classes.rewardsNumber}>
-              {toLowerUnit(rewardClaim, 9).toFixed(0)}
+              {rewardClaim}
               {/* 120 */}
             </span>
           </span>

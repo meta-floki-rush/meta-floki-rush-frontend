@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { awaitTransaction, toBigNumber, useReload, useContract, useEthers } from "@react-dapp/utils";
+import { awaitTransaction, toBigNumber, useReload, useContract, useEthers, toLowerUnit } from "@react-dapp/utils";
 import tokenAbi from "../assets/abi/token_abi.json";
 import rewardClaimAbi from "../assets/abi/reward_claim_abi.json";
 import { TOKEN_ADDRESS, REWARD_CLAIM_ADDRESS } from "../assets/constant";
@@ -13,7 +13,7 @@ import useNotify from "./useNotify";
 export const useNormalRewardClaim = () => {
   const contract = useContract(tokenAbi, TOKEN_ADDRESS);
   const { notify, dismissNotifications } = useNotifications();
-  const [rewardClaim, setRewardClaim] = useState(0);
+  const [rewardClaim, setRewardClaim] = useState("0");
   const [txPending, setTxPending] = useState(false);
   const { account } = useEthers();
   const { reload, reloadable } = useReload();
@@ -25,8 +25,7 @@ export const useNormalRewardClaim = () => {
           console.log("Unable to find reward claim contract and account");
           return;
         }
-        console.log(toBigNumber((await contract.calculateReward(account)) ?? 0).toFormat(2));
-        setRewardClaim(Number(toBigNumber((await contract.calculateReward(account)) ?? 0).toFormat(2)));
+        setRewardClaim(toLowerUnit(toBigNumber(await contract.calculateReward(account)).toString(), 8).toFormat(0));
       } catch (error) {
         console.log(error);
       }

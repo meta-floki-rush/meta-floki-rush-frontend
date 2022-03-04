@@ -6,7 +6,7 @@ import { Multicall } from "ethereum-multicall";
 import BigNumber from "bignumber.js";
 import { getUserRewards, getTopHolders } from "../api/rewardInfo";
 import { getUserNftRewards } from "../api/rewardInfo";
-import { useEthers, useContract, toBigNumber } from "@react-dapp/utils";
+import { useEthers, useContract, toBigNumber, toLowerUnit, useERC20 } from "@react-dapp/utils";
 import { Contract } from "ethers";
 
 const useReload = () => {
@@ -23,6 +23,7 @@ const useTokenInfo = () => {
   const { reload, reloadable } = useReload();
   const { ethers, account } = useEthers();
   const rewardContract = useContract(rewardClaimAbi, REWARD_CLAIM_ADDRESS);
+
   const [rewardTokenBalance, setRewardTokenBalance] = useState<string>("0");
   const [tokenBalance, setTokenBalance] = useState<string>("0");
   const [reward, setReward] = useState<string>("0");
@@ -148,12 +149,12 @@ const useTokenInfo = () => {
         );
         setRewardTokenBalance(
           new BigNumber(result.rewardTokenBalance.callsReturnContext[0].returnValues[0].hex)
-            .div(new BigNumber(10).exponentiatedBy(18))
+            .div(new BigNumber(10).exponentiatedBy(8))
             .toFixed(2),
         );
         setReward(
           new BigNumber(result.calculateReward.callsReturnContext[0].returnValues[0].hex)
-            .div(new BigNumber(10).exponentiatedBy(18))
+            .div(new BigNumber(10).exponentiatedBy(8))
             .toFixed(2),
         );
         setClaimTimeLeft(
@@ -161,13 +162,24 @@ const useTokenInfo = () => {
         );
         setTotalRewards(
           new BigNumber(result.totalRewards.callsReturnContext[0].returnValues[0].hex)
-            .div(new BigNumber(10).exponentiatedBy(18))
+            .div(new BigNumber(10).exponentiatedBy(8))
             .toFormat(0),
         );
         setTotalUserTopReward(
           new BigNumber(result.totalUserRewards.callsReturnContext[0].returnValues[0].hex)
-            .div(new BigNumber(10).exponentiatedBy(18))
+            .div(new BigNumber(10).exponentiatedBy(8))
             .toFormat(0),
+        );
+
+        setTopHolderTotalRewards(
+          toLowerUnit(
+            toBigNumber(
+              await rewardContract?.rewards(
+                toBigNumber(result.currentRewardCycle.callsReturnContext[0].returnValues[0]).toNumber(),
+              ),
+            ).toFixed(0),
+            8,
+          ).toFormat(0),
         );
 
         const userInfo = await getUserRewards(account);

@@ -13,7 +13,7 @@ import useNotify from "./useNotify";
 export const usePrivateSaleClaim = () => {
   const contract = useContract(PrivateSaleAbi, PRIVATE_SALE_ADDRESS);
   const { notify, dismissNotifications } = useNotifications();
-  const [txPending, setTxPending] = useState(true);
+  const [txPending, setTxPending] = useState(false);
   const [alreadyClaimed, setAlreadyClaimed] = useState();
   const [enabled, setEnabled] = useState(true);
   const [privateSaleClaimData, setPrivateSaleClaimData] = useState<any>(undefined);

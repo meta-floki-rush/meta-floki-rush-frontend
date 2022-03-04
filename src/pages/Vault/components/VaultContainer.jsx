@@ -54,7 +54,8 @@ const VaultContainer = () => {
               }}>
               Top 50 Club{" "}
             </span>
-            <span className={classes.number}>{top50Club}</span>
+            <span className={classes.number}>{"0"}</span>
+            {/* <span className={classes.number}>{top50Club}</span> */}
           </span>
         </span>
         <span className={classes.vaultContent}>
