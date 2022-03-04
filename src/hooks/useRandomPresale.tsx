@@ -1,4 +1,4 @@
-import { awaitTransaction, toBigNumber, useEthers, useReload } from "@react-dapp/utils";
+import { awaitTransaction, toBigNumber, toLowerUnit, useEthers, useReload } from "@react-dapp/utils";
 import { useNFTRandomSale } from "./useContract";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
@@ -18,7 +18,8 @@ const useBuyPack = () => {
       try {
         if (!randomSale || !account) return;
         setEnabled(await randomSale.enabled());
-        setPrice(ethers.utils.formatEther(await randomSale.price()));
+        setPrice(toLowerUnit(toBigNumber(await randomSale.price()).toString()).toString());
+        console.log(toLowerUnit(toBigNumber(await randomSale.price()).toString()).toString());
       } catch (error) {
         console.log(error);
       }
@@ -35,7 +36,7 @@ const useBuyPack = () => {
       setTxPending(true);
       const txResponse = await awaitTransaction(
         randomSale.buyPack({
-          value: "0.3",
+          value: ethers.utils.parseEther(price),
         }),
       );
       reload();

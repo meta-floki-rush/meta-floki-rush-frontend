@@ -39,6 +39,8 @@ const PackCard = ({ pack, enabled }) => {
     }
   };
 
+  console.log(enabled, pack);
+
   return (
     <Cards
       customClass={classes.setcard}
