@@ -26,7 +26,6 @@ const Vault = () => {
   const topHolders = useTopHolders();
   const [topHolderStanding, setTopHolderStanding] = React.useState(message);
   const { account } = useEthers();
-  console.log(topHolders);
   const {
     reward, //doge reward
     topHolderTotalRewards, //50 club reward
@@ -43,8 +42,6 @@ const Vault = () => {
 
     if (topHolders?.length > 0) calculateTopHoldersStanding();
   }, [topHolders]);
-
-  console.log(claimTimeLeft, "claimTimeLeft");
 
   return (
     <div style={{ position: "relative" }}>
@@ -99,7 +96,7 @@ const Vault = () => {
                   }}>
                   Top 50 Holders
                 </h1>
-                <TopHolders rows={topHolders ?? []} />
+                <TopHolders rows={topHolders.message ? [] : topHolders ?? []} />
               </div>
               <ClaimHistory />
               {/* <BottomNav /> */}

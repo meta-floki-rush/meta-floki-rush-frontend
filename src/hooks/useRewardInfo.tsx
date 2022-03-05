@@ -24,6 +24,7 @@ const useRewardInfo = () => {
   const { ethers, account } = useEthers();
   const rewardContract = useContract(rewardClaimAbi, REWARD_CLAIM_ADDRESS);
 
+  const [topRewardAlreadyClaimed, setAlreadyClaimed] = useState(false);
   const [rewardTokenBalance, setRewardTokenBalance] = useState<string>("0");
   const [tokenBalance, setTokenBalance] = useState<string>("0");
   const [reward, setReward] = useState<string>("0");
@@ -140,6 +141,18 @@ const useRewardInfo = () => {
               },
             ],
           },
+          {
+            reference: "canClaim",
+            contractAddress: REWARD_CLAIM_ADDRESS,
+            abi: rewardClaimAbi,
+            calls: [
+              {
+                reference: "canClaim",
+                methodName: "canClaim",
+                methodParameters: [account],
+              },
+            ],
+          },
         ];
         const result = (await multicall.call(call as any)).results;
         setTokenBalance(
@@ -158,7 +171,8 @@ const useRewardInfo = () => {
             .toFixed(2),
         );
         setClaimTimeLeft(
-          new BigNumber(result.nextAvailableClaimDate.callsReturnContext[0].returnValues[0].hex).toNumber(),
+          new BigNumber(result.nextAvailableClaimDate.callsReturnContext[0].returnValues[0].hex).toNumber() -
+            Date.now() / 1000,
         );
         setTotalRewards(
           new BigNumber(result.totalRewards.callsReturnContext[0].returnValues[0].hex)
@@ -182,11 +196,13 @@ const useRewardInfo = () => {
           ).toFormat(0),
         );
 
+        setAlreadyClaimed(!result.canClaim.callsReturnContext[0].returnValues[0]);
+
         const userInfo = await getUserRewards(account);
         setUserRewardInfo(userInfo);
 
         const userNft = await getUserNftRewards(account);
-        setUserNftReward(userNft.data);
+        setUserNftReward(userNft?.data);
 
         const topHolders = await getTopHolders();
         for (let index = 0; index < topHolders.length; index++) {
@@ -214,6 +230,7 @@ const useRewardInfo = () => {
     userRewardInfo,
     userNftReward,
     top50Club,
+    topRewardAlreadyClaimed,
     reload,
   };
 };

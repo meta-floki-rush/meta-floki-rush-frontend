@@ -6,10 +6,9 @@ import dodgeCoin from "../../../assets/images/dodgeCoin.png";
 import { useNormalRewardClaim } from "../../../hooks/useRewardClaim";
 import { toLowerUnit } from "@react-dapp/utils";
 
-const Reward = ({ claimTimeLeft }) => {
+const Reward = () => {
   const classes = useStyles();
-
-  const { claim, rewardClaim, txPending } = useNormalRewardClaim();
+  const { claim, rewardClaim, claimTimeLeft, txPending } = useNormalRewardClaim();
 
   const handleClaim = async () => {
     await claim();
@@ -86,7 +85,6 @@ const ClaimReward = ({
   const [timeLeft, setTimeLeft] = useState(null);
 
   const getTimeLeft = (delta) => {
-    console.log("delta", delta);
     if (!delta || delta <= 0 || delta === "0") return null;
     // calculate (and subtract) whole days
     var days = Math.floor(delta / 86400);
@@ -135,7 +133,6 @@ const ClaimReward = ({
     let seconds = claimTimeLeft;
     const interval = setInterval(() => {
       const time = getTimeLeft(seconds--);
-      console.log("time", time);
       setTimeLeft(getTimeText(time));
       if (!time) clearInterval(interval);
     }, 1000);
@@ -143,9 +140,14 @@ const ClaimReward = ({
 
   return (
     <>
-      <Button className={classes.claimbtn} size="large" variant="contain" disabled={pending} onClick={handleClaim}>
+      <Button
+        className={classes.claimbtn}
+        size="large"
+        variant="contain"
+        disabled={pending || claimTimeLeft > 0}
+        onClick={handleClaim}>
         {/* Claim */}
-        {pending ? "Pending.." : `Claim`}
+        {claimTimeLeft > 0 ? "Already claimed" : pending ? "Pending.." : `Claim`}
       </Button>
       <Typography>{timeLeft}</Typography>
     </>

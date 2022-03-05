@@ -19,7 +19,6 @@ const useBuyPack = () => {
         if (!randomSale || !account) return;
         setEnabled(await randomSale.enabled());
         setPrice(toLowerUnit(toBigNumber(await randomSale.price()).toString()).toString());
-        console.log(toLowerUnit(toBigNumber(await randomSale.price()).toString()).toString());
       } catch (error) {
         console.log(error);
       }

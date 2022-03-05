@@ -10,16 +10,7 @@ import { toLowerUnit } from "@react-dapp/utils";
 
 const RewardSpecial = () => {
   const classes = useStyles();
-  const {
-    tokenBalance,
-    rewardTokenBalance,
-    reward, //doge reward
-    topHolderTotalRewards, //50 club reward
-    claimTimeLeft,
-    reload,
-    totalRewards, //dodge bank
-    userRewardInfo,
-  } = useRewardInfo();
+  const { reload, userRewardInfo, topRewardAlreadyClaimed } = useRewardInfo();
 
   const { claim, txPending } = useTopHolderRewardClaim(reload);
 
@@ -62,10 +53,9 @@ const RewardSpecial = () => {
         <ClaimReward
           handleClaim={handleClaim}
           classes={classes}
-          // claim={claim}
+          topRewardAlreadyClaimed={topRewardAlreadyClaimed}
           userInfo={userRewardInfo}
           pending={txPending}
-          claimTimeLeft={claimTimeLeft}
         />
 
         <div
@@ -92,15 +82,14 @@ const ClaimReward = ({
   classes,
   // claim,
   pending,
+  topRewardAlreadyClaimed,
   userInfo,
-  claimTimeLeft = 0,
   style,
   handleClaim,
 }) => {
   const [timeLeft, setTimeLeft] = useState(null);
 
   const getTimeLeft = (delta) => {
-    console.log("delta", delta);
     if (!delta || delta <= 0 || delta === "0") return null;
     // calculate (and subtract) whole days
     var days = Math.floor(delta / 86400);
@@ -146,14 +135,13 @@ const ClaimReward = ({
   };
 
   React.useEffect(() => {
-    let seconds = claimTimeLeft;
+    let seconds = 0;
     const interval = setInterval(() => {
       const time = getTimeLeft(seconds--);
-      console.log("time", time);
       setTimeLeft(getTimeText(time));
       if (!time) clearInterval(interval);
     }, 1000);
-  }, [claimTimeLeft]);
+  });
 
   return (
     <>
@@ -161,12 +149,17 @@ const ClaimReward = ({
         className={classes.claimbtn}
         size="large"
         variant="contain"
-        disabled={pending || timeLeft || !userInfo?.signature}
+        disabled={pending || !userInfo?.signature}
         onClick={handleClaim}
         style={style}>
-        {userInfo?.signature ? "Not Eligible" : pending ? "Pending.." : `Claim`}
+        {!userInfo?.signature
+          ? "Not Eligible"
+          : pending
+          ? "Pending.."
+          : topRewardAlreadyClaimed
+          ? "Already Claimed"
+          : `Claim`}
       </Button>
-      <Typography>Enable in {timeLeft}</Typography>
     </>
   );
 };

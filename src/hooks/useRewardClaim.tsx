@@ -14,6 +14,7 @@ export const useNormalRewardClaim = () => {
   const contract = useContract(tokenAbi, TOKEN_ADDRESS);
   const { notify, dismissNotifications } = useNotifications();
   const [rewardClaim, setRewardClaim] = useState("0");
+  const [claimTimeLeft, setClaimTimeLeft] = useState(0);
   const [txPending, setTxPending] = useState(false);
   const { account } = useEthers();
   const { reload, reloadable } = useReload();
@@ -22,10 +23,10 @@ export const useNormalRewardClaim = () => {
     const fetch = async () => {
       try {
         if (!contract || !account) {
-          console.log("Unable to find reward claim contract and account");
           return;
         }
         setRewardClaim(toLowerUnit(toBigNumber(await contract.calculateReward(account)).toString(), 8).toFormat(0));
+        setClaimTimeLeft(toBigNumber(await contract.nextAvailableClaimDate(account)).toNumber() - Date.now() / 1000);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +40,6 @@ export const useNormalRewardClaim = () => {
     try {
       if (!contract) return console.log("Unable to find reward claim contract");
       const response = await awaitTransaction(contract.claimReward());
-      console.log("response", response);
 
       dismissNotifications();
       if (response.status) {
@@ -66,15 +66,13 @@ export const useNormalRewardClaim = () => {
           ),
         });
       }
-
-      if (reload) reload();
     } catch (e) {
       console.log(e);
     }
     setTxPending(false);
   };
 
-  return { claim, rewardClaim, txPending };
+  return { claim, rewardClaim, claimTimeLeft, txPending };
 };
 
 export const useTopHolderRewardClaim = () => {

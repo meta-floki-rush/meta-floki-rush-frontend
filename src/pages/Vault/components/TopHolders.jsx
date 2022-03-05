@@ -14,6 +14,7 @@ import { Box } from "@mui/system";
 // import { useEthers } from "@react-dapp/utils";
 // import { ordinalSuffixOf } from "../../../utils/utils";
 import useStyles from "../Style";
+import { toBigNumber } from "@react-dapp/utils";
 
 const TopHolders = ({ rows }) => {
   const classes = useStyles();
@@ -77,7 +78,7 @@ const TopHolders = ({ rows }) => {
                 <StyledTableRow key={index}>
                   <StyledTableCell align="center">{index + 1}</StyledTableCell>
                   <StyledTableCell align="center">{row.account}</StyledTableCell>
-                  <StyledTableCell align="center">{row.amount}</StyledTableCell>
+                  <StyledTableCell align="center">{toBigNumber(row.amount).toFormat(0)}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
