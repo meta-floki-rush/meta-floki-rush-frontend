@@ -1,4 +1,4 @@
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { border } from "@mui/system";
 import React, { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -21,6 +21,7 @@ import { Order, useBuyFixPriceOrder, useCancelOrder } from "@nftvillage/marketpl
 import useNotify from "../../hooks/useNotify";
 import useLoading from "../../hooks/useLoading";
 import { checkRarity } from "../../utils/checkRarity";
+import SendIcon from "@mui/icons-material/Send";
 
 const ItemDetails = () => {
   const { asset, assetId } = useParams();
@@ -96,6 +97,11 @@ const ItemDetails = () => {
                 <IconButton className={classes.__menue_icons}>
                   <MoreVertOutlinedIcon className={classes.__icon} />
                 </IconButton>
+                <Tooltip title="Transfer Token">
+                  <IconButton className={classes.__menue_icons}>
+                    <SendIcon className={classes.__icon} />
+                  </IconButton>
+                </Tooltip>
               </div>
               {/*  <div className={classes.specification}>
                */}
