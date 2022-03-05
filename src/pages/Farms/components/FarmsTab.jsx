@@ -15,7 +15,7 @@ const FarmsTab = ({ btns, onSelect = () => {} }) => {
       <Box className={classes.button_container}>
         <ButtonGroup size="large" className={classes._btn}>
           {btns.map((btn, index) => (
-            <Button onlClick={() => onSelect(btn.id)} className={classes.__button} key={index}>
+            <Button onClick={() => onSelect(btn.id)} className={classes.__button} key={index}>
               {btn.name}
             </Button>
           ))}
