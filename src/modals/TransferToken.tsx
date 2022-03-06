@@ -84,7 +84,7 @@ const TransferToken: React.FC<Props> = ({ data, closeModal }) => {
               />
               <Button
                 size="small"
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 onClick={() => setState({ ...state, amount: data?.max })}>
                 Max
