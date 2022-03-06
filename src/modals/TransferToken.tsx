@@ -16,23 +16,25 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  data: any;
+  data: {
+    tokenId: number;
+    max: number;
+  };
   closeModal: () => {};
 }
 
-const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) => {
+const TransferToken: React.FC<Props> = ({ data, closeModal }) => {
   const classes = useStyles();
   const { transfer } = useERC1155Transfer(POOL_CARD_ADDRESS);
   const [state, setState] = React.useState({ recipient: "", amount: 1 });
   const { startLoading, stopLoading } = useLoading();
-  const dispatch = useDispatch();
   const { notifyError, notifySuccess } = useNotify();
 
   const handleTransfer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     startLoading();
 
-    let tx = await transfer(state.recipient, tokenId, state.amount);
+    let tx = await transfer(state.recipient, data.tokenId, state.amount);
 
     if (tx && tx.status) {
       notifySuccess("Your token has been transfered to the recipient");
@@ -64,7 +66,7 @@ const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) 
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography color="textPrimary">Max Available: {max}</Typography>
+            <Typography color="textPrimary">Max Available: {data?.max}</Typography>
           </Grid>
           <Grid item xs={12}>
             <div style={{ display: "flex", gap: 20 }}>
@@ -77,14 +79,14 @@ const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) 
                 value={state.amount}
                 required
                 onChange={(e) =>
-                  Number(e.target.value) <= max && setState({ ...state, amount: Number(e.target.value) })
+                  Number(e.target.value) <= data?.max && setState({ ...state, amount: Number(e.target.value) })
                 }
               />
               <Button
                 size="small"
                 variant="contained"
                 color="primary"
-                onClick={() => setState({ ...state, amount: max })}>
+                onClick={() => setState({ ...state, amount: data?.max })}>
                 Max
               </Button>
             </div>

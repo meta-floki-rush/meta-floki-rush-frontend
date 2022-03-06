@@ -1,6 +1,6 @@
 import { Box, Button, IconButton, Tooltip } from "@mui/material";
 import { border } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
 import useStyles from "./Style";
@@ -21,7 +21,7 @@ import { Order, useBuyFixPriceOrder, useCancelOrder } from "@nftvillage/marketpl
 import useNotify from "../../hooks/useNotify";
 import useLoading from "../../hooks/useLoading";
 import { checkRarity } from "../../utils/checkRarity";
-import SendIcon from "@mui/icons-material/Send";
+import ModalContext from "../../context/ModalContext";
 
 const ItemDetails = () => {
   const { asset, assetId } = useParams();
@@ -34,7 +34,6 @@ const ItemDetails = () => {
   });
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
-
   const classes = useStyles();
   const navigate = useNavigate();
   const { account } = useWallet();
@@ -97,11 +96,6 @@ const ItemDetails = () => {
                 <IconButton className={classes.__menue_icons}>
                   <MoreVertOutlinedIcon className={classes.__icon} />
                 </IconButton>
-                <Tooltip title="Transfer Token">
-                  <IconButton className={classes.__menue_icons}>
-                    <SendIcon className={classes.__icon} />
-                  </IconButton>
-                </Tooltip>
               </div>
               {/*  <div className={classes.specification}>
                */}
