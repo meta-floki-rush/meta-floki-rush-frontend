@@ -9,20 +9,20 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import clsx from "clsx";
 
-const FarmsTab = ({ btns, tabs, tabComponents }) => {
+const FarmsTab = ({  tabs }) => {
   const [activeBtn, setActiveBtn] = React.useState(false);
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
     console.log("newValue", newValue);
   };
-  const handleActiveTAbs = (id, index) => {
-    for (let i = 0; i < id.length; i++) {
-      if (id[i] === index) {
-        setActiveBtn(true);
-      }
-    }
-  };
+  // const handleActiveTAbs = (id, index) => {
+  //   for (let i = 0; i < id.length; i++) {
+  //     if (id[i] === index) {
+  //       setActiveBtn(true);
+  //     }
+  //   }
+  // };
   const classes = useStyles();
 
   return (

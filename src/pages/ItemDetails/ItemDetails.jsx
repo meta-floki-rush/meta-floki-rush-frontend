@@ -1,5 +1,5 @@
-import { Box, Button, IconButton, Tooltip } from "@mui/material";
-import { border } from "@mui/system";
+import { Box, Button, Container, Grid, IconButton, TextField, Tooltip, Typography } from "@mui/material";
+import { border, fontSize } from "@mui/system";
 import React, { useContext, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
@@ -22,7 +22,8 @@ import useNotify from "../../hooks/useNotify";
 import useLoading from "../../hooks/useLoading";
 import { checkRarity } from "../../utils/checkRarity";
 import ModalContext from "../../context/ModalContext";
-
+import useCreateOrder from "../../hooks/useCreateOrder";
+import SendIcon from "@mui/icons-material/Send";
 const ItemDetails = () => {
   const { asset, assetId } = useParams();
   const [value, setValue] = React.useState(0);
@@ -47,10 +48,47 @@ const ItemDetails = () => {
     assetId: Number(assetId),
   });
 
+  const [adminBalance, setAdminBalance] = React.useState(0);
+  const [assetAmount, setAssetAmount] = React.useState(1);
+  const [price, setPrice] = React.useState(1);
+  const { createERC1155Order, isApproved } = useCreateOrder(asset);
+  const { cancel } = useCancelOrder();
+  const { startLoading, stopLoading } = useLoading();
+  const { openModal } = useContext(ModalContext);
+
   useLoading(metadataLoading || loading || orderHistoryLoading);
 
   const handleChange = (event) => {
     setValue(value);
+  };
+  const availableAmount = (balance && balance[0].amount) || 0;
+  React.useEffect(() => {
+    let totalBalance = availableAmount || 0;
+    order
+      ?.filter((order) => order.order.maker === account)
+      .forEach((order) => {
+        totalBalance -= order?.order?.assetAmount || 0;
+      });
+    setAdminBalance(totalBalance);
+  }, [availableAmount, order]);
+
+  const handleAssetAmount = (e) => {
+    let x = Number(e.target.value);
+    if (x <= availableAmount) {
+      setAssetAmount(x);
+    }
+  };
+  const tokenId = Number(assetId);
+  const createOrder = async () => {
+    if (adminBalance > 0) {
+      createERC1155Order({
+        metadata,
+        assetAmount,
+        tokenId,
+        price,
+        asset,
+      });
+    }
   };
 
   React.useEffect(() => {
@@ -59,7 +97,10 @@ const ItemDetails = () => {
     }
   }, [balance]);
 
-  console.log("metadata :", metadata, "balance : ", balance, "order :", order, "loading", loading);
+  const handleTransfer = () => {
+    let amount = balance.map((x) => x.amount);
+    openModal("Transfer Token", { tokenId, amount });
+  };
 
   return (
     <>
@@ -93,9 +134,13 @@ const ItemDetails = () => {
                 <IconButton className={classes.__menue_icons}>
                   <FileDownloadOutlinedIcon className={classes.__icon} />
                 </IconButton>
-                <IconButton className={classes.__menue_icons}>
-                  <MoreVertOutlinedIcon className={classes.__icon} />
-                </IconButton>
+                <Tooltip title="Transfer Token">
+                  <IconButton className={classes.__menue_icons}>
+                    <IconButton className={classes.__menue_icons} style={{ marginRight: 10 }} onClick={handleTransfer}>
+                      <SendIcon className={classes.__icon} />
+                    </IconButton>
+                  </IconButton>
+                </Tooltip>
               </div>
               {/*  <div className={classes.specification}>
                */}
@@ -108,7 +153,116 @@ const ItemDetails = () => {
                   </span>
                   <p>{metadata?.description}</p>
                 </div>
-                {/* <div className={classes.right__details}>
+                <div className={classes.right__details}>
+                  <Container style={{}} maxWidth="lg">
+                    <Typography
+                      variant="h4"
+                      color="primary"
+                      className="styleFont"
+                      style={{
+                        fontWeight: 400,
+                        fontSize: "24px",
+                        lineHeight: 1.235,
+                        color: "#0d0d0edc",
+                        marginLeft: "23px",
+                      }}>
+                      <b> {adminBalance > 0 ? "Sell" : "0 "} Tokens</b>
+                    </Typography>
+                    <Container maxWidth="sm">
+                      {/* <Typography align="center" variant="h4" color="textSecondary">
+                        Available : <b>{adminBalance < 0 ? 0 : adminBalance}</b>
+                      </Typography> */}
+                      {adminBalance > 0 && (
+                        <Grid container spacing={1}>
+                          <Grid item xs={10}>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                fontSize: "20px",
+                                marginTop: "8px",
+                              }}>
+                              <p>Amount</p>
+                              <p>
+                                Balance : <b>{adminBalance < 0 ? 0 : adminBalance}</b>
+                              </p>
+                            </div>
+                            {/* <div
+                              style={{
+                                width: "100%",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                              }}> */}
+                            <TextField
+                              type="number"
+                              value={assetAmount}
+                              onChange={handleAssetAmount}
+                              variant="outlined"
+                              placeholder="Asset Amount"
+                              size="small"
+                              fullWidth
+                              className={classes.priceField}
+                            />{" "}
+                            {/* </div> */}
+                          </Grid>
+                          <Grid item xs={2}>
+                            <Button
+                            onClick={"" }
+                              variant="contained"
+                              style={{
+                                height: "50px",
+                                background: "rgb(255, 200, 78)",
+                                color: "rgb(146, 38, 38)",
+                                fontWeight: "bold",
+                                marginTop: "31px",
+                                borderRadius: "9px",
+                              }}>
+                              Max
+                              {/* {!isApproved ? "(Approve)" : ""} */}
+                            </Button>
+                          </Grid>
+
+                          <Grid item xs={10}>
+                            <Typography color="textSecondary" variant="h6">
+                              Price
+                            </Typography>
+                            <TextField
+                              type="number"
+                              value={price}
+                              onChange={(e) => setPrice(Number(e.target.value))}
+                              variant="outlined"
+                              placeholder="Set Price"
+                              size="small"
+                              fullWidth
+                              className={classes.priceField}
+                            />
+                          </Grid>
+                          <Grid item xs={2}></Grid>
+
+                          <Grid item xs={4}>
+                            <div className={classes.center}>
+                              <Button
+                                variant="contained"
+                                // color="primary"
+                                style={{
+                                  width: "100%",
+                                  background: "#00A651",
+                                  color: "#ffff",
+                                  fontWeight: "bold",
+                                }}
+                                onClick={createOrder}>
+                                Sell {!isApproved ? "(Approve)" : ""}
+                              </Button>
+                            </div>
+                          </Grid>
+                        </Grid>
+                      )}
+                    </Container>
+                  </Container>
+
+                  {/* 
                   <span>Current Price</span>
                   <h2>BNB 12.11</h2>
                   <Button
@@ -119,16 +273,16 @@ const ItemDetails = () => {
                     className={classes.buy_btn}
                     startIcon={<ShoppingBagOutlinedIcon />}>
                     Buy Now
-                  </Button>
-                </div> */}
+                  </Button> */}
+                </div>
               </div>
               {/* </div> */}
               <div style={{ marginBottom: "80px" }}>
                 <TableTabs
                   metadata={metadata}
                   address={asset}
-                  tokenId={Number(assetId)}
-                  availableAmount={(balance && balance[0].amount) || 0}
+                  // tokenId={Number(assetId)}
+                  // availableAmount={(balance && balance[0].amount) || 0}
                   order={order}
                   orderHistory={orderHistory}
                 />
