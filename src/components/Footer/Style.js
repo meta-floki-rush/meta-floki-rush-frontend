@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     justifyContent: "space-between",
     flexDirection: "column",
+    [theme.breakpoints.down("sm")]: {
+      width: "auto"
+    }
   },
   footer_text1: {
     [theme.breakpoints.down("md")]: {
@@ -106,6 +109,10 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeight: "bold",
     fontSize: "36px",
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
+      width: "100%",
+    }
   },
   para: {
     fontSize: "20px",

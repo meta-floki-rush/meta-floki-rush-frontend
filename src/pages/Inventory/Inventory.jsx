@@ -12,8 +12,10 @@ import TabContext from "@mui/lab/TabContext";
 const Inventory = () => {
   // const [topHolder, setTopHolders] = React.useState([]);
   const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  
+  const handleChange = (event) => {
+    console.log("e",event)
+    setValue(event);
   };
 
   const classes = useStyles();
@@ -39,6 +41,7 @@ const Inventory = () => {
                     id: 1,
                   },
                 ]}
+                onSelect={handleChange}
               />
 
               {/* <All /> */}
