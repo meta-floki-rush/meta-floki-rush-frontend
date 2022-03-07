@@ -45,7 +45,15 @@ export default function SalesHistoryTable({ orderHistory }) {
         marginBottom: "auto",
       }}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table
+          style={{
+            width: "100%",
+            maxWidth: "700px !important",
+
+         
+            overflowX: "auto",
+          }}
+          aria-label="customized table">
           <TableHead style={{ background: "white" }}>
             <TableRow style={{ borderBottom: "2px solid black", fontWeight: "bold" }}>
               <StyledTableCell align="center">Amount</StyledTableCell>

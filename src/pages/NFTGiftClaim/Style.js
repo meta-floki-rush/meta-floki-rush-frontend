@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     height: "141px",
+    // height: "72px",
   },
   gifreward: {
     // background: "red",
@@ -51,6 +52,15 @@ const useStyles = makeStyles((theme) => ({
       "inset 1px 1px 12px -1px rgb(0 0 0 / 20%),23px 21px 6px 0px rgb(0 0 0 / 14%), 0px 1px 14px 0px rgb(0 0 0 / 12%) !important",
   },
   gifcard: {
+    // position: "absolute",
+    // left: "135px",
+    width: "100%",
+    maxWidth: " 167px",
+    bottom: "35px",
+    imageRendering: "pixelated",
+  },
+
+  firstgiftCard: {
     position: "absolute",
     left: "135px",
     width: "100%",
@@ -58,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: "35px",
     imageRendering: "pixelated",
   },
+
   filterImage: {
     filter: "blur(9px)",
   },

@@ -52,7 +52,6 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
     // td: {
     //   color: "white !important",
     // },
-
     // priceField: {
     //   background: "white",
     // },
@@ -186,7 +185,14 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
       </Container> */}
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table
+          style={{
+            width: "100%",
+            maxWidth: "700px !important",
+
+            overflowX: "auto",
+          }}
+          aria-label="customized table">
           <TableHead style={{ background: "white" }}>
             <TableRow style={{ borderBottom: "2px solid black", fontWeight: "bold" }}>
               <StyledTableCell align="center">Quantity</StyledTableCell>
@@ -196,7 +202,7 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
             </TableRow>
           </TableHead>
 
-          <TableBody>
+          <TableBody xs={{ overflowX: "scroll" }}>
             {order
               ?.filter((ord) => ord.order.maker === account)
               .map((row, index) => (

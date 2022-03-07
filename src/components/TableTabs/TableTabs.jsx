@@ -48,11 +48,10 @@ export default function TableTabs({ metadata, address, tokenId, availableAmount,
   }, [availableAmount]);
 
   return (
-    <Box sx={{ width: "100%", color: "black !important", marginBottom: "auto" }}>
+    <Box sx={{ width: "100%", color: "black !important", paddingBottom: "189px", marginTop: "30px" }}>
       <TabContext Style={{ color: "black" }} value={value}>
         <Box sx={{ borderBottom: 0, borderColor: "black", color: "black" }}>
           <TabList onChange={handleChange} aria-label="lab API tabpanel example">
-            {/* <Tab className={classes.tab} label="Bidding" value="2" /> */}
             <Tab className={classes.tab} label="Buy" value="3" />
             <Tab className={classes.tab} label="Sell Tokens" value="2" />
             <Tab className={classes.tab} label="Sell History" value="1" />

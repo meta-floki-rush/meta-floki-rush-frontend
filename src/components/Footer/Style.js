@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "unset",
     width: "100%",
+
+    padding: "53px",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
     // zIndex: "3",
     // marginTop: "144px",
     // maxWidth: "1276px",
@@ -57,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     flexDirection: "column",
     [theme.breakpoints.down("sm")]: {
-      width: "auto"
-    }
+      width: "auto",
+    },
   },
   footer_text1: {
     [theme.breakpoints.down("md")]: {
@@ -112,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       textAlign: "center",
       width: "100%",
-    }
+    },
   },
   para: {
     fontSize: "20px",
