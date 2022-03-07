@@ -97,7 +97,7 @@ export const useNFTSecondGiftClaim = (tokenId: number) => {
       try {
         if (contract && account) {
           setEnabled(await contract.claimEnabled());
-          setAlreadyClaimed(await contract.userClaim(account));
+          setAlreadyClaimed(await contract.userClaim(account, tokenId));
           setRewardClaimData(await getNFTSecondGiftClaimData(account, tokenId));
         }
       } catch (error) {
@@ -125,7 +125,7 @@ export const useNFTSecondGiftClaim = (tokenId: number) => {
           message: (
             <NotificationComponent
               title="CONGRATULATIONS!"
-              message="YOU'VE MINT YOUR FIRST METAFLOKIRUSH NFT"
+              message={`YOU'VE MINT YOUR ${tokenId === 16 ? "POSEIDON  FLOKI" : "HADES FLOKI"} NFT`}
               image={notificationSuccess}
             />
           ),

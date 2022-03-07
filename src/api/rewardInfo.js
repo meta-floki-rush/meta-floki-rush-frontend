@@ -9,6 +9,10 @@ const privateSaleApi = axios.create({
   baseURL: "https://metafloki-api.herokuapp.com/",
 });
 
+const secondGiftClaimApi = axios.create({
+  baseURL: "https://metafloki-whitelist-v2.herokuapp.com/api/",
+});
+
 export const getTopHolders = async () => {
   try {
     const result = await privateSaleApi.get("top-holders");
@@ -39,7 +43,7 @@ export const getUserNftRewards = async (account) => {
 
 export const getNFTSecondGiftClaimData = async (account, tokenId) => {
   try {
-    const result = await api.get(`/signature/${tokenId}/${account}`);
+    const result = await secondGiftClaimApi.get(`/signature/${tokenId}/${account}`);
 
     return result.data.data;
   } catch (error) {

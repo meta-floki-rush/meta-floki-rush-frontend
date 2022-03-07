@@ -9,18 +9,33 @@ import giftcard from "../../assets/images/minting.png";
 import { Button } from "@mui/material";
 import clsx from "clsx";
 import useTokenInfo from "../../hooks/useTokenInfo";
-import { useNFTRewardClaim } from "../../hooks/useNftRewardClaim";
+import { useNFTRewardClaim, useNFTSecondGiftClaim } from "../../hooks/useNftRewardClaim";
 import confetti from "canvas-confetti";
 
 const NFTGiftClaim = () => {
   const classes = useStyles();
   const { claim, canClaim, alreadyClaimed, enabled, txPending } = useNFTRewardClaim();
+  const nft16 = useNFTSecondGiftClaim(16);
+  const nft17 = useNFTSecondGiftClaim(17);
 
   const handleClaim = async () => {
     if (!canClaim) return;
     const response = await claim();
     if (response?.status) confetti({ spread: 80, decay: 0.91, scalar: 0.9 });
   };
+
+  const handleClaim16 = async () => {
+    if (!nft16.canClaim) return;
+    const response = await nft16.claim();
+    if (response?.status) confetti({ spread: 80, decay: 0.91, scalar: 0.9 });
+  };
+
+  const handleClaim17 = async () => {
+    if (!nft17.canClaim) return;
+    const response = await nft17.claim();
+    if (response?.status) confetti({ spread: 80, decay: 0.91, scalar: 0.9 });
+  };
+
   // const filterImage =
   return (
     <Backgroundfram
@@ -137,7 +152,7 @@ const NFTGiftClaim = () => {
                 }}
                 className={classes.title}>
                 {/* <h3>Discover Amazing</h3> */}
-                <h3 className={classes.heading1}>NFT Gift</h3>
+                {/* <h3 className={classes.heading1}>NFT Gift</h3> */}
               </div>
               {/* <div className={classes.gifreward}>
             <img
@@ -172,7 +187,7 @@ const NFTGiftClaim = () => {
                     fontWeight: "900",
                     fontSize: "22px",
                   }}>
-                  Special Floki Gift
+                  PoseidonFloki
                 </span>
                 <Button
                   style={{
@@ -182,18 +197,18 @@ const NFTGiftClaim = () => {
                     width: "201px",
                     fontWeight: "bold",
                   }}
-                  disabled={txPending || !canClaim || !enabled || alreadyClaimed}
+                  disabled={nft16.txPending || !nft16.canClaim || !nft16.enabled || nft16.alreadyClaimed}
                   className={classes.btn}
                   onClick={() => {
-                    handleClaim();
+                    handleClaim16();
                   }}>
-                  {alreadyClaimed
+                  {nft16.alreadyClaimed
                     ? "Claimed"
-                    : !enabled
+                    : !nft16.enabled
                     ? "Disabled"
-                    : !canClaim
+                    : !nft16.canClaim
                     ? "Not Eligible"
-                    : txPending
+                    : nft16.txPending
                     ? "Pending..."
                     : "Claim"}
                 </Button>
@@ -213,7 +228,7 @@ const NFTGiftClaim = () => {
                 }}
                 className={classes.title}>
                 {/* <h3>Discover Amazing</h3> */}
-                <h3 className={classes.heading1}>NFT Gift</h3>
+                {/* <h3 className={classes.heading1}>NFT Gift</h3> */}
               </div>
               {/* <div className={classes.gifreward}>
             <img
@@ -248,7 +263,7 @@ const NFTGiftClaim = () => {
                     fontWeight: "900",
                     fontSize: "22px",
                   }}>
-                  Special Floki Gift
+                  HadesFloki
                 </span>
                 <Button
                   style={{
@@ -258,18 +273,18 @@ const NFTGiftClaim = () => {
                     width: "201px",
                     fontWeight: "bold",
                   }}
-                  disabled={txPending || !canClaim || !enabled || alreadyClaimed}
+                  disabled={nft17.txPending || !nft17.canClaim || !nft17.enabled || nft17.alreadyClaimed}
                   className={classes.btn}
                   onClick={() => {
-                    handleClaim();
+                    handleClaim17();
                   }}>
-                  {alreadyClaimed
+                  {nft17.alreadyClaimed
                     ? "Claimed"
-                    : !enabled
+                    : !nft17.enabled
                     ? "Disabled"
-                    : !canClaim
+                    : !nft17.canClaim
                     ? "Not Eligible"
-                    : txPending
+                    : nft17.txPending
                     ? "Pending..."
                     : "Claim"}
                 </Button>
