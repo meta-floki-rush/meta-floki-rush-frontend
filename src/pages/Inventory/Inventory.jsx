@@ -12,9 +12,9 @@ import TabContext from "@mui/lab/TabContext";
 const Inventory = () => {
   // const [topHolder, setTopHolders] = React.useState([]);
   const [value, setValue] = React.useState(0);
-  
+
   const handleChange = (event) => {
-    console.log("e",event)
+    console.log("e", event);
     setValue(event);
   };
 

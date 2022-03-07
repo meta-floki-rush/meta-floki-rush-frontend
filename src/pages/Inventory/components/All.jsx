@@ -28,7 +28,7 @@ const All = () => {
   ];
 
   oders = [...oders, ...oders, ...oders, ...oders, ...oders, ...oders];
-  const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 16);
+  const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 18);
   const navigate = useNavigate();
   const handleClick = (assetId, asset) => {
     console.log("asset", asset, "assetId", assetId);
@@ -103,7 +103,9 @@ const All = () => {
                       <span className={classes._amount}>{order.amount}</span>
                       <span className={classes._amount}>
                         <Tooltip title="Transfer Token">
-                          <IconButton style={{ marginRight: 10 }} onClick={() => handleTransfer(order.tokenId, order.amount)}>
+                          <IconButton
+                            style={{ marginRight: 10 }}
+                            onClick={() => handleTransfer(order.tokenId, order.amount)}>
                             <SendIcon fontSize="small" />
                           </IconButton>
                         </Tooltip>
