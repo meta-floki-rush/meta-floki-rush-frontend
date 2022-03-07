@@ -37,6 +37,16 @@ export const getUserNftRewards = async (account) => {
   }
 };
 
+export const getNFTSecondGiftClaimData = async (account, tokenId) => {
+  try {
+    const result = await api.get(`/signature/${tokenId}/${account}`);
+
+    return result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getPrivateSaleRewards = async (account) => {
   try {
     const result = await privateSaleApi.get(`private-sale/${account}`);
