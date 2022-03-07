@@ -65,13 +65,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
     maxWidth: "427px",
-    height: "136px",
     justifyContent: "space-between",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    height: "118px",
+    alignItems: "center",
+    // flexDirection: "column",
     fontSize: "25px",
-    paddingLeft: "69px",
+    // paddingLeft: "69px",
     [theme.breakpoints.down("md")]: {
       padding: "5px",
     },
@@ -79,16 +77,16 @@ const useStyles = makeStyles((theme) => ({
   left__details: {
     display: "flex",
     width: "100%",
-    maxWidth: "427px",
+    maxWidth: "408px",
     padding: "20px",
     height: "272px",
     justifyContent: "space-around",
     alignItems: "flex-start",
     flexDirection: "column",
-    borderRight: "2px solid gray",
+    border: "2px dotted gray",
+    borderRadius: "10px",
     [theme.breakpoints.down("md")]: {
       padding: "5px",
-      borderRight: "none",
     },
   },
   _avatar: {
@@ -101,13 +99,37 @@ const useStyles = makeStyles((theme) => ({
   _avtarContent: {
     display: "flex",
     justifyContent: "space-between",
-    width: "166px",
+    // width: "166px",
     alignItems: "center",
     fontSize: "17px",
     fontWeight: "900",
   },
   buy_btn: {
     background: `${theme.palette.background.paper} !important`,
+  },
+  root: {
+    padding:"0px !important",
+  },
+  thead: {
+    fontSize: "110% !important",
+    fontWeight: 600,
+  },
+  td: {
+    color: "white !important",
+  },
+
+  priceField: {
+    background: "white",
+    borderRadius: "9px",
+    border: "1px solid black !important",
+    "& >*": {
+      height: "52px",
+    },
+  },
+  center: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));
 export default useStyles;

@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContainer: {
     height: "auto",
-    zIndex: "999",
+    zIndex: "1",
   },
   vault: {
     position: "relative",

@@ -2013,18 +2013,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@nftvillage/farms-sdk@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.30.tgz#a8071e6c33719384c137e18dc5d5626e38591836"
-  integrity sha512-QWnUm2C81zSKiwVqqFLUFfJyJb1uJcCCI7tOz4dkA+yxnQNO21RyIklv0oxYRmU1TNmdufaUNE4bRU50JxoOVQ==
-  dependencies:
-    bignumber.js "^9.0.2"
-    rollup-plugin-sourcemaps "^0.6.3"
-
-"@nftvillage/marketplace-sdk@^0.0.61":
-  version "0.0.61"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.61.tgz#4ef113c396e75e7d843a27d21661c42d27959c78"
-  integrity sha512-efDy5C+UbMFboize7klvwWxUnIVoKhbqkEicsC8QnwN/87ZepBQxeATRfs3QLIYwpZ3TfQC+dPxMdWrZzfIi5w==
+"@nftvillage/marketplace-sdk@^0.0.64":
+  version "0.0.64"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.64.tgz#c3e777fc3afb7674bcd040340fb72c560880f5ef"
+  integrity sha512-HGCDkdJpmPNLU2+8Dpvwye+1EoYFYYAXORivzH9u3CZGM4AkJ+KyfBZHRHaEeDiKZludgDRBF4U16rtNcssr4g==
   dependencies:
     rollup-plugin-sourcemaps "^0.6.3"
 

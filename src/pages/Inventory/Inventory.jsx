@@ -12,8 +12,10 @@ import TabContext from "@mui/lab/TabContext";
 const Inventory = () => {
   // const [topHolder, setTopHolders] = React.useState([]);
   const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  
+  const handleChange = (event) => {
+    console.log("e",event)
+    setValue(event);
   };
 
   const classes = useStyles();
@@ -27,12 +29,22 @@ const Inventory = () => {
             {/* <Button onClick={() => notify({title:"G",message:"assa"})}>Button</Button> */}
             <div className={classes.__cards}>
               <FarmsTab
-                btns={[
-                  { name: "All", id: 0 },
-                  { name: "In Order", id: 2 },
+                tabs={[
+                  {
+                    component: <All />,
+                    title: "All",
+                    id: 0,
+                  },
+                  {
+                    component: <Inorder />,
+                    title: "In Order",
+                    id: 1,
+                  },
                 ]}
+                onSelect={handleChange}
               />
-              <All />
+
+              {/* <All /> */}
               {/* <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <Tabs

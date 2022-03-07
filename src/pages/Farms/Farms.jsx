@@ -5,6 +5,7 @@ import useStyles from "./Style";
 import FarmCard from "./components/FarmCard";
 import FarmsTab from "./components/FarmsTab";
 import { useNavigate } from "react-router-dom";
+import FarmContainer from "./components/FarmContainer";
 
 const Farms = () => {
   const classes = useStyles();
@@ -13,29 +14,34 @@ const Farms = () => {
   return (
     <Backgroundfram
       childrens={
-        <div >
+        <div>
           <h2 className={classes.heading}>
             NFT Staking! Deposit your NFT
             <br />
             The higher the grade, the higher the APY to earn @METAFLOKIR
           </h2>
-          <FarmsTab
-            btns={[
-              { name: "Common", id: 0 },
-              { name: "Rare", id: 1 },
-              { name: "Super Rare", id: 2 },
-              { name: "Epic", id: 3 },
-              { name: "Legendary", id: 4 },
+
+          <center style={{ margin: "20px" }}>
+            <h3>Coming Soon!</h3>
+          </center>
+          {/* <FarmsTab
+            tabs={[
+              { component: <FarmContainer />, title: "Common", id: 0 },
+              { component: <dev>hello 1</dev>, title: "Rare", id: 1 },
+              { component: <dev>hello2</dev>, title: "Super Rare", id: 2 },
+              { component: <dev>hello3</dev>, title: "Epic", id: 3 },
+              { component: <dev>hello4</dev>, title: "Legendary", id: 4 },
             ]}
-          />
+          /> */}
           <div className={classes.cards}>
             {/* <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
               <i>NFT Staking is coming soon Stay Tuned, and Mint your first NFT!</i>
             </h2> */}
-            <FarmCard  />
-            <FarmCard  />
-            <FarmCard  />
-            <FarmCard  />
+            {/* <FarmCard />
+            <FarmCard />
+            <FarmCard />
+            <FarmCard /> */}
+            {/* <FarmContainer /> */}
           </div>
         </div>
       }

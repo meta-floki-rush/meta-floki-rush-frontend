@@ -2,7 +2,18 @@ import { Button, CircularProgress } from "@mui/material";
 import { useWallet } from "@react-dapp/wallet";
 import { useEthers } from "@react-dapp/utils";
 
-const WalletButtonBase = ({ onClick, children, className, loading = false, loadingText = "Pending...", disabled }) => {
+const WalletButtonBase = ({
+  onClick = undefined,
+  children,
+  className = "",
+  type = "",
+  loading = false,
+  loadingText = "Pending...",
+  disabled = false,
+  style,
+  fullWidth = false,
+  ...props
+}) => {
   const { displayAccount } = useEthers();
   const { account, setOpen: openWalletModal } = useWallet();
 
@@ -20,15 +31,19 @@ const WalletButtonBase = ({ onClick, children, className, loading = false, loadi
   return (
     <Button
       onClick={handleClick}
+      type={type}
       style={{
         background: " #f4c84c",
         color: "#922626",
         borderRadius: "10px",
-        width: "201px",
+        minWidth: "201px",
         fontWeight: "bold",
+        ...style,
       }}
       className={className}
-      disabled={disabled}>
+      disabled={disabled}
+      fullWidth={fullWidth}
+      {...props}>
       {!displayAccount && "Connect"}
       {displayAccount && !loading && (children || "Connect")}
       {displayAccount && loading && (

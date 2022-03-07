@@ -42,25 +42,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function SellOrder({ metadata, address, tokenId, availableAmount, order }) {
   const useStyles = makeStyles((theme) => ({
-    root: {
-      paddingBottom: 30,
-    },
-    thead: {
-      fontSize: "110% !important",
-      fontWeight: 600,
-    },
-    td: {
-      color: "white !important",
-    },
-
-    priceField: {
-      background: "white",
-    },
-    center: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
+    // root: {
+    //   paddingBottom: 30,
+    // },
+    // thead: {
+    //   fontSize: "110% !important",
+    //   fontWeight: 600,
+    // },
+    // td: {
+    //   color: "white !important",
+    // },
+    // priceField: {
+    //   background: "white",
+    // },
+    // center: {
+    //   display: "flex",
+    //   alignItems: "center",
+    //   justifyContent: "center",
+    // },
   }));
 
   const [adminBalance, setAdminBalance] = React.useState(0);
@@ -72,31 +71,33 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
   const { cancel } = useCancelOrder();
   const { startLoading, stopLoading } = useLoading();
 
-  React.useEffect(() => {
-    let totalBalance = availableAmount || 0;
-    order?.forEach((order) => {
-      totalBalance -= order?.order?.assetAmount || 0;
-    });
-    setAdminBalance(totalBalance);
-  }, [availableAmount, order]);
+  // React.useEffect(() => {
+  //   let totalBalance = availableAmount || 0;
+  //   order
+  //     ?.filter((order) => order.order.maker === account)
+  //     .forEach((order) => {
+  //       totalBalance -= order?.order?.assetAmount || 0;
+  //     });
+  //   setAdminBalance(totalBalance);
+  // }, [availableAmount, order]);
 
-  const handleAssetAmount = (e) => {
-    let x = Number(e.target.value);
-    if (x <= availableAmount) {
-      setAssetAmount(x);
-    }
-  };
+  // const handleAssetAmount = (e) => {
+  //   let x = Number(e.target.value);
+  //   if (x <= availableAmount) {
+  //     setAssetAmount(x);
+  //   }
+  // };
 
-  const createOrder = async () => {
-    if (adminBalance > 0) {
-      createERC1155Order({
-        metadata,
-        assetAmount,
-        tokenId,
-        price,
-      });
-    }
-  };
+  // const createOrder = async () => {
+  //   if (adminBalance > 0) {
+  //     createERC1155Order({
+  //       metadata,
+  //       assetAmount,
+  //       tokenId,
+  //       price,
+  //     });
+  //   }
+  // };
 
   const cancelSell = async (ord) => {
     startLoading();
@@ -112,10 +113,10 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
         // borderTop: "2px solid black ",
         marginBottom: "auto",
       }}>
-      <Container
+      {/* <Container
         style={{
           padding: "37px",
-          /* background: gray, */
+        
           margin: "57px 0px",
         }}
         maxWidth="lg">
@@ -181,10 +182,17 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
             </Grid>
           )}
         </Container>
-      </Container>
+      </Container> */}
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table
+          style={{
+            width: "100%",
+            maxWidth: "700px !important",
+
+            overflowX: "auto",
+          }}
+          aria-label="customized table">
           <TableHead style={{ background: "white" }}>
             <TableRow style={{ borderBottom: "2px solid black", fontWeight: "bold" }}>
               <StyledTableCell align="center">Quantity</StyledTableCell>
@@ -194,7 +202,7 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
             </TableRow>
           </TableHead>
 
-          <TableBody>
+          <TableBody xs={{ overflowX: "scroll" }}>
             {order
               ?.filter((ord) => ord.order.maker === account)
               .map((row, index) => (

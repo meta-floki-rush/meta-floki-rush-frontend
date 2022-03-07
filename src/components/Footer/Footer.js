@@ -18,7 +18,7 @@ const Footer = () => {
         <div className={classes.content}>
           <div className={classes.footerContent}>
             <div className={classes.footer_text0}>
-              <h1 className={classes.heading}> CURIOUS? GET IN TOUCH</h1>
+              <h1 className={classes.heading}>CURIOUS? GET IN TOUCH</h1>
               <div className={classes.para}>We’d love to hear your thoughts, let us know, we'll get in touch!</div>
             </div>
             {/* <div className={classes.footer_text1}>

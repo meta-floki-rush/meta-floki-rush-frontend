@@ -160,22 +160,15 @@ const useStyles = makeStyles((theme) => ({
     //   display: "none",
     // },
   },
-  __tebs: {
+  __tabs: {
     display: "flex",
     alignItems: "center",
+    position: "relative",
     justifyContent: "space-between",
   },
-  filter_sort: {
-    // width: "155px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("md")]: {
-      height: "50px",
-      alignItems: "flex-end",
-    },
+  filterTabs: {
+    position: "absolute",
   },
-
   __headerbackground: {
     width: "100%",
     paddingBottom: "14px",
@@ -240,13 +233,49 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "49px",
     alignItems: "center",
-    justifyContent: "space-around",
+    padding: "0px 15px",
     width: "100%",
+    justifyContent: "space-between",
     [theme.breakpoints.down("md")]: {
-      justifyContent: "space-between",
       flexDirection: "row-reverse",
       padding: "0px 6px",
     },
+  },
+  filter_sort: {
+    position: "relative",
+    display: "none",
+    [theme.breakpoints.down("md")]: {
+      display: "block ",
+    },
+  },
+  filterContainer: {
+    position: "absolute",
+    width: "250px",
+    height: " 200px",
+    marginTop: "6px",
+    border: "1px solid #8080807d",
+    background: "#e7f3e7de",
+    display: "flex",
+    borderRadius: "6px",
+    justifyContent: "space-around",
+    alignItems: "flex-start",
+    flexDirection: "column-reverse",
+    padding: " 0px 10px",
+  },
+  priceRange: {
+    background: "#e7f3e7de",
+    position: "absolute",
+    top: "47px",
+    border: "1px solid #8080807d",
+    left: "-52px",
+    width: "206px",
+    padding: "0px 26px",
+    display: "flex",
+    borderRadius: "6px",
+    height: "100px",
+    justifyContent: "space-around",
+    // alignItems: "flex-start",
+    flexDirection: "column",
   },
 }));
 export default useStyles;

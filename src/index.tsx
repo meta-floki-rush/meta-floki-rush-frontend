@@ -19,7 +19,7 @@ ReactDOM.render(
       // @ts-ignore
         config={{
           // supportedChainIds: [CHAIN_ID.BSC],
-          chainId: CHAIN_ID.GOERLI,
+          chainId: process.env.REACT_APP_CHAIN_ID === "GOERLI" ? CHAIN_ID.GOERLI : CHAIN_ID.BSC,
           // rpcUrl: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
         }}>
         <RecoilRoot>

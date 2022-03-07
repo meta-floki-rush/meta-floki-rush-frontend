@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
-import { Box, Button, IconButton, Skeleton } from "@mui/material";
+import { Box, Button, IconButton, Skeleton, Tooltip } from "@mui/material";
 import Card from "../../../components/Cards/Cards";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import { v4 as uuid } from "uuid";
@@ -11,9 +11,12 @@ import { POOL_CARD_ADDRESS } from "./../../..//config/config";
 import useStyles from "./../Style";
 import { checkRarity } from "../../../utils/checkRarity";
 import { useNavigate } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
+import ModalContext from "../../../context/ModalContext";
 
 const All = () => {
   const classes = useStyles();
+  const { openModal } = useContext(ModalContext);
 
   let oders = [
     {
@@ -26,11 +29,14 @@ const All = () => {
 
   oders = [...oders, ...oders, ...oders, ...oders, ...oders, ...oders];
   const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 16);
-
   const navigate = useNavigate();
   const handleClick = (assetId, asset) => {
     console.log("asset", asset, "assetId", assetId);
     navigate(`/item/${assetId}/${asset}`);
+  };
+
+  const handleTransfer = (tokenId, max) => {
+    openModal("Transfer Token", { tokenId, max });
   };
 
   return (
@@ -93,7 +99,16 @@ const All = () => {
                 <div className={classes.__card_content}>
                   <span className={classes.__title}>
                     <h4 className={classes._h4}>{order.name}</h4>
-                    <span className={classes._amount}>{order.amount}</span>
+                    <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                      <span className={classes._amount}>{order.amount}</span>
+                      <span className={classes._amount}>
+                        <Tooltip title="Transfer Token">
+                          <IconButton style={{ marginRight: 10 }} onClick={() => handleTransfer(order.tokenId, order.amount)}>
+                            <SendIcon fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      </span>
+                    </div>
                   </span>
                   <div className={classes._avatarContainer}>
                     <span className={classes.__avtarAlignment}>

@@ -11,7 +11,7 @@
     "@mui/material": "^5.4.0",
     "@mui/styles": "^5.3.0",
     "@nftvillage/farms-sdk": "^0.0.30",
-    "@nftvillage/marketplace-sdk": "^0.0.61",
+    "@nftvillage/marketplace-sdk": "^0.0.64",
     "@nftvillage/presale-sdk": "^0.1.14",
     "@react-dapp/utils": "^0.0.66",
     "@react-dapp/wallet": "1.1.0",
@@ -57,7 +57,8 @@
   "scripts": {
     "start": "env-cmd -f .env.development react-scripts start",
     "start:prod": "env-cmd -f .env react-scripts start",
-    "build": "react-scripts build",
+    "build": "env-cmd -f .env.development react-scripts build",
+    "build:prod": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx}\""

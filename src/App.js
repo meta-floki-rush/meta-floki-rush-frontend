@@ -11,6 +11,7 @@ import RewardUnlock from "./modals/RewardUnlock";
 import TokenPop from "./modals/TokenPop";
 import { useRecoilValue } from "recoil";
 import loadingState from "./recoil/loadingState";
+import TransferToken from "./modals/TransferToken";
 
 const allModals = [
   {
@@ -20,6 +21,10 @@ const allModals = [
   {
     name: "TokenPop",
     component: TokenPop,
+  },
+  {
+    name: "Transfer Token",
+    component: TransferToken,
   },
 ];
 

@@ -33,7 +33,7 @@ const Inorder = () => {
   const handleClick = (assetId, asset) => {
     navigate(`/item/${assetId}/${asset}`);
   };
-
+  console.log("order", orders);
   return (
     <>
       {orders?.map((order) => (
@@ -61,16 +61,16 @@ const Inorder = () => {
                 <>
                   <img
                     onClick={() => {
-                      handleClick(order.tokenId, order.address);
+                      handleClick(order.order.assetId, order.order.asset);
                     }}
-                    src={order.image}
+                    src={order.metadata.image}
                     className={classes.__cardMedia}
                     alt="card image"
                   />
                   <div className={classes.__card_content}>
                     <span className={classes.__title}>
-                      <h4 className={classes._h4}>{order.name}</h4>
-                      <span className={classes._amount}>{order.amount}</span>
+                      <h4 className={classes._h4}>{order.metadata.name}</h4>
+                      <span className={classes._amount}>{order.metadata.price}</span>
                     </span>
                     <div className={classes._avatarContainer}>
                       <span className={classes.__avtarAlignment}>
@@ -83,11 +83,11 @@ const Inorder = () => {
 
                         <img
                           style={{ marginRight: "10px" }}
-                          src={checkRarity(order.rarity)?.image}
+                          src={checkRarity(order.metadata.rarity)?.image}
                           width="35px"
                           alt="rarity"
                         />
-                        <span>{checkRarity(order.rarity)?.name}</span>
+                        <span>{checkRarity(order.metadata.rarity)?.name}</span>
                       </span>
                       <span
                         style={{
