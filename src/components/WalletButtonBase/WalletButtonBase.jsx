@@ -5,12 +5,13 @@ import { useEthers } from "@react-dapp/utils";
 const WalletButtonBase = ({
   onClick = undefined,
   children,
-  className="",
+  className = "",
   type = "",
   loading = false,
   loadingText = "Pending...",
   disabled = false,
   style,
+  fullWidth = false,
   ...props
 }) => {
   const { displayAccount } = useEthers();
@@ -35,12 +36,13 @@ const WalletButtonBase = ({
         background: " #f4c84c",
         color: "#922626",
         borderRadius: "10px",
-        width: "201px",
+        minWidth: "201px",
         fontWeight: "bold",
         ...style,
       }}
       className={className}
       disabled={disabled}
+      fullWidth={fullWidth}
       {...props}>
       {!displayAccount && "Connect"}
       {displayAccount && !loading && (children || "Connect")}
