@@ -60,7 +60,7 @@ const NavItems = () => {
     setDrawerState({ ...drawerState, [anchor]: open });
   };
   React.useEffect(() => {
-    setDrawerState(drawerState.left);
+    setDrawerState(false);
   }, [pathname]);
 
   const { displayAccount } = useEthers();
@@ -112,11 +112,6 @@ const NavItems = () => {
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
             <IconButton size="large" onClick={toggleDrawer(anchor, true)}>
-              {/* <Menu
-                style={{
-                  fontSize: "34px",
-                  color: `${theme.palette.text.primary}`,
-                }}></Menu> */}
               <MenuIcon />
             </IconButton>
             <Drawer anchor={anchor} open={drawerState[anchor]} onClose={toggleDrawer(anchor, false)}>
@@ -150,7 +145,6 @@ const NavItems = () => {
                   style={{
                     fontWeight: "bolder",
                     fontFamily: "'Mali', cursive",
-                    // fontSize: "18px",
                   }}
                   variant="contain">
                   {e.name}

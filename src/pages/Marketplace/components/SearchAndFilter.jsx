@@ -98,12 +98,12 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
     setFilterState &&
       setFilterState({
         ...filterState,
-        rarity: rarityValue == 0 ? undefined : rarityValue,
+        rarity: rarityValue == 0 ? undefined : Number(rarityValue),
       });
     checkrarityOpt();
   }, [rarityValue]);
 
-  console.log("rarityValue", navOpt);
+  console.log("rarityValue", rarityValue);
 
   let sortOptions = ["LATEST", "OLDEST", "PRICE_HIGH_TO_LOW", "PRICE_LOW_TO_HIGH"];
   let sortOptionsOfRarity = [

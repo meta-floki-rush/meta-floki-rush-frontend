@@ -4,7 +4,7 @@ import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
 import { POOL_CARD_ADDRESS } from "../config/config";
 import { useERC1155Transfer } from "@react-dapp/utils";
 import useLoading from "../hooks/useLoading";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { notify } from "reapop";
 import WalletButtonBase from "../components/WalletButtonBase/WalletButtonBase";
 import useNotify from "../hooks/useNotify";

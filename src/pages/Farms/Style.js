@@ -132,9 +132,20 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: "30px 0px",
+  
   },
   tab: {
     border: "2px solid black !important",
+    "&:focus": {
+      background: "#FFC84E !important ",
+      color: "#922626 !important",
+      fontWeight: "bold !important",
+    },
+  },
+  active: {
+    background: "#FFC84E !important ",
+    color: "#922626 !important",
+    fontWeight: "bold !important",
   },
 }));
 export default useStyles;

@@ -20,12 +20,12 @@ const Farms = () => {
             The higher the grade, the higher the APY to earn @METAFLOKIR
           </h2>
           <FarmsTab
-            btns={[
-              { name: "Common", id: 0 },
-              { name: "Rare", id: 1 },
-              { name: "Super Rare", id: 2 },
-              { name: "Epic", id: 3 },
-              { name: "Legendary", id: 4 },
+            tebs={[
+              { component : "",  title: "Common", id: 0 },
+              { component : "",  title: "Rare", id: 1 },
+              { component : "",  title: "Super Rare", id: 2 },
+              { component : "",  title: "Epic", id: 3 },
+              { component : "",  title: "Legendary", id: 4 },
             ]}
           />
           <div className={classes.cards}>
