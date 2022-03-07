@@ -8,7 +8,6 @@ import Poseidon from "../../assets/images/Poseidon.png";
 import giftcard from "../../assets/images/minting.png";
 import { Button } from "@mui/material";
 import clsx from "clsx";
-import useTokenInfo from "../../hooks/useTokenInfo";
 import { useNFTRewardClaim, useNFTSecondGiftClaim } from "../../hooks/useNftRewardClaim";
 import confetti from "canvas-confetti";
 
