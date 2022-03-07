@@ -209,7 +209,7 @@ const ItemDetails = () => {
                           </Grid>
                           <Grid item xs={2}>
                             <Button
-                            onClick={"" }
+                              onClick={() => setAssetAmount(availableAmount)}
                               variant="contained"
                               style={{
                                 height: "50px",
