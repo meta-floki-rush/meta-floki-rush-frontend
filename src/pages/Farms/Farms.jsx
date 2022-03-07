@@ -20,7 +20,11 @@ const Farms = () => {
             <br />
             The higher the grade, the higher the APY to earn @METAFLOKIR
           </h2>
-          <FarmsTab
+
+          <center style={{ margin: "20px" }}>
+            <h3>Coming Soon!</h3>
+          </center>
+          {/* <FarmsTab
             tabs={[
               { component: <FarmContainer />, title: "Common", id: 0 },
               { component: <dev>hello 1</dev>, title: "Rare", id: 1 },
@@ -28,7 +32,7 @@ const Farms = () => {
               { component: <dev>hello3</dev>, title: "Epic", id: 3 },
               { component: <dev>hello4</dev>, title: "Legendary", id: 4 },
             ]}
-          />
+          /> */}
           <div className={classes.cards}>
             {/* <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
               <i>NFT Staking is coming soon Stay Tuned, and Mint your first NFT!</i>
