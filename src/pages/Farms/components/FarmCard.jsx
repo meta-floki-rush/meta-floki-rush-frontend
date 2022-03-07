@@ -123,7 +123,6 @@ const FarmCard = ({ onSelect = () => {} }) => {
                     // backgroundColor: "rgb(244 200 76)",
                   }}
                   variant="text"
-
                   size="small">
                   Deposite
                 </Button>

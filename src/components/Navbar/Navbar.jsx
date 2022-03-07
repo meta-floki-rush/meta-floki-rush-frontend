@@ -51,6 +51,7 @@ const NavItems = () => {
   const [drawerState, setDrawerState] = React.useState({
     left: false,
   });
+  const { pathname } = useLocation();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -58,8 +59,10 @@ const NavItems = () => {
     }
     setDrawerState({ ...drawerState, [anchor]: open });
   };
+  React.useEffect(() => {
+    setDrawerState(drawerState.left);
+  }, [pathname]);
 
-  // Mobile view
   const { displayAccount } = useEthers();
   return (
     <>

@@ -127,5 +127,14 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid black !important",
     borderRadius: "none!important",
   },
+  tabsList: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "30px 0px",
+  },
+  tab: {
+    border: "2px solid black !important",
+  },
 }));
 export default useStyles;

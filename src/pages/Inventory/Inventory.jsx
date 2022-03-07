@@ -27,15 +27,21 @@ const Inventory = () => {
             {/* <Button onClick={() => notify({title:"G",message:"assa"})}>Button</Button> */}
             <div className={classes.__cards}>
               <FarmsTab
-                btns={[
-                  { name: "All", id: 0 },
-                  { name: "In Order", id: 2 },
+                tabs={[
+                  {
+                    component: <All />,
+                    title: "All",
+                    id: 0,
+                  },
+                  {
+                    component: <Inorder />,
+                    title: "In Order",
+                    id: 1,
+                  },
                 ]}
               />
 
-
-              
-              <All />
+              {/* <All /> */}
               {/* <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <Tabs
