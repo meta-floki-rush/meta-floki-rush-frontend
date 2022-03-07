@@ -58,15 +58,20 @@ const Marketplace = () => {
 
   return (
     <>
-      <SearchAndFilter orders={orders} filterState={filterState} setFilterState={setFilterState} applyFilter={fetchOrders} />
+      <SearchAndFilter
+        orders={orders}
+        filterState={filterState}
+        setFilterState={setFilterState}
+        applyFilter={fetchOrders}
+      />
       <Backgroundfram
         childrens={
           <>
             <div className={classes.__cards}>
-              {/* <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
+              <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
                 <i>Marketplace is coming soon Stay Tuned, and Mint your frst NFTs!</i>
-              </h2>  */}
-              {orders?.map((order, index) => (
+              </h2>
+              {/* {orders?.map((order, index) => (
                 <React.Fragment key={index}>
                   {loading && (
                     <Card
@@ -127,7 +132,7 @@ const Marketplace = () => {
                     />
                   )}
                 </React.Fragment>
-              ))}
+              ))} */}
             </div>
           </>
         }
