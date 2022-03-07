@@ -104,7 +104,13 @@ export default function BuyTable({ allOrders }) {
         /* padding-right: 24px; */
       }}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table
+          style={{
+            width: "100%",
+            maxWidth: "700px !important",
+            overflowX: "auto",
+          }}
+          aria-label="customized table">
           <TableHead style={{ background: "white" }}>
             <TableRow style={{ borderBottom: "2px solid black", fontWeight: "bold" }}>
               <StyledTableCell align="center">Seller</StyledTableCell>
@@ -122,7 +128,7 @@ export default function BuyTable({ allOrders }) {
               .map((row, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell component="th" scope="row">
-                    <span
+                    {/* <spn
                       style={{
                         display: "flex",
                         width: "150px",
@@ -139,7 +145,7 @@ export default function BuyTable({ allOrders }) {
                         alt="avatar"
                       />
                       <span>{row.name}</span>
-                    </span>
+                    </spn> */}
                   </StyledTableCell>
                   <StyledTableCell align="center" component="th" scope="row">
                     {row?.order?.assetAmount}

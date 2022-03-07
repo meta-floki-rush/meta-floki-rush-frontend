@@ -209,7 +209,7 @@ const ItemDetails = () => {
                           </Grid>
                           <Grid item xs={2}>
                             <Button
-                            onClick={"" }
+                              onClick={() => setAssetAmount(availableAmount)}
                               variant="contained"
                               style={{
                                 height: "50px",
@@ -277,19 +277,19 @@ const ItemDetails = () => {
                 </div>
               </div>
               {/* </div> */}
-              <div style={{ marginBottom: "80px" }}>
-                <TableTabs
-                  metadata={metadata}
-                  address={asset}
-                  // tokenId={Number(assetId)}
-                  // availableAmount={(balance && balance[0].amount) || 0}
-                  order={order}
-                  orderHistory={orderHistory}
-                />
-              </div>
-              {/* <DataTable />
-               */}
             </Box>
+            <div style={{ marginBottom: "80px" }}>
+              <TableTabs
+                metadata={metadata}
+                address={asset}
+                // tokenId={Number(assetId)}
+                // availableAmount={(balance && balance[0].amount) || 0}
+                order={order}
+                orderHistory={orderHistory}
+              />
+            </div>
+            {/* <DataTable />
+             */}
           </>
         }
       />
