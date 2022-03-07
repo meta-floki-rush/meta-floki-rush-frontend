@@ -27,18 +27,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
-    width: "345px",
+    // width: "345px",
     borderRadius: "10px",
   },
   cardContainer: {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
-    flexDirection: "column",
+    // flexDirection: "column",
     width: "100%",
     // // height: "461px",
     // maxWidth: "314px",
-    maxWidth: "258px",
+    // maxWidth: "258px",
     height: "400px",
     boxShadow: "7px 7px 12px 0px #575656, -7px 7px 12px 0px #575656",
     maxHeight: "auto",
@@ -126,6 +126,31 @@ const useStyles = makeStyles((theme) => ({
   _btn: {
     border: "2px solid black !important",
     borderRadius: "none!important",
+  },
+  tabsList: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "30px 0px",
+  },
+  tab: {
+    border: "2px solid black !important",
+    "&:focus": {
+      background: "#FFC84E !important ",
+      color: "#922626 !important",
+      fontWeight: "bold !important",
+    },
+  },
+  active: {
+    background: "#FFC84E !important ",
+    color: "#922626 !important",
+    fontWeight: "bold !important",
+  },
+  mainContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
   },
 }));
 export default useStyles;

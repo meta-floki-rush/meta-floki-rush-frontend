@@ -51,6 +51,7 @@ const NavItems = () => {
   const [drawerState, setDrawerState] = React.useState({
     left: false,
   });
+  const { pathname } = useLocation();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -58,8 +59,10 @@ const NavItems = () => {
     }
     setDrawerState({ ...drawerState, [anchor]: open });
   };
+  React.useEffect(() => {
+    setDrawerState(false);
+  }, [pathname]);
 
-  // Mobile view
   const { displayAccount } = useEthers();
   return (
     <>
@@ -109,11 +112,6 @@ const NavItems = () => {
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
             <IconButton size="large" onClick={toggleDrawer(anchor, true)}>
-              {/* <Menu
-                style={{
-                  fontSize: "34px",
-                  color: `${theme.palette.text.primary}`,
-                }}></Menu> */}
               <MenuIcon />
             </IconButton>
             <Drawer anchor={anchor} open={drawerState[anchor]} onClose={toggleDrawer(anchor, false)}>
@@ -147,7 +145,6 @@ const NavItems = () => {
                   style={{
                     fontWeight: "bolder",
                     fontFamily: "'Mali', cursive",
-                    // fontSize: "18px",
                   }}
                   variant="contain">
                   {e.name}
