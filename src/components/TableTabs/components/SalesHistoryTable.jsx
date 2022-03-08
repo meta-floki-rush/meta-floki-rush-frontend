@@ -50,7 +50,6 @@ export default function SalesHistoryTable({ orderHistory }) {
             width: "100%",
             maxWidth: "700px !important",
 
-         
             overflowX: "auto",
           }}
           aria-label="customized table">
@@ -75,7 +74,7 @@ export default function SalesHistoryTable({ orderHistory }) {
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
                   <div className="center">
-                    <Avatar style={{ marginRight: 10 }} src={item.makerProfilePic} />
+                    {/* <Avatar style={{ marginRight: 10 }} src={item.makerProfilePic} /> */}
                     <div>
                       <Typography>{item.makerName}</Typography>
                       <AddressTypography color="primary" style={{ fontSize: 11 }} address={item.maker} />
@@ -84,10 +83,10 @@ export default function SalesHistoryTable({ orderHistory }) {
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
                   <div className="center">
-                    <Avatar style={{ marginRight: 10 }} src={item.takerProfilePic} />
+                    {/* <Avatar style={{ marginRight: 10 }} src={item.takerProfilePic} /> */}
                     <div>
                       <Typography>{item.takerName}</Typography>
-                      <AddressTypography color="primary" style={{ fontSize: 11 }} address={item.maker} />
+                      <AddressTypography color="primary" style={{ fontSize: 11 }} address={item.taker} />
                     </div>
                   </div>
                 </StyledTableCell>

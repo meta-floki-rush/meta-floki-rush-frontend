@@ -5,7 +5,6 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import SalesHistoryTable from "./components/SalesHistoryTable";
-import BiddingTable from "./components/BiddingTable";
 import { makeStyles } from "@mui/styles";
 import SellOrder from "./components/SellOrder";
 
@@ -14,11 +13,11 @@ import BuyTable from "./components/BuyTable";
 export default function TableTabs({ metadata, address, tokenId, availableAmount, order, orderHistory }) {
   const [value, setValue] = React.useState("1");
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     tabpanel: {
       "&.MuiTabPanel-root": {
         padding: "0px !important",
@@ -52,19 +51,18 @@ export default function TableTabs({ metadata, address, tokenId, availableAmount,
       <TabContext Style={{ color: "black" }} value={value}>
         <Box sx={{ borderBottom: 0, borderColor: "black", color: "black" }}>
           <TabList onChange={handleChange} aria-label="lab API tabpanel example">
-            {/* <Tab className={classes.tab} label="Bidding" value="2" /> */}
             <Tab className={classes.tab} label="Buy" value="1" />
             <Tab className={classes.tab} label="My orders" value="2" />
             <Tab className={classes.tab} label="Sell History" value="3" />
           </TabList>
         </Box>
-        <TabPanel className={classes.tabpanel1} value="1">
-          <SalesHistoryTable orderHistory={orderHistory} />
+
+        {/* BUY */}
+        <TabPanel className={classes.tabpanel} value="1">
+          <BuyTable allOrders={order || []} />
         </TabPanel>
 
-        {/* <TabPanel className={classes.tabpanel} value="2">
-          {/* <BiddingTable /> */}
-        {/* </TabPanel> */}
+        {/* My orders */}
         <TabPanel className={classes.tabpanel} value="2">
           <SellOrder
             metadata={metadata}
@@ -74,8 +72,10 @@ export default function TableTabs({ metadata, address, tokenId, availableAmount,
             order={order}
           />
         </TabPanel>
-        <TabPanel className={classes.tabpanel} value="3">
-          <BuyTable allOrders={order || []} />
+
+        {/* Sell History */}
+        <TabPanel className={classes.tabpanel1} value="3">
+          <SalesHistoryTable orderHistory={orderHistory} />
         </TabPanel>
       </TabContext>
     </Box>

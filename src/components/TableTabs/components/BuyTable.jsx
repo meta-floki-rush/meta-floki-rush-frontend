@@ -32,10 +32,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  //   hide last border
-  //   "&:first-child th": {
-  //     borderTop: "1px solid gray",
-  //   },
   "td, th": {
     borderBottom: "1px solid gray",
   },
@@ -113,7 +109,6 @@ export default function BuyTable({ allOrders }) {
           aria-label="customized table">
           <TableHead style={{ background: "white" }}>
             <TableRow style={{ borderBottom: "2px solid black", fontWeight: "bold" }}>
-              <StyledTableCell align="center">Seller</StyledTableCell>
               <StyledTableCell align="center">Quantity</StyledTableCell>
               <StyledTableCell align="center">Date</StyledTableCell>
               <StyledTableCell align="center">Price</StyledTableCell>
@@ -127,33 +122,13 @@ export default function BuyTable({ allOrders }) {
               .filter((ord) => ord.order.maker !== account)
               .map((row, index) => (
                 <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row">
-                    {/* <spn
-                      style={{
-                        display: "flex",
-                        width: "150px",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}>
-                      <img
-                        style={{
-                          width: "40px",
-                          height: "40px",
-                          borderRadius: "50%",
-                        }}
-                        src={row.profilePic}
-                        alt="avatar"
-                      />
-                      <span>{row.name}</span>
-                    </spn> */}
-                  </StyledTableCell>
                   <StyledTableCell align="center" component="th" scope="row">
                     {row?.order?.assetAmount}
                   </StyledTableCell>
                   <StyledTableCell component="th" scope="row">
                     <MomentDate date={row?.createdAt} />
                   </StyledTableCell>
-                  <StyledTableCell align="center"> {row.metadata?.price} ETH</StyledTableCell>
+                  <StyledTableCell align="center"> {row.metadata?.price} BNB</StyledTableCell>
                   <StyledTableCell align="center">
                     <AddressTypography address={row.order?.maker} />
                   </StyledTableCell>
