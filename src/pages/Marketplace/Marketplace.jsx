@@ -15,7 +15,7 @@ import { checkRarity } from "../../utils/checkRarity";
 
 const Marketplace = () => {
   const [topHolder, setTopHolders] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [filterState, setFilterState] = React.useState({
     minPrice: "0",
     type: AssetType.ERC1155,
@@ -31,12 +31,15 @@ const Marketplace = () => {
   const fetchOrders = async () => {
     const res = await filterMarketPlace(filterState);
     setOrders(res?.data);
+    return;
   };
 
   React.useEffect(() => {
     const load = async () => {
       setLoading(true);
+      console.log("hello");
       await fetchOrders();
+      console.log("bye");
       setLoading(false);
     };
     load();
@@ -69,18 +72,27 @@ const Marketplace = () => {
         childrens={
           <>
             <div className={classes.__cards}>
-              {loading ? (
+              {orders?.length === 0 ? (
                 <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
-                  <i>Loading...!</i>
-                </h2>
-              ) : orders?.length === 0 ? (
-                <h2 style={{ textAlign: "center", fontWeight: "bolder", margin: "auto" }}>
-                  <i>No Listing available, List your first NFT now!</i>
+                  <i>No listing found!</i>
                 </h2>
               ) : (
                 orders?.map((order, index) => (
                   <React.Fragment key={index}>
-                    {loading && (
+                    {loading ? (
+                      <Card
+                        childrens={
+                          <Skeleton
+                            animation="wave"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              // marginTop: "-139px",
+                              borderRadius: "12px",
+                            }}></Skeleton>
+                        }
+                      />
+                    ) : (
                       <Card
                         assetId={order.order.assetId}
                         asset={order.order.asset}
@@ -109,7 +121,7 @@ const Marketplace = () => {
                                   padding: "0px 9px",
                                 }}>
                                 <span>Price</span>
-                                <span className={classes._amount}>{order?.metadata.price}</span>
+                                <span className={classes._amount}>{order?.metadata.price} BNB</span>
                               </span>
 
                               <div className={classes._avatarContainer}>
@@ -140,21 +152,6 @@ const Marketplace = () => {
                               </div>
                             </div>
                           </>
-                        }
-                      />
-                    )}
-
-                    {!loading && (
-                      <Card
-                        childrens={
-                          <Skeleton
-                            animation="wave"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              // marginTop: "-139px",
-                              borderRadius: "12px",
-                            }}></Skeleton>
                         }
                       />
                     )}

@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     // maxHeight: "auto",
     // minHeight: "1000px",
     background: "white",
-    padding: "0px 39px",
   },
 }));
 
