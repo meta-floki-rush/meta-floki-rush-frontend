@@ -80,10 +80,10 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
       setNavOpt("Super Rare");
     }
     if (rarityValue == 4) {
-      setNavOpt("Legendary");
+      setNavOpt("Epic");
     }
     if (rarityValue == 5) {
-      setNavOpt("Epic");
+      setNavOpt("Legendary");
     }
   };
   React.useEffect(() => {
@@ -186,7 +186,6 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
           className={classes.__textInput}
           id="standard-bare"
           variant="standard"
-          placeholder="Search collections"
           InputProps={{
             className: classes.__input,
             startAdornment: (
