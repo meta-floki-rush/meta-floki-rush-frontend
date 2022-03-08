@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "427px",
     justifyContent: "space-between",
     alignItems: "center",
+    background: theme.palette.background.default,
+    padding: "10px 0px",
+    borderRadius: "10px",
     // flexDirection: "column",
     fontSize: "25px",
     // paddingLeft: "69px",
@@ -79,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     maxWidth: "408px",
     padding: "20px",
-    height: "272px",
+    height: "316px",
     justifyContent: "space-around",
     alignItems: "flex-start",
     flexDirection: "column",
@@ -94,21 +97,22 @@ const useStyles = makeStyles((theme) => ({
     imageRendering: "pixelated",
     height: "40px",
     borderRadius: "50%",
+    marginRight: "10px",
   },
 
   _avtarContent: {
     display: "flex",
-    justifyContent: "space-between",
-    // width: "166px",
+    justifyContent: "flex-start",
     alignItems: "center",
     fontSize: "17px",
     fontWeight: "900",
+    width: "100%",
   },
   buy_btn: {
     background: `${theme.palette.background.paper} !important`,
   },
   root: {
-    padding:"0px !important",
+    padding: "0px !important",
   },
   thead: {
     fontSize: "110% !important",
@@ -122,6 +126,8 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     borderRadius: "9px",
     border: "1px solid black !important",
+    margin: "10px 0px !important",
+
     "& >*": {
       height: "52px",
     },

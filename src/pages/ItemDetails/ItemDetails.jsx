@@ -24,6 +24,7 @@ import { checkRarity } from "../../utils/checkRarity";
 import ModalContext from "../../context/ModalContext";
 import useCreateOrder from "../../hooks/useCreateOrder";
 import SendIcon from "@mui/icons-material/Send";
+import BuyCard from "./component/BuyCard";
 const ItemDetails = () => {
   const { asset, assetId } = useParams();
   const [value, setValue] = React.useState(0);
@@ -136,7 +137,7 @@ const ItemDetails = () => {
                 </IconButton>
                 <Tooltip title="Transfer Token">
                   <IconButton className={classes.__menue_icons}>
-                    <IconButton className={classes.__menue_icons} style={{ marginRight: 10 }} onClick={handleTransfer}>
+                    <IconButton className={classes.__menue_icons} onClick={handleTransfer}>
                       <SendIcon className={classes.__icon} />
                     </IconButton>
                   </IconButton>
@@ -154,25 +155,26 @@ const ItemDetails = () => {
                   <p>{metadata?.description}</p>
                 </div>
                 <div className={classes.right__details}>
-                  <Container style={{}} maxWidth="lg">
-                    <Typography
-                      variant="h4"
-                      color="primary"
-                      className="styleFont"
-                      style={{
-                        fontWeight: 400,
-                        fontSize: "24px",
-                        lineHeight: 1.235,
-                        color: "#0d0d0edc",
-                        marginLeft: "23px",
-                      }}>
-                      <b> {adminBalance > 0 ? "Sell" : "0 "} Tokens</b>
-                    </Typography>
-                    <Container maxWidth="sm">
-                      {/* <Typography align="center" variant="h4" color="textSecondary">
+                  {adminBalance < 0 ? (
+                    <Container style={{}} maxWidth="lg">
+                      <Typography
+                        variant="h4"
+                        color="primary"
+                        className="styleFont"
+                        style={{
+                          fontWeight: 400,
+                          fontSize: "24px",
+                          lineHeight: 1.235,
+                          color: "#0d0d0edc",
+                          marginLeft: "23px",
+                          marginBottom: "9px",
+                        }}>
+                        <b> {adminBalance > 0 ? "Sell" : "0 "} Tokens</b>
+                      </Typography>
+                      <Container maxWidth="sm">
+                        {/* <Typography align="center" variant="h4" color="textSecondary">
                         Available : <b>{adminBalance < 0 ? 0 : adminBalance}</b>
                       </Typography> */}
-                      {adminBalance > 0 && (
                         <Grid container spacing={1}>
                           <Grid item xs={10}>
                             <div
@@ -204,11 +206,12 @@ const ItemDetails = () => {
                               size="small"
                               fullWidth
                               className={classes.priceField}
-                            />{" "}
+                            />
                             {/* </div> */}
                           </Grid>
                           <Grid item xs={2}>
                             <Button
+                              disableElevation
                               onClick={() => setAssetAmount(availableAmount)}
                               variant="contained"
                               style={{
@@ -216,8 +219,8 @@ const ItemDetails = () => {
                                 background: "rgb(255, 200, 78)",
                                 color: "rgb(146, 38, 38)",
                                 fontWeight: "bold",
-                                marginTop: "31px",
-                                borderRadius: "9px",
+                                marginTop: "44px",
+                                borderRadius: "9px !important",
                               }}>
                               Max
                               {/* {!isApproved ? "(Approve)" : ""} */}
@@ -245,7 +248,7 @@ const ItemDetails = () => {
                             <div className={classes.center}>
                               <Button
                                 variant="contained"
-                                // color="primary"
+                                disableElevation
                                 style={{
                                   width: "100%",
                                   background: "#00A651",
@@ -258,9 +261,11 @@ const ItemDetails = () => {
                             </div>
                           </Grid>
                         </Grid>
-                      )}
+                      </Container>
                     </Container>
-                  </Container>
+                  ) : (
+                    <BuyCard order={order ? order[0] : undefined} />
+                  )}
 
                   {/* 
                   <span>Current Price</span>

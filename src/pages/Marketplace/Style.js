@@ -36,13 +36,14 @@ const useStyles = makeStyles((theme) => ({
     height: "246px",
   },
   __title: {
-    flexDirection: "column",
-    width: "100%",
-    height: "120px",
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "flex-start",
-    fontWeight: "bolder",
+    // flexDirection: "column",
+    // width: "100%",
+    // height: "120px",
+    // display: "flex",
+    marginLeft: "9px",
+    // justifyContent: "space-evenly",
+    // alignItems: "flex-start",
+    // fontWeight: "bolder",
   },
   _h4: {
     color: "#8b3e39",
@@ -276,6 +277,22 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
     // alignItems: "flex-start",
     flexDirection: "column",
+  },
+  _avatar: {
+    width: "40px",
+    imageRendering: "pixelated",
+    height: "40px",
+    borderRadius: "50%",
+    marginRight: "10px",
+  },
+
+  _avtarContent: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    fontSize: "17px",
+    fontWeight: "900",
+    width: "100%",
   },
 }));
 export default useStyles;

@@ -11,6 +11,7 @@ import { getTopHolders } from "../../api/rewardInfo";
 import { AssetType, useFilterMarketPlace } from "@nftvillage/marketplace-sdk";
 import { useWallet } from "@react-dapp/wallet";
 import { POOL_CARD_ADDRESS } from "../../config/config";
+import { checkRarity } from "../../utils/checkRarity";
 
 const Marketplace = () => {
   const [topHolder, setTopHolders] = React.useState([]);
@@ -90,11 +91,31 @@ const Marketplace = () => {
                           />
                           <div className={classes.__card_content}>
                             <span className={classes.__title}>
-                              <h4 className={classes._h4}>{order.metadata.name}</h4>
-                              <span className={classes._amount}>{order.metadata.price}</span>
+                              <h4 className={classes._h4}>{order?.metadata.name}</h4>
                             </span>
+                            <span
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                width: "100%",
+                                margin: "17px 0px",
+                                padding: "0px 9px",
+                              }}>
+                              <span>Price</span>
+                              <span className={classes._amount}>{order?.metadata.price}</span>
+                            </span>
+
                             <div className={classes._avatarContainer}>
-                              <span className={classes.__avtarAlignment}></span>
+                              <span className={classes._avtarContent}>
+                                <img
+                                  className={classes._avatar}
+                                  src={checkRarity(order?.metadata.rarity)?.image}
+                                  alt="avatar image"
+                                />
+
+                                <span>{checkRarity(order?.metadata.rarity)?.name}</span>
+                              </span>
                               <span
                                 style={{
                                   display: "flex",
