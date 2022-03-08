@@ -136,7 +136,7 @@ const ItemDetails = () => {
                 </IconButton>
                 <Tooltip title="Transfer Token">
                   <IconButton className={classes.__menue_icons}>
-                    <IconButton className={classes.__menue_icons} style={{ marginRight: 10 }} onClick={handleTransfer}>
+                    <IconButton className={classes.__menue_icons} onClick={handleTransfer}>
                       <SendIcon className={classes.__icon} />
                     </IconButton>
                   </IconButton>
@@ -245,12 +245,13 @@ const ItemDetails = () => {
                             <div className={classes.center}>
                               <Button
                                 variant="contained"
-                                // color="primary"
+                                disableElevation
                                 style={{
                                   width: "100%",
                                   background: "#00A651",
                                   color: "#ffff",
                                   fontWeight: "bold",
+                                  borderRadius: "10px",
                                 }}
                                 onClick={createOrder}>
                                 Sell {!isApproved ? "(Approve)" : ""}
