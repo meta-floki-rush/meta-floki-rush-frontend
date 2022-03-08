@@ -155,7 +155,7 @@ const ItemDetails = () => {
                   <p>{metadata?.description}</p>
                 </div>
                 <div className={classes.right__details}>
-                  {adminBalance < 0 ? (
+                  {adminBalance > 0 ? (
                     <Container style={{}} maxWidth="lg">
                       <Typography
                         variant="h4"
@@ -244,7 +244,7 @@ const ItemDetails = () => {
                           </Grid>
                           <Grid item xs={2}></Grid>
 
-                          <Grid item xs={4}>
+                          <Grid item xs={6}>
                             <div className={classes.center}>
                               <Button
                                 variant="contained"
@@ -264,7 +264,9 @@ const ItemDetails = () => {
                       </Container>
                     </Container>
                   ) : (
+                    // <div style={{ margin: "20px" }}>
                     <BuyCard order={order ? order[0] : undefined} />
+                    // </div>
                   )}
 
                   {/* 
@@ -283,7 +285,7 @@ const ItemDetails = () => {
               </div>
               {/* </div> */}
             </Box>
-            <div style={{ marginBottom: "80px" }}>
+            <div style={{ marginTop: "120px", marginBottom: "80px" }}>
               <TableTabs
                 metadata={metadata}
                 address={asset}
