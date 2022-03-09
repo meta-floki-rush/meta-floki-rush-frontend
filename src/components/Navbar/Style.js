@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   },
   __user_menu: {
     width: "100%",
-    maxWidth: "165px",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
@@ -192,12 +191,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     color: "#fff",
-    textTransform: "uppercase",
-    textShadow: "0 0 15px #8e54e9",
     transition: "all 300ms cubic-bezier(0.075, 0.82, 0.165, 1)",
     textAlign: "center",
     padding: "0 10px",
     marginRight: "30px",
+
+    [theme.breakpoints.down("md")]: {
+      textTransform: "uppercase !important",
+      borderBottom: "1px dashed black !important",
+      borderRadius: "0px !important",
+      "&:focus": {
+        background: "#00A651 !important",
+      },
+    },
 
     "&::after": {
       content: "''",
@@ -219,6 +225,10 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "10px",
       bottom: "0",
     },
+  },
+  nevbtn: {
+    width: "100%",
+    maxWidth: "165px",
   },
 }));
 

@@ -377,5 +377,22 @@ const useStyles = makeStyles((theme) => ({
       transform: "rotate(360deg) scale(1.7)",
     },
   },
+
+  tableResponsiveContainer: {
+    width: "100%",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "563px",
+      margin: "0 auto",
+
+    },
+    [theme.breakpoints.down("sm")]: {
+      overflowX: "scroll",
+      width: "100%",
+      maxWidth: "355px",
+      margin: "0 auto",
+      // border: "2px dashed black",
+      padding: "11px",
+    },
+  },
 }));
 export default useStyles;

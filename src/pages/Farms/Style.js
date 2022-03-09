@@ -15,12 +15,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
 
     [theme.breakpoints.down("md")]: {
-      fontSize: "40px",
-      lineHeight: "50px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "30px",
-      lineHeight: "50px",
+      fontSize: "25px",
+      lineHeight: "44px",
+      padding: "27px 3px",
     },
   },
   container: {
@@ -90,20 +87,49 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px 17px",
   },
   price: {
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    flexDirection: "column",
+    fontWeight: "bolder",
+  },
+  card_Container: {
     width: "100%",
-    alignItems: "flex-start",
-    height: " 97px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexWrap: "wrap",
   },
   cards: {
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "center",
+    width: "422px",
+    // borderRadius: "12px",
+    border: "2px dashed black",
+    height: "259px",
+    padding: "21px",
+    margin: "19px 2px",
+    [theme.breakpoints.down("sm")]: {
+      width: "383px",
+    },
+    // flexWrap: "wrap",
+  },
+  flokyImage: {
+    width: "184px",
+  },
+  card_Content: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: "column",
     width: "100%",
-    flexWrap: "wrap",
+    height: "100%",
+  },
+  actionArea: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "column",
+    height: "100%",
+    marginLeft: "17px",
   },
   button_container: {
     display: "flex",
@@ -128,6 +154,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "none!important",
   },
   tabsList: {
+    width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -141,6 +168,12 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: "bold !important",
     },
   },
+  tabs: {
+    display: "flex !important",
+    justifyContent: "space-between !important",
+    alignItems: "start !important",
+    flexDirection: "column !important",
+  },
   active: {
     background: "#FFC84E !important ",
     color: "#922626 !important",
@@ -152,5 +185,31 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     flexWrap: "wrap",
   },
+  rarityContent: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  rarity_image: {
+    width: "30px",
+  },
+  flokyprice: {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "column",
+    background: "#FFC84E",
+    width: "156px",
+    height: " 116px",
+    borderRadius: "3px",
+  },
+  flexContainer: {
+    display: "flex !important",
+    justifyContent: "center !important",
+    alignItems: "center !important",
+    flexWrap: "wrap !important",
+  },
+ 
 }));
 export default useStyles;

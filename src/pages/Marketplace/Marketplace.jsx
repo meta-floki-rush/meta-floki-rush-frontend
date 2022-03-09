@@ -37,9 +37,7 @@ const Marketplace = () => {
   React.useEffect(() => {
     const load = async () => {
       setLoading(true);
-      console.log("hello");
       await fetchOrders();
-      console.log("bye");
       setLoading(false);
     };
     load();

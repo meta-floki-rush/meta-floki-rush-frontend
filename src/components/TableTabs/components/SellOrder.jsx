@@ -55,11 +55,22 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
     // priceField: {
     //   background: "white",
     // },
-    // center: {
-    //   display: "flex",
-    //   alignItems: "center",
-    //   justifyContent: "center",
-    // },
+    tableResponsiveContainer: {
+      width: "100%",
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "563px",
+        margin: "0 auto",
+  
+      },
+      [theme.breakpoints.down("sm")]: {
+        overflowX: "scroll",
+        width: "100%",
+        maxWidth: "355px",
+        margin: "0 auto",
+        // border: "2px dashed black",
+        padding: "11px",
+      },
+    },
   }));
 
   const [adminBalance, setAdminBalance] = React.useState(0);
@@ -108,6 +119,7 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
 
   return (
     <Box
+      className={classes.tableResponsiveContainer}
       style={{
         width: "100%",
         // borderTop: "2px solid black ",
@@ -221,7 +233,7 @@ export default function SellOrder({ metadata, address, tokenId, availableAmount,
                       disableElevation
                       style={{
                         color: "white",
-                        background: "#121212",
+                        background: "#e62e2b",
                         borderRadius: "8px",
                         fontSize: "10px",
                       }}

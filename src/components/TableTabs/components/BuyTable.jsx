@@ -66,6 +66,23 @@ export default function BuyTable({ allOrders }) {
       alignItems: "center",
       justifyContent: "center",
     },
+
+    tableResponsiveContainer: {
+      width: "100%",
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "563px",
+        margin: "0 auto",
+  
+      },
+      [theme.breakpoints.down("sm")]: {
+        overflowX: "scroll",
+        width: "100%",
+        maxWidth: "355px",
+        margin: "0 auto",
+        // border: "2px dashed black",
+        padding: "11px",
+      },
+    },
   }));
 
   const classes = useStyles();
@@ -89,7 +106,7 @@ export default function BuyTable({ allOrders }) {
       notifyError("Error");
     }
   };
-  //   
+  //
 
   return (
     <Box
@@ -99,7 +116,8 @@ export default function BuyTable({ allOrders }) {
         marginBottom: "auto",
         /* padding-left: 24px; */
         /* padding-right: 24px; */
-      }}>
+      }}
+      className={classes.tableResponsiveContainer}>
       <TableContainer component={Paper}>
         <Table
           style={{
@@ -138,7 +156,7 @@ export default function BuyTable({ allOrders }) {
                       disableElevation
                       style={{
                         color: "white",
-                        background: "#121212",
+                        background: "#00A651",
                         borderRadius: "8px",
                         fontSize: "10px",
                       }}

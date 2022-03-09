@@ -12,6 +12,7 @@ import { Box } from "@mui/system";
 import { Avatar, Button, Typography } from "@mui/material";
 import AddressTypography from "../../AddressTypography/AddressTypography";
 import MomentDate from "../../MomentDate/MomentDate";
+import { makeStyles } from "@mui/styles";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,8 +38,28 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function SalesHistoryTable({ orderHistory }) {
+  const useStyles = makeStyles((theme) => ({
+    tableResponsiveContainer: {
+      width: "100%",
+      [theme.breakpoints.down("md")]: {
+        maxWidth: "563px",
+        margin: "0 auto",
+  
+      },
+      [theme.breakpoints.down("sm")]: {
+        overflowX: "scroll",
+        width: "100%",
+        maxWidth: "355px",
+        margin: "0 auto",
+        // border: "2px dashed black",
+        padding: "11px",
+      },
+    },
+  }));
+  const classes = useStyles();
   return (
     <Box
+      className={classes.tableResponsiveContainer}
       style={{
         width: "100%",
         borderTop: "2px solid black ",
