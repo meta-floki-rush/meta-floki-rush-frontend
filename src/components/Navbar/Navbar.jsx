@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { Box, Button, Drawer, Hidden, IconButton, Menu, Theme } from "@mui/material";
+import { Box, Button, Drawer, Hidden, IconButton, List, ListItem, Menu, Theme } from "@mui/material";
 import useStyles from "./Style";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -75,7 +75,7 @@ const NavItems = () => {
                 onClick={() => {
                   navigate(e.path);
                 }}
-                className={classes.menubtn}
+                className={classes.nevbtn}
                 siz="large"
                 style={{
                   fontWeight: "bolder",
@@ -134,22 +134,26 @@ const NavItems = () => {
                   )}
                 </Box>
               </div>
-              {ROUTES.filter((i) => !i.hideOnNav).map((e, index) => (
-                <Button
-                  key={index}
-                  onClick={() => {
-                    navigate(e.path);
-                  }}
-                  className={classes.menubtn}
-                  siz="large"
-                  style={{
-                    fontWeight: "bolder",
-                    fontFamily: "'Mali', cursive",
-                  }}
-                  variant="contain">
-                  {e.name}
-                </Button>
-              ))}
+              <List>
+                {ROUTES.filter((i) => !i.hideOnNav).map((e, index) => (
+                  <ListItem>
+                    <Button
+                      key={index}
+                      onClick={() => {
+                        navigate(e.path);
+                      }}
+                      className={classes.menubtn}
+                      siz="large"
+                      style={{
+                        fontWeight: "bolder",
+                        fontFamily: "'Mali', cursive",
+                      }}
+                      variant="contain">
+                      {e.name}
+                    </Button>
+                  </ListItem>
+                ))}
+              </List>
             </Drawer>
           </React.Fragment>
         ))}

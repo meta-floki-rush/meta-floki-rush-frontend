@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
       // transform: "scale(1.04)",
     },
     padding: "6px",
+    background: "white !important",
   },
   __card_content: {
     display: "flex",

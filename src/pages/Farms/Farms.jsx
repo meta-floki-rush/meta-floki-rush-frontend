@@ -1,18 +1,37 @@
 import React from "react";
 import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
 import useStyles from "./Style";
-
-import FarmCard from "./components/FarmCard";
 import FarmsTab from "./components/FarmsTab";
 import { useNavigate } from "react-router-dom";
-import FarmContainer from "./components/FarmContainer";
+import Common from "./components/Common";
+import { Skeleton } from "@mui/material";
 
 const Farms = () => {
   const classes = useStyles();
+
   const navigate = useNavigate();
+  const [loder, setLoder] = React.useState(false);
+
+  React.useEffect(() => {
+    setInterval(() => {
+      setLoder(true);
+    }, 1000);
+  }, []);
+
+  const tabs = [
+    { title: "Common", component: <Common loder={loder} />, id: 0 },
+    { title: "Rare", component: <Common loder={loder} />, id: 1 },
+    { title: "Super Rare", component: <Common loder={loder} />, id: 2 },
+    { title: "Epic", component: <Common loder={loder} />, id: 3 },
+    { title: "Lagendary", component: <Common loder={loder} />, id: 4 },
+  ];
 
   return (
     <Backgroundfram
+      style={{
+        minHeight: "700px",
+        maxHeight: "auto",
+      }}
       childrens={
         <div>
           <h2 className={classes.heading}>
@@ -20,29 +39,7 @@ const Farms = () => {
             <br />
             The higher the grade, the higher the APY to earn @METAFLOKIR
           </h2>
-
-          <center style={{ margin: "20px" }}>
-            <h3>Coming Soon!</h3>
-          </center>
-          {/* <FarmsTab
-            tabs={[
-              { component: <FarmContainer />, title: "Common", id: 0 },
-              { component: <dev>hello 1</dev>, title: "Rare", id: 1 },
-              { component: <dev>hello2</dev>, title: "Super Rare", id: 2 },
-              { component: <dev>hello3</dev>, title: "Epic", id: 3 },
-              { component: <dev>hello4</dev>, title: "Legendary", id: 4 },
-            ]}
-          /> */}
-          <div className={classes.cards}>
-            {/* <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
-              <i>NFT Staking is coming soon Stay Tuned, and Mint your first NFT!</i>
-            </h2> */}
-            {/* <FarmCard />
-            <FarmCard />
-            <FarmCard />
-            <FarmCard /> */}
-            {/* <FarmContainer /> */}
-          </div>
+          <FarmsTab tabs={tabs} />
         </div>
       }
     />

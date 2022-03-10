@@ -105,7 +105,7 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
 
   console.log("rarityValue", rarityValue);
 
-  let sortOptions = ["LATEST", "OLDEST", "PRICE_HIGH_TO_LOW", "PRICE_LOW_TO_HIGH"];
+  let sortOptions = ["Latest", "Oldest", "Price hight to low", "Price low to high"];
   let sortOptionsOfRarity = [
     { name: "All", rarity: 0 },
     { name: "Common", rarity: 1 },
@@ -197,7 +197,7 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
         />
 
         <div className={classes.__navTabs}>
-          <div className={classes.__tebs} style={{ position: "relative" }}>
+          {/* <div className={classes.__tebs} style={{ position: "relative" }}>
             <Button
               onClick={() => handleOptions("sort")}
               style={{
@@ -221,7 +221,7 @@ const Navigation = ({ orders, filterState, setFilterState, applyFilter }) => {
                 />
               </span>
             )}
-          </div>
+          </div> */}
           <div className={classes.__tebs} style={{ position: "relative" }}>
             <Button
               onClick={() => handleOptions("rarity")}

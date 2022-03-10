@@ -56,7 +56,7 @@ const TopHolders = ({ rows }) => {
   }));
 
   return (
-    <>
+    <Box className={classes.tableResponsiveContainer}>
       <Box
         style={{
           marginBottom: "40px",
@@ -85,7 +85,7 @@ const TopHolders = ({ rows }) => {
           </Table>
         </TableContainer>
       </Box>
-    </>
+    </Box>
   );
 };
 

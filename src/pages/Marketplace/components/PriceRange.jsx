@@ -30,8 +30,6 @@ export default function PriceRange({ filterState, setFilterState, applyFilter })
   // useOutsideAlerter(wrapperRef);
 
   const handleChange = (event, newValue) => {
-    // setpriceRange(newValue);
-    console.log("newValue", newValue);
     setApplyFilterRange({
       minPrice: newValue[0].toString(),
       maxPrice: newValue[1].toString(),
@@ -50,14 +48,14 @@ export default function PriceRange({ filterState, setFilterState, applyFilter })
     <Box className={classes.priceRange}>
       <Slider
         getAriaLabel={() => "Temperature range"}
-        value={[applyFilterRange.minPrice || 0, applyFilterRange.maxPrice || 1000]}
+        value={[applyFilterRange.minPrice || 0, applyFilterRange.maxPrice || 50]}
         onChange={handleChange}
         min={0}
-        max={1000}
+        max={50}
       />
       <div style={{ display: "flex", justifyContent: "space-between", fontStyle: "italic", fontSize: "15px" }}>
         <Typography>Min: {applyFilterRange?.minPrice || 0}</Typography>
-        <Typography>Max: {applyFilterRange?.maxPrice || 10000}</Typography>
+        <Typography>Max: {applyFilterRange?.maxPrice || 50}</Typography>
       </div>
 
       <Button
