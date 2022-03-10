@@ -1993,17 +1993,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-<<<<<<< HEAD
 "@nftvillage/farms-sdk@^0.0.38":
   version "0.0.38"
   resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.38.tgz#1c27521315140e9d900adae8e2df3da6f7bb3c55"
   integrity sha512-4ByZbZxrkALCIfliDtSOmJaGypT+OdCUaeI9kLRWtBSty8sFnwgap+w1BDqT2kSDKtV2njAzQmVI6LKEgsx0uQ==
-=======
-"@nftvillage/farms-sdk@^0.0.37":
-  version "0.0.37"
-  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.37.tgz#ad13ba32aec1de101c9b3fd4693135259436b7d6"
-  integrity sha512-jgl04fREpNZ2X1RztfQvBesOlGtkAUcYJBxdELEsF+cqDVv28KKRhN5d0DWJVesmhtRxb5vlTrruz97gouwJ/Q==
->>>>>>> 8be72ccc455163dbf895fb1ed24f8ff003388bd9
   dependencies:
     bignumber.js "^9.0.2"
     rollup-plugin-sourcemaps "^0.6.3"
