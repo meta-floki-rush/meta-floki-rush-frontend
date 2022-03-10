@@ -8,7 +8,8 @@ import { Button, CardActionArea } from "@mui/material";
 import FlokyModal from "./FlokyModal";
 import { usePool } from "@nftvillage/farms-sdk";
 import TokenCard from "./cards/TokenCard";
-const NftTokan = ({ loder, id }) => {
+
+const TokenStaking = ({ loder, id }) => {
   const classes = useStyles();
   const pool = usePool(id);
   console.log("pool", pool);
@@ -24,4 +25,4 @@ const NftTokan = ({ loder, id }) => {
   );
 };
 
-export default NftTokan;
+export default TokenStaking;

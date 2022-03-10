@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import NftStaking from "./components/NftStaking";
 import { Skeleton } from "@mui/material";
 import { usePools, usePool } from "@nftvillage/farms-sdk";
-import NftTokan from "./components/NftTokan";
+import TokenStaking from "./components/TokenStaking";
 const Farms = () => {
   const classes = useStyles();
   const { pools } = usePools();
@@ -26,7 +26,7 @@ const Farms = () => {
   const tabs = [
     { title: "NFT Staking", component: <NftStaking id={ID} loder={loder} />, id: 0 },
 
-    { title: "Tokan Staking", component: <NftTokan id={ID} loder={loder} />, id: 4 },
+    { title: "Tokan Staking", component: <TokenStaking id={ID} loder={loder} />, id: 4 },
   ];
 
   return (
