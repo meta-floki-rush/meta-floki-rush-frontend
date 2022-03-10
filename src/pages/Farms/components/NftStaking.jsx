@@ -11,13 +11,11 @@ const NftStaking = ({ loder, id }) => {
   const classes = useStyles();
   const pool = usePool(id);
   console.log("pool", pool);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
   return (
     <div className={classes.card_Container}>
       {id.map((x) => (
-        <StakingCard handleOpen={handleOpen} open={open} handleClose={handleClose} ke={x} loder={loder} poolId={x} />
+        <StakingCard ke={x} loder={loder} poolId={x} />
       ))}
     </div>
   );

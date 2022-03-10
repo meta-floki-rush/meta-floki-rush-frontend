@@ -6,8 +6,11 @@ import Hades from "./../../../../assets/images/Hades.png";
 import { checkRarity } from "../../../../utils/checkRarity";
 import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
-const StakingCard = ({ poolId, loder, handleOpen, open, handleClose }) => {
+const StakingCard = ({ poolId, loder }) => {
   const pool = usePool(poolId);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   console.log("pool", pool);
   const classes = useStyles();
   return (

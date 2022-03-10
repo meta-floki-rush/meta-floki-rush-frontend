@@ -12,6 +12,7 @@ const TokenCard = () => {
       
       <div>
           <h5>FLK</h5>
+          <img src="" alt="" />
       </div>
       <div></div>
       
