@@ -50,8 +50,6 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
     }
   }, [poolNftList, pool]);
 
-  console.log(pool);
-
   return (
     <>
       <div

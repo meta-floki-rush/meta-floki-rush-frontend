@@ -32,6 +32,8 @@ export default function FlokyModal({ handleClose, open, setOpen, rarity, nftList
     handleClose(id);
   };
 
+  console.log(nftList);
+
   return (
     <>
       <Modal

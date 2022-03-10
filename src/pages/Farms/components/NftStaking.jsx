@@ -11,11 +11,9 @@ const NftStaking = () => {
   const userNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 15);
   const poolNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 15, undefined, CARD_HANDLER_ADDRESS);
 
-  console.log(loading, userNfts, poolNfts);
-
   return (
     <div className={classes.card_Container}>
-      {loading || userNfts.loading || poolNfts.loading || !userNfts.results || !poolNfts.results ? (
+      {loading || userNfts.loading || poolNfts.loading ? (
         <div>Loading...</div>
       ) : (
         <>
