@@ -1993,10 +1993,17 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
+<<<<<<< HEAD
 "@nftvillage/farms-sdk@^0.0.38":
   version "0.0.38"
   resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.38.tgz#1c27521315140e9d900adae8e2df3da6f7bb3c55"
   integrity sha512-4ByZbZxrkALCIfliDtSOmJaGypT+OdCUaeI9kLRWtBSty8sFnwgap+w1BDqT2kSDKtV2njAzQmVI6LKEgsx0uQ==
+=======
+"@nftvillage/farms-sdk@^0.0.37":
+  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.37.tgz#ad13ba32aec1de101c9b3fd4693135259436b7d6"
+  integrity sha512-jgl04fREpNZ2X1RztfQvBesOlGtkAUcYJBxdELEsF+cqDVv28KKRhN5d0DWJVesmhtRxb5vlTrruz97gouwJ/Q==
+>>>>>>> 8be72ccc455163dbf895fb1ed24f8ff003388bd9
   dependencies:
     bignumber.js "^9.0.2"
     rollup-plugin-sourcemaps "^0.6.3"
@@ -2067,10 +2074,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
   integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
-"@react-dapp/utils@^0.0.66":
-  version "0.0.66"
-  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.66.tgz#8c3500ea5e140f8888b8cd01a1c5e2c4a8eb5e5c"
-  integrity sha512-VCF7yaU4YI60LEWS1J+ritVpAqHyLaTB9co+ZxfD+z2g3ktnfG+VbB255/VhzmsliGXDAdUc8JlEbiUi2HtDWg==
+"@react-dapp/utils@^0.0.69":
+  version "0.0.69"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.69.tgz#46b18bede32870052521150dfda36bbf2b92cfb5"
+  integrity sha512-8YFLfyaXiCSSazf4I/Dt9GGZlVHU5oCPg9SbbrcVjl0B4q/I9vfcgpOExRVdolLkHiOhWVG+5U0HNFCiSSundw==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
 

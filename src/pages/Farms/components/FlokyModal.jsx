@@ -10,6 +10,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import styled from "@emotion/styled";
 
 const style = {
   position: "absolute",
@@ -40,9 +41,9 @@ export default function FlokyModal({ handleClose, open }) {
   };
 
   return (
-    <div>
-      {/* <Button >Open modal</Button> */}
+    <>
       <Modal
+     
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -50,7 +51,6 @@ export default function FlokyModal({ handleClose, open }) {
         <Box sx={style}>
           <h2>Multipilier Cards</h2>
           <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
             <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue={0} name="radio-buttons-group">
               <div className={classes.ImageContainer}>
                 {fdata.map((x, index) => (
@@ -65,6 +65,6 @@ export default function FlokyModal({ handleClose, open }) {
           </FormControl>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

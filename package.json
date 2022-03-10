@@ -10,10 +10,14 @@
     "@mui/lab": "^5.0.0-alpha.67",
     "@mui/material": "^5.4.0",
     "@mui/styles": "^5.3.0",
+<<<<<<< HEAD
     "@nftvillage/farms-sdk": "^0.0.38",
+=======
+    "@nftvillage/farms-sdk": "^0.0.37",
+>>>>>>> 8be72ccc455163dbf895fb1ed24f8ff003388bd9
     "@nftvillage/marketplace-sdk": "^0.0.64",
     "@nftvillage/presale-sdk": "^0.1.14",
-    "@react-dapp/utils": "^0.0.66",
+    "@react-dapp/utils": "^0.0.69",
     "@react-dapp/wallet": "1.1.0",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.16.1",

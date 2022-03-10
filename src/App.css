@@ -15,6 +15,9 @@
   justify-content: center;
   align-items: center;
 }
+.MuiBackdrop-root {
+  background-color: #00000038 !important;
+}
 
 .App {
   display: grid;
