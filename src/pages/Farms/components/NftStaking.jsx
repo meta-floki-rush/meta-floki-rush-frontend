@@ -7,6 +7,7 @@ import { checkRarity } from "../../../utils/checkRarity";
 import { Button, CardActionArea } from "@mui/material";
 import FlokyModal from "./FlokyModal";
 import { usePool } from "@nftvillage/farms-sdk";
+
 const NftStaking = ({ loder, id }) => {
   const classes = useStyles();
   const pool = usePool(id);
