@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     width: "162px",
   },
   __user_menu: {
-    width: "100%",
+    // width: "100%",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",

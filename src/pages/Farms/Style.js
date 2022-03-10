@@ -194,8 +194,10 @@ const useStyles = makeStyles((theme) => ({
   rarity_image: {
     width: "30px",
   },
+
   flokyprice: {
-    display: "flex",
+    opacity: "1",
+    display: "flex !important",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "column",
@@ -203,6 +205,32 @@ const useStyles = makeStyles((theme) => ({
     width: "156px",
     height: " 116px",
     borderRadius: "3px",
+    transition: "all 0.1s ease-in-out !important",
+  },
+
+  flokyButton: {
+    transition: "all 0.1s ease-in-out !important",
+    opacity: "0",
+    background: "#FFC84E !important",
+    width: "100%",
+    fontWeight: "bold",
+    height: "100%",
+    borderRadius: "3px",
+    position: "absolute !important",
+    top: "0px",
+    left: "0px",
+  },
+  priceContainer: {
+    width: "156px",
+    height: " 116px",
+
+    position: "relative !important",
+    "&:hover $flokyprice": {
+      opacity: "0",
+    },
+    "&:hover $flokyButton": {
+      opacity: "1",
+    },
   },
   flexContainer: {
     display: "flex !important",
@@ -210,6 +238,30 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center !important",
     flexWrap: "wrap !important",
   },
- 
+  flokyMdl: {
+    zIndex: 99999,
+    width: "300px",
+    height: "440px",
+    position: "fixed",
+    margin: "30px auto",
+  },
+  ImageContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    width: "100%",
+  },
+  imageContainer: {
+    width: "150px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "start",
+    margin: "41px auto 10px 12px !important",
+  },
+  flokyImg: {
+    width: "120px",
+    cursor: "pointer",
+  },
 }));
 export default useStyles;
