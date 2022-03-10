@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "../../Style";
 import { usePool } from "@nftvillage/farms-sdk";
 import { Button } from "@mui/material";
@@ -6,35 +6,88 @@ import Hades from "./../../../../assets/images/Hades.png";
 import { checkRarity } from "../../../../utils/checkRarity";
 import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
-const StakingCard = ({ poolId, loder, handleOpen, open, handleClose }) => {
-  const pool = usePool(poolId);
-  console.log("pool", pool);
+import { getApy } from "@react-dapp/utils";
+
+const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
+  const pool = usePool(poolId);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
+  const [apy, setApy] = useState("-");
+  const deposit = pool?.stakedAmount === "0.00";
+
+  const handleModalClose = async (tokenId) => {
+    setModalOpen(false);
+    await pool?.depositInfo.deposit([], [], [], [], [{ tokenId: tokenId, amount: 1 }]);
+  };
+
+  const handleDeposit = async () => {
+    if (!pool?.cardHandlerApproval.isApproved) {
+      pool?.cardHandlerApproval.approve();
+    } else if (deposit) setModalOpen(true);
+    else {
+      pool?.withdrawInfo.withdraw();
+    }
+  };
+
+  useEffect(() => {
+    if (poolNftList && pool?.details) {
+      const image = poolNftList.find(
+        (e) => e.tokenId == pool?.details.nftDepositInfo?.requiredCards[0]?.tokenId,
+      )?.image;
+      if (image) setPoolImage(image);
+
+      let nftAmount = 0;
+      poolNftList.filter((e) => e.rarity === rarity).map((e) => (nftAmount += e.amount));
+      const apy = getApy(
+        nftPrice,
+        pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(0) ?? "0.8",
+        nftAmount,
+        pool.details.rewardInfo[0].rewardPerBlock.toFixed(0),
+      );
+
+      setApy(apy?.toFixed(0));
+    }
+  }, [poolNftList, pool]);
+
+  console.log(pool);
+
   return (
     <>
       <div
         className={classes.cards}
         //  style={{ padding: !loder ? `0px !important` : "12px" }}
       >
-        <img src={Hades} className={classes.flokyImage} alt="floky image" />
+        <img src={poolImage} className={classes.flokyImage} alt="floky image" />
         <div className={classes.actionArea}>
           <span className={classes.rarityContent}>
-            <span>{checkRarity(2).name}</span>
-            <img className={classes.rarity_image} src={checkRarity(2).image} alt="rarity image" />
+            <span>{checkRarity(rarity).name}</span>
+            <img className={classes.rarity_image} src={checkRarity(rarity).image} alt="rarity image" />
           </span>
           <div className={classes.priceContainer}>
-            <span className={classes.flokyprice}>
-              <span>APR :178%</span>
-              <span className={classes.price}>0.0001</span>
-              <span>ELVANTIS</span>
-            </span>
-            <Button className={classes.flokyButton}>Harvest</Button>
+            {pool?.harvestInfo.pending ? (
+              <Button className={classes.pendingButton} disabled={true}>
+                Pending...
+              </Button>
+            ) : (
+              <>
+                <span className={classes.flokyprice}>
+                  <span>APY : {staticApy ?? apy} %</span>
+                  <span className={classes.price}>{pool?.rewards[0].rewards} </span>
+                  {/* <span>{pool?.rewards[0].rewardTokenSymbol}</span> */}
+                  <span>$METAFLOKIR</span>
+                </span>
+                <Button className={classes.flokyButton} onClick={() => pool?.harvestInfo.harvest()}>
+                  Harvest
+                </Button>
+              </>
+            )}
           </div>
           <Button
-            onClick={handleOpen}
+            onClick={() => handleDeposit()}
             variant="contained"
             style={{
-              background: "#00A651",
+              background: deposit ? "#00A651" : "red",
               color: "white",
               fontSize: "11px",
               width: "106px",
@@ -42,9 +95,25 @@ const StakingCard = ({ poolId, loder, handleOpen, open, handleClose }) => {
               fontWeight: "lighter",
               borderRadius: "8.68972px",
             }}>
-            Deposit
+            {pool?.cardHandlerApproval.approvePending
+              ? "Pending..."
+              : !pool?.cardHandlerApproval.isApproved
+              ? "Approve"
+              : deposit
+              ? pool?.depositInfo.pending
+                ? "Pending..."
+                : "Deposit"
+              : pool?.withdrawInfo.pending
+              ? "Pending..."
+              : "Withdraw"}
           </Button>
-          <FlokyModal handleClose={handleClose} open={open} />
+          <FlokyModal
+            rarity={poolId + 1}
+            nftList={nftList}
+            handleClose={handleModalClose}
+            open={modalOpen}
+            setOpen={setModalOpen}
+          />
         </div>
       </div>
     </>

@@ -220,6 +220,18 @@ const useStyles = makeStyles((theme) => ({
     top: "0px",
     left: "0px",
   },
+  pendingButton: {
+    transition: "all 0.1s ease-in-out !important",
+    opacity: "1",
+    background: "#FFC84E !important",
+    width: "100%",
+    fontWeight: "bold",
+    height: "100%",
+    borderRadius: "3px",
+    position: "absolute !important",
+    top: "0px",
+    left: "0px",
+  },
   priceContainer: {
     width: "156px",
     height: " 116px",

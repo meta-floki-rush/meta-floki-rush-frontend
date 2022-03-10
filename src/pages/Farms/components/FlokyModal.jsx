@@ -25,41 +25,41 @@ const style = {
   p: 4,
 };
 
-export default function FlokyModal({ handleClose, open }) {
-  const [isClicked, setIsClicked] = React.useState(undefined);
+export default function FlokyModal({ handleClose, open, setOpen, rarity, nftList }) {
   const classes = useStyles();
-  const fdata = [
-    { img: Hades, id: 0 },
-    { img: Hades, id: 1 },
-    { img: Hades, id: 2 },
-    { img: Hades, id: 3 },
-    { img: Hades, id: 4 },
-    { img: Hades, id: 5 },
-  ];
+
   const handleClick = (id) => {
-    setIsClicked(id);
+    handleClose(id);
   };
 
   return (
     <>
       <Modal
-     
+        onBackdropClick={() => setOpen(false)}
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <h2>Multipilier Cards</h2>
+          <h2>Select your Floki to stake</h2>
           <FormControl>
             <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue={0} name="radio-buttons-group">
               <div className={classes.ImageContainer}>
-                {fdata.map((x, index) => (
-                  <span key={index} className={classes.imageContainer}>
-                    <img onClick={() => handleClick(x.id)} src={Hades} className={classes.flokyImg} alt="floky image" />
-
-                    <FormControlLabel checked={isClicked === x.id} value={x.id} control={<Radio />} label="" />
-                  </span>
-                ))}
+                {nftList?.length === 0 ? (
+                  <div style={{ margin: "20px" }}>Oops! you don't have any floki's to stake</div>
+                ) : (
+                  nftList
+                    ?.filter((e) => e.rarity === rarity)
+                    .map((x, index) => (
+                      <span key={index} className={classes.imageContainer}>
+                        <img
+                          onClick={() => handleClick(x.tokenId)}
+                          src={x.image}
+                          className={classes.flokyImg}
+                          alt="floky image"
+                        />
+                      </span>
+                    ))
+                )}
               </div>
             </RadioGroup>
           </FormControl>

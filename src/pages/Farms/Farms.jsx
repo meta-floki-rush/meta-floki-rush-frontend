@@ -2,18 +2,15 @@ import React from "react";
 import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
 import useStyles from "./Style";
 import FarmsTab from "./components/FarmsTab";
-import { useNavigate } from "react-router-dom";
 import NftStaking from "./components/NftStaking";
-import { Skeleton } from "@mui/material";
-import { usePools, usePool } from "@nftvillage/farms-sdk";
+import { usePools } from "@nftvillage/farms-sdk";
 import TokenStaking from "./components/TokenStaking";
 const Farms = () => {
   const classes = useStyles();
-  usePools();
 
   const tabs = [
     { title: "NFT Staking", component: <NftStaking />, id: 0 },
-    { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
+    // { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
   ];
 
   return (

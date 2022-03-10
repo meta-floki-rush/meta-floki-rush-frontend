@@ -1993,18 +1993,18 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@nftvillage/farms-sdk@^0.0.38":
-  version "0.0.38"
-  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.38.tgz#1c27521315140e9d900adae8e2df3da6f7bb3c55"
-  integrity sha512-4ByZbZxrkALCIfliDtSOmJaGypT+OdCUaeI9kLRWtBSty8sFnwgap+w1BDqT2kSDKtV2njAzQmVI6LKEgsx0uQ==
+"@nftvillage/farms-sdk@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.43.tgz#454e8707a7d0425406dd5dcd497f0f85deae07df"
+  integrity sha512-lk7rKKeWRhnjKVE6o3uGUCMS/JtwympoI7xB7jBBA4zaH1qZ9TXCtDix63TqT0WZJjLCQy2+HdvSOm8B3QX42w==
   dependencies:
     bignumber.js "^9.0.2"
     rollup-plugin-sourcemaps "^0.6.3"
 
-"@nftvillage/marketplace-sdk@^0.0.64":
-  version "0.0.64"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.64.tgz#c3e777fc3afb7674bcd040340fb72c560880f5ef"
-  integrity sha512-HGCDkdJpmPNLU2+8Dpvwye+1EoYFYYAXORivzH9u3CZGM4AkJ+KyfBZHRHaEeDiKZludgDRBF4U16rtNcssr4g==
+"@nftvillage/marketplace-sdk@^0.0.65":
+  version "0.0.65"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.65.tgz#2b8830e25b3a623c806c01eeb244652fccd89744"
+  integrity sha512-f9XljRL1MoGtf7VqmznVPrhakwNjWjMcYZxhkZMM91EIG0oOdpX5vH3lSyR0UEixpgZf2ALRtrcljgNiNCDZDw==
   dependencies:
     rollup-plugin-sourcemaps "^0.6.3"
 
@@ -2067,10 +2067,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
   integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
-"@react-dapp/utils@^0.0.69":
-  version "0.0.69"
-  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.69.tgz#46b18bede32870052521150dfda36bbf2b92cfb5"
-  integrity sha512-8YFLfyaXiCSSazf4I/Dt9GGZlVHU5oCPg9SbbrcVjl0B4q/I9vfcgpOExRVdolLkHiOhWVG+5U0HNFCiSSundw==
+"@react-dapp/utils@^0.0.70":
+  version "0.0.70"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.70.tgz#9e6a5897873272d65d98b94f6faf9e19ff077e73"
+  integrity sha512-7awDaQE1vRoZ9BqBX93l1GddUl1CggdasMwP4sLqByptfM20JxHfOf9bI5o6CGMroZvLpm+TJgMstpyDwQGibA==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
 
