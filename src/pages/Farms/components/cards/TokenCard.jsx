@@ -8,15 +8,15 @@ const useStyles = makeStyles((theme) => ({
 const TokenCard = () => {
   const classes = useStyles();
 
-  return <div className={classes.root}>
-      
+  return (
+    <div className={classes.root}>
       <div>
-          <h5>FLK</h5>
-          <img src="" alt="" />
+        <h5>Comming Soon..!</h5>
+        <img src="" alt="" />
       </div>
       <div></div>
-      
-      </div>;
+    </div>
+  );
 };
 
 export default TokenCard;

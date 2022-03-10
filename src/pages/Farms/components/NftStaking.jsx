@@ -8,8 +8,10 @@ import StakingCard from "./cards/StakingCard";
 const NftStaking = () => {
   const classes = useStyles();
   const { loading } = usePools();
-  const userNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 18);
-  const poolNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 18, undefined, CARD_HANDLER_ADDRESS);
+  const userNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 15);
+  const poolNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 15, undefined, CARD_HANDLER_ADDRESS);
+
+  console.log(loading, userNfts, poolNfts);
 
   return (
     <div className={classes.card_Container}>

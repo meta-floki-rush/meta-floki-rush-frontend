@@ -64,9 +64,9 @@ const FarmsTab = ({ tabs }) => {
 
         {tabs?.map((comp) => (
           <TabPanel
-          
-          // style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}
-          key={comp?.id} value={comp?.id}>
+            // style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}
+            key={comp?.id}
+            value={comp?.id}>
             {comp.component}
           </TabPanel>
         ))}
