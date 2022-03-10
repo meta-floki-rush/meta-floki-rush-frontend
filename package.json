@@ -10,7 +10,7 @@
     "@mui/lab": "^5.0.0-alpha.67",
     "@mui/material": "^5.4.0",
     "@mui/styles": "^5.3.0",
-    "@nftvillage/farms-sdk": "^0.0.30",
+    "@nftvillage/farms-sdk": "^0.0.38",
     "@nftvillage/marketplace-sdk": "^0.0.64",
     "@nftvillage/presale-sdk": "^0.1.14",
     "@react-dapp/utils": "^0.0.66",
