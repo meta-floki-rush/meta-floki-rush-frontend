@@ -3,14 +3,13 @@ import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
 import useStyles from "./Style";
 import FarmsTab from "./components/FarmsTab";
 import NftStaking from "./components/NftStaking";
-import { usePools } from "@nftvillage/farms-sdk";
 import TokenStaking from "./components/TokenStaking";
 const Farms = () => {
   const classes = useStyles();
 
   const tabs = [
     { title: "NFT Staking", component: <NftStaking />, id: 0 },
-    // { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
+    { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
   ];
 
   return (
