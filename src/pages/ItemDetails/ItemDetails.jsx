@@ -254,6 +254,7 @@ const ItemDetails = () => {
                                   background: "#00A651",
                                   color: "#ffff",
                                   fontWeight: "bold",
+                                  borderRadius: "10px",
                                 }}
                                 onClick={createOrder}>
                                 Sell {!isApproved ? "(Approve)" : ""}
