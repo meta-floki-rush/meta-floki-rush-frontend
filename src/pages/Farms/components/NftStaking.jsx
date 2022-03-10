@@ -15,9 +15,9 @@ const NftStaking = ({ loder, id }) => {
 
   return (
     <div className={classes.card_Container}>
-      {id.map((x) => (
-        <StakingCard ke={x} loder={loder} poolId={x} />
-      ))}
+      
+        <StakingCard  loder={loder}  />
+    
     </div>
   );
 };
