@@ -3,9 +3,10 @@ import Backgroundfram from "../../components/BlueBgFrame/BlueBgFrame";
 import useStyles from "./Style";
 import FarmsTab from "./components/FarmsTab";
 import { useNavigate } from "react-router-dom";
-import Common from "./components/Common";
+import NftStaking from "./components/NftStaking";
 import { Skeleton } from "@mui/material";
 import { usePools, usePool } from "@nftvillage/farms-sdk";
+import NftTokan from "./components/NftTokan";
 const Farms = () => {
   const classes = useStyles();
   const { pools } = usePools();
@@ -23,11 +24,9 @@ const Farms = () => {
   const ID = pools.map((x) => x.poolId);
   console.log("ID", ID);
   const tabs = [
-    { title: "Common", component: <Common id={ID} loder={loder} />, id: 0 },
-    { title: "Rare", component: <Common loder={loder} />, id: 1 },
-    { title: "Super Rare", component: <Common loder={loder} />, id: 2 },
-    { title: "Epic", component: <Common loder={loder} />, id: 3 },
-    { title: "Lagendary", component: <Common loder={loder} />, id: 4 },
+    { title: "NFT Staking", component: <NftStaking id={ID} loder={loder} />, id: 0 },
+
+    { title: "Tokan Staking", component: <NftTokan id={ID} loder={loder} />, id: 4 },
   ];
 
   return (
