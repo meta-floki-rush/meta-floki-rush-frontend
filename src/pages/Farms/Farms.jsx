@@ -5,10 +5,12 @@ import FarmsTab from "./components/FarmsTab";
 import { useNavigate } from "react-router-dom";
 import Common from "./components/Common";
 import { Skeleton } from "@mui/material";
-
+import { usePools, usePool } from "@nftvillage/farms-sdk";
 const Farms = () => {
   const classes = useStyles();
+  const { pools } = usePools();
 
+  console.log("pools", pools);
   const navigate = useNavigate();
   const [loder, setLoder] = React.useState(false);
 
@@ -18,8 +20,10 @@ const Farms = () => {
     }, 1000);
   }, []);
 
+  const ID = pools.map((x) => x.poolId);
+  console.log("ID", ID);
   const tabs = [
-    { title: "Common", component: <Common loder={loder} />, id: 0 },
+    { title: "Common", component: <Common id={ID} loder={loder} />, id: 0 },
     { title: "Rare", component: <Common loder={loder} />, id: 1 },
     { title: "Super Rare", component: <Common loder={loder} />, id: 2 },
     { title: "Epic", component: <Common loder={loder} />, id: 3 },
