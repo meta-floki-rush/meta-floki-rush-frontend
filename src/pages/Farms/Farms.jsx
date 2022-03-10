@@ -9,24 +9,11 @@ import { usePools, usePool } from "@nftvillage/farms-sdk";
 import TokenStaking from "./components/TokenStaking";
 const Farms = () => {
   const classes = useStyles();
-  const { pools } = usePools();
+  usePools();
 
-  console.log("pools", pools);
-  const navigate = useNavigate();
-  const [loder, setLoder] = React.useState(false);
-
-  React.useEffect(() => {
-    setInterval(() => {
-      setLoder(true);
-    }, 1000);
-  }, []);
-
-  const ID = pools.map((x) => x.poolId);
-  console.log("ID", ID);
   const tabs = [
-    { title: "NFT Staking", component: <NftStaking id={ID} loder={loder} />, id: 0 },
-
-    { title: "Tokan Staking", component: <TokenStaking id={ID} loder={loder} />, id: 4 },
+    { title: "NFT Staking", component: <NftStaking />, id: 0 },
+    { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
   ];
 
   return (
