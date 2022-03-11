@@ -80,10 +80,17 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
   const classes = useStyles();
 
   const handleSubmit = async () => {
-    const multiplierCards = quantity.filter((e) => e.amount > 0);
-    const requiredCard = multiplierCards.pop();
-    console.log(requiredCard, multiplierCards);
-    await pool?.depositInfo.deposit(undefined, undefined, undefined, multiplierCards, [requiredCard]);
+    let multiplierCards = quantity.filter((e) => e.amount > 0);
+
+    const requiredCard = multiplierCards[0].tokenId;
+    multiplierCards[0].amount--;
+
+    multiplierCards = multiplierCards.filter((e) => e.amount > 0);
+    console.log(multiplierCards, requiredCard);
+    await pool?.depositInfo.deposit(undefined, undefined, undefined, multiplierCards, [
+      { tokenId: requiredCard, amount: 1 },
+    ]);
+    setOpen(false);
   };
 
   return (
@@ -118,29 +125,27 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
             {nftList?.length === 0 ? (
               <div style={{ margin: "20px" }}>Oops! you don't have any floki's to stake</div>
             ) : (
-              nftList
-                ?.filter((e) => e.rarity === rarity)
-                .map((x, index) => (
-                  <span key={index} className={classes.imageContent}>
-                    <Badge color="success" badgeContent={quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}>
-                      <img src={x.image} className={classes.flokyImg} alt="floky image" />
-                    </Badge>
+              nftList.map((x, index) => (
+                <span key={index} className={classes.imageContent}>
+                  <Badge color="success" badgeContent={quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}>
+                    <img src={x.image} className={classes.flokyImg} alt="floky image" />
+                  </Badge>
 
-                    <span className={classes.tokenQuantity}>
-                      <h2>
-                        {quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}/{x.amount}
-                      </h2>
-                      <span>
-                        <IconButton onClick={() => handleDecrement(x.tokenId)}>
-                          <RemoveIcon className={classes.icon} />
-                        </IconButton>
-                        <IconButton onClick={() => handleIncrement(x.tokenId, x.amount)}>
-                          <AddIcon className={classes.icon} />
-                        </IconButton>
-                      </span>
+                  <span className={classes.tokenQuantity}>
+                    <h2>
+                      {quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}/{x.amount}
+                    </h2>
+                    <span>
+                      <IconButton onClick={() => handleDecrement(x.tokenId)}>
+                        <RemoveIcon className={classes.icon} />
+                      </IconButton>
+                      <IconButton onClick={() => handleIncrement(x.tokenId, x.amount)}>
+                        <AddIcon className={classes.icon} />
+                      </IconButton>
                     </span>
                   </span>
-                ))
+                </span>
+              ))
             )}
           </div>
           <Button

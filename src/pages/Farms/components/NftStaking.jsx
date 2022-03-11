@@ -10,8 +10,6 @@ const NftStaking = () => {
   const userNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 18);
   const poolNfts = useInventoryERC1155(POOL_CARD_ADDRESS, 18, undefined, CARD_HANDLER_ADDRESS);
 
-  console.log("userNfts", userNfts);
-
   return (
     <div className={classes.card_Container}>
       <StakingCard
@@ -30,7 +28,7 @@ const NftStaking = () => {
         staticApy="960"
         rarity={2}
         nftPrice={"7000000000000000000000000"}
-        nftList={userNfts.results?.filter((e) => e.rarity === 2)}
+        nftList={userNfts.results?.filter((e) => e.rarity === 2 && e.tokenId !== 15)}
         poolNftList={poolNfts.results}
         loading={loading}
         poolId={1}
@@ -40,7 +38,7 @@ const NftStaking = () => {
         staticApy="1200"
         rarity={3}
         nftPrice={"0.4"}
-        nftList={userNfts.results?.filter((e) => e.rarity === 3)}
+        nftList={userNfts.results?.filter((e) => e.rarity === 3 && e.tokenId !== 16 && e.tokenId !== 17)}
         poolNftList={poolNfts.results}
         loading={loading}
         poolId={2}
@@ -74,18 +72,18 @@ const NftStaking = () => {
         nftList={userNfts.results?.filter((e) => e.tokenId === 15)}
         poolNftList={poolNfts.results}
         loading={loading}
-        poolId={4}
+        poolId={5}
       />
       <StakingCard
         key={6}
         special
-        staticApy="1000"
+        staticApy="1300"
         rarity={3}
         nftPrice={"0.4"}
         nftList={userNfts.results?.filter((e) => e.tokenId === 16 || e.tokenId === 17)}
         poolNftList={poolNfts.results}
         loading={loading}
-        poolId={5}
+        poolId={6}
       />
     </div>
   );

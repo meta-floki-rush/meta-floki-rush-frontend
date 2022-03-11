@@ -11,6 +11,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { notify } from "reapop";
 import notificationError from "../../../../assets/images/notificationError.png";
 import { NotificationComponent } from "../../../../components/Notification/Notification";
+import { useTimer } from "../../../../hooks/useTimer";
 
 const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
@@ -55,6 +56,8 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
     }
   }, [poolNftList, pool]);
 
+  // const { timeLeft, timeFinished } = useTimer(pool?.details.userInfo.canHarvestAt);
+
   return (
     <>
       <div
@@ -72,10 +75,14 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                 alt="floky image"
               />
               <span className={classes.otherImages}>
-                <img className={classes.smallImages} src={Hades} alt="available image" />
-                <img className={classes.smallImages} src={Hades} alt="available image" />
-                <img className={classes.smallImages} src={Hades} alt="available image" />
-                <img className={classes.smallImages} src={Hades} alt="available image" />
+                {pool?.details.nftDepositInfo.multiplierCards.map((e) => (
+                  <img
+                    key={e.tokenId}
+                    className={classes.smallImages}
+                    src={poolNftList.find((i) => i.tokenId === e.tokenId)?.image}
+                    alt="available image"
+                  />
+                ))}
               </span>
             </span>
             <div className={classes.actionArea}>
@@ -105,7 +112,13 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                   </>
                 )}
               </div>
-              <span className={classes.timer}>Time: 2d:8h:2m:7s</span>
+              <span className={classes.timer}>
+                {/* {timeFinished && (
+                  <>
+                    {timeLeft.days}D : {timeLeft.hours}H : {timeLeft.minutes}M : {timeLeft.seconds}S
+                  </>
+                )} */}
+              </span>
 
               <Button
                 onClick={() => handleDeposit()}

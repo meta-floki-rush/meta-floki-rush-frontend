@@ -36,15 +36,15 @@ const TokenCard = () => {
         <div className={classes.dataContainer}>
           <div className={classes.dataTable}>
             <div className={classes.dataRow}>
-              <span className={classes.data}>APR:</span> <span>{pool?.rewards[0].apy} %</span>
+              <span className={classes.data}>APR:</span> <span>{pool?.rewards[0].apy ?? "1000"} %</span>
             </div>
             <div className={classes.dataRow}>
               <span>Earn:</span> <span> {pool?.rewards[0].rewards}</span>
             </div>
 
-            <div className={classes.dataRow}>
+            {/* <div className={classes.dataRow}>
               <span>Harvest Lockup:</span> <span>1 hours</span>
-            </div>
+            </div> */}
             <div className={classes.dataRow}>
               <span>Staked:</span>
               {pool?.stakedAmount} <span></span>
