@@ -79,7 +79,6 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
     await pool?.depositInfo.deposit(undefined, undefined, undefined, multiplierCards, [requiredCard]);
   };
 
-  console.log("pool", pool);
   return (
     <>
       <Modal
