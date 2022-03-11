@@ -11,29 +11,72 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styled from "@emotion/styled";
-
+import { Badge, IconButton } from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { POOL_CARD_ADDRESS } from "../../../config/config";
+import { useInventoryERC1155 } from "@nftvillage/marketplace-sdk";
+import { usePool } from "@nftvillage/farms-sdk";
+import theme from "../../../utils/theme";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: "100%",
-  maxWidth: "861px",
+  maxWidth: "726px",
   bgcolor: "#ede2d6",
   border: "2px dashed #000",
   textAlign: "center",
   p: 4,
 };
 
-export default function FlokyModal({ handleClose, open, setOpen, rarity, nftList }) {
-  const classes = useStyles();
+export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity, nftList }) {
+  const pool = usePool(poolId);
+  const [quantity, setQuantity] = React.useState(
+    nftList.map((item) => ({
+      tokenId: item.tokenId, 
+      amount: 0,
+    })),
+  );
 
+  const handleIncrement = (tokenId, amount) => {
+    console.log("tokenid", tokenId, quantity);
+    let increment = quantity.map((item) => {
+      if (item.tokenId === tokenId) {
+        item.amount++;
+      }
+      if (item.tokenId === tokenId) {
+        if (item.amount >= amount) {
+          item.amount = amount;
+        }
+      }
+      return item;
+    });
+    setQuantity([...increment]);
+  };
+  const handleDecrement = (tokenId) => {
+    let decrement = quantity.map((item) => {
+      if (item.tokenId === tokenId) {
+        item.amount--;
+      }
+      if (item.amount <= 0) {
+        item.amount = 0;
+      }
+      return item;
+    });
+    setQuantity([...decrement]);
+  };
+
+  const classes = useStyles();
   const handleClick = (id) => {
     handleClose(id);
   };
 
-  console.log(nftList);
-
+  const handleSubmit = () => {
+    pool?.depositInfo.deposit(undefined, undefined, undefined, quantity, pool.details.requiredCards);
+  };
+  console.log("pool", pool);
   return (
     <>
       <Modal
@@ -43,28 +86,59 @@ export default function FlokyModal({ handleClose, open, setOpen, rarity, nftList
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <h2>Select your Floki to stake</h2>
-          <FormControl>
-            <RadioGroup aria-labelledby="demo-radio-buttons-group-label" defaultValue={0} name="radio-buttons-group">
-              <div className={classes.ImageContainer}>
-                {nftList?.length === 0 ? (
-                  <div style={{ margin: "20px" }}>Oops! you don't have any floki's to stake</div>
-                ) : (
-                  nftList
-                    ?.filter((e) => e.rarity === rarity)
-                    .map((x, index) => (
-                      <span key={index} className={classes.imageContainer}>
-                        <img
-                          onClick={() => handleClick(x.tokenId)}
-                          src={x.image}
-                          className={classes.flokyImg}
-                          alt="floky image"
-                        />
+
+          <div className={classes.ImageContainer}>
+            {nftList?.length === 0 ? (
+              <div style={{ margin: "20px" }}>Oops! you don't have any floki's to stake</div>
+            ) : (
+              nftList
+                ?.filter((e) => e.rarity === rarity)
+                .map((x, index) => (
+                  <span key={index} className={classes.imageContent}>
+                    <Badge color="success" badgeContent={quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}>
+                      <img
+                        onClick={() => handleClick(x.tokenId)}
+                        src={x.image}
+                        className={classes.flokyImg}
+                        alt="floky image"
+                      />
+                    </Badge>
+
+                    {/* onHover => */}
+                    <span className={classes.tokenQuantity}>
+                      <h2>
+                        {quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}/{x.amount}
+                      </h2>
+                      <span>
+                        <IconButton onClick={() => handleIncrement(x.tokenId, x.amount)}>
+                          <AddIcon className={classes.icon} />
+                        </IconButton>
+                        <IconButton onClick={() => handleDecrement(x.tokenId)}>
+                          <RemoveIcon className={classes.icon} />
+                        </IconButton>
                       </span>
-                    ))
-                )}
-              </div>
-            </RadioGroup>
-          </FormControl>
+                    </span>
+                    {/* <= onHover */}
+                  </span>
+                ))
+            )}
+          </div>
+          <Button
+            onClick={handleSubmit}
+            style={{
+              background: "#00A651",
+              color: "white",
+              marginTop: "30px",
+              fontSize: "11px",
+              width: "106px",
+              height: "40px",
+              fontWeight: "lighter",
+              borderRadius: "8.68972px",
+            }}>
+            DEPOSIT
+          </Button>
+          {/* </RadioGroup>
+          </FormControl> */}
         </Box>
       </Modal>
     </>

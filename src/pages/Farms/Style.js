@@ -162,11 +162,11 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     border: "2px solid black !important",
-    "&:focus": {
-      background: "#FFC84E !important ",
-      color: "#922626 !important",
-      fontWeight: "bold !important",
-    },
+    // "&:focus": {
+    //   background: "#FFC84E !important ",
+    //   color: "#922626 !important",
+    //   fontWeight: "bold !important",
+    // },
   },
   tabs: {
     display: "flex !important",
@@ -264,19 +264,48 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     width: "100%",
   },
-  imageContainer: {
-    width: "150px",
+  imageContent: {
+    width: "100px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "start",
     margin: "41px auto 10px 12px !important",
+    position: "relative",
+    "&:hover $tokenQuantity": {
+      opacity: "1",
+    },
+  },
+
+  tokenQuantity: {
+    opacity: "0",
+    top: "1px",
+    left: "16px",
+    width: " 100%",
+    background: "#0000006e",
+    height: "100%",
+    position: "absolute",
+    color: "#ffff",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: " center",
+    flexDirection: " column",
+    transition: "all 0.2s ease ",
+    borderRadius: "6px",
   },
   flokyImg: {
-    width: "120px",
+    width: "131px",
     cursor: "pointer",
   },
   bgc: {
     backgroundColor: "lightgreen",
+  },
+  activeBtn: {
+    background: "#FFC84E !important ",
+    color: "#922626 !important",
+    fontWeight: "bold !important",
+  },
+  icon: {
+    color: "#ffff !important",
   },
 }));
 export default useStyles;

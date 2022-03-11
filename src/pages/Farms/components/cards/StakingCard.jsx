@@ -106,6 +106,7 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
               : "Withdraw"}
           </Button>
           <FlokyModal
+            poolId={poolId}
             rarity={poolId + 1}
             nftList={nftList}
             handleClose={handleModalClose}

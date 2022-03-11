@@ -5,20 +5,17 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import clsx from "clsx";
 
 const FarmsTab = ({ tabs }) => {
-  const [activeBtn, setActiveBtn] = React.useState(false);
+  const [activeBtn, setActiveBtn] = React.useState(0);
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  // const handleActiveTAbs = (id, index) => {
-  //   for (let i = 0; i < id.length; i++) {
-  //     if (id[i] === index) {
-  //       setActiveBtn(true);
-  //     }
-  //   }
-  // };
+  const handleActiveTabs = (id) => {
+    setActiveBtn(id);
+  };
   const classes = useStyles();
 
   return (
@@ -48,12 +45,11 @@ const FarmsTab = ({ tabs }) => {
             }}>
             {tabs?.map((btn, index) => (
               <Tab
-                // className={clsx(classes.tab, {
-                //   // [classes.active]: btn?.id == index,
-                //   // [classes.inActive]: btn?.id !== index,
-
-                // })}
-                className={classes.tab}
+                onClick={() => handleActiveTabs(btn.id)}
+                className={clsx(classes.tab, {
+                  [classes.active]: activeBtn === btn.id,
+                })}
+                // className={classes.tab}
                 key={btn?.id}
                 label={btn?.title}
                 value={btn?.id}
@@ -64,7 +60,7 @@ const FarmsTab = ({ tabs }) => {
 
         {tabs?.map((comp) => (
           <TabPanel
-            // style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}
             key={comp?.id}
             value={comp?.id}>
             {comp.component}
@@ -76,3 +72,5 @@ const FarmsTab = ({ tabs }) => {
 };
 
 export default FarmsTab;
+
+// activeBtn === btn.id && classes.active)
