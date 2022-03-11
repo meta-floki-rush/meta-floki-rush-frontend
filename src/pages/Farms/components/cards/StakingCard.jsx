@@ -8,19 +8,19 @@ import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
 import { getApy } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
+import { notify } from "reapop";
 
-const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
-  const handlerError = (message)=>{
-    
-  }
+const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
-  const pool = usePool(poolId,handlerError);
+  const pool = usePool(poolId, handlerError);
   const [modalOpen, setModalOpen] = useState(false);
   const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
   const [apy, setApy] = useState("-");
   const deposit = pool?.stakedAmount === "0.00";
 
+  const handlerError = (message) =>{
 
+  }
   const handleDeposit = async () => {
     if (!pool?.cardHandlerApproval.isApproved) {
       pool?.cardHandlerApproval.approve();
@@ -38,7 +38,7 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
       if (image) setPoolImage(image);
 
       let nftAmount = 0;
-      poolNftList.filter((e) => e.rarity === rarity).map((e) => (nftAmount += e.amount));
+      poolNftList.map((e) => (nftAmount += e.amount));
       const apy = getApy(
         nftPrice,
         pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(0) ?? "0.8",
@@ -65,7 +65,9 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
             </span>
             <div className={classes.actionArea}>
               <span className={classes.rarityContent}>
-                <span>{checkRarity(rarity).name}</span>
+                <span>
+                  {special && "Special"} {checkRarity(rarity).name}
+                </span>
                 <img className={classes.rarity_image} src={checkRarity(rarity).image} alt="rarity image" />
               </span>
               <div className={classes.priceContainer}>

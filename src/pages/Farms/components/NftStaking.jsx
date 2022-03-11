@@ -1,6 +1,5 @@
 import { usePools } from "@nftvillage/farms-sdk";
 import { useInventoryERC1155 } from "@nftvillage/marketplace-sdk";
-import { useERC1155Balance } from "@react-dapp/utils";
 import { CARD_HANDLER_ADDRESS, POOL_CARD_ADDRESS } from "../../../config/config";
 import useStyles from "../Style";
 import StakingCard from "./cards/StakingCard";
@@ -13,10 +12,7 @@ const NftStaking = () => {
 
   return (
     <div className={classes.card_Container}>
-      {/* {loading || userNfts.loading || poolNfts.loading ? (
-        <div>Loading...</div>
-      ) : (
-        <> */}
+     
       <StakingCard
         loading={loading || userNfts.loading || poolNfts.loading}
         key={0}
@@ -68,8 +64,7 @@ const NftStaking = () => {
         loading={loading}
         poolId={4}
       />
-      {/* </>
-      )} */}
+     
     </div>
   );
 };
