@@ -33,15 +33,17 @@ const style = {
 
 export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity, nftList }) {
   const pool = usePool(poolId);
+
   const [quantity, setQuantity] = React.useState(
-    nftList.map((item) => ({
-      tokenId: item.tokenId, 
-      amount: 0,
-    })),
+    nftList
+      ?.filter((e) => e.rarity === rarity)
+      .map((item) => ({
+        tokenId: item.tokenId,
+        amount: item.amount,
+      })),
   );
 
   const handleIncrement = (tokenId, amount) => {
-    console.log("tokenid", tokenId, quantity);
     let increment = quantity.map((item) => {
       if (item.tokenId === tokenId) {
         item.amount++;
@@ -69,13 +71,14 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
   };
 
   const classes = useStyles();
-  const handleClick = (id) => {
-    handleClose(id);
+
+  const handleSubmit = async () => {
+    const multiplierCards = quantity.filter((e) => e.amount > 0);
+    const requiredCard = multiplierCards.pop();
+    console.log(requiredCard, multiplierCards);
+    await pool?.depositInfo.deposit(undefined, undefined, undefined, multiplierCards, [requiredCard]);
   };
 
-  const handleSubmit = () => {
-    pool?.depositInfo.deposit(undefined, undefined, undefined, quantity, pool.details.requiredCards);
-  };
   console.log("pool", pool);
   return (
     <>
@@ -96,12 +99,7 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
                 .map((x, index) => (
                   <span key={index} className={classes.imageContent}>
                     <Badge color="success" badgeContent={quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}>
-                      <img
-                        onClick={() => handleClick(x.tokenId)}
-                        src={x.image}
-                        className={classes.flokyImg}
-                        alt="floky image"
-                      />
+                      <img src={x.image} className={classes.flokyImg} alt="floky image" />
                     </Badge>
 
                     {/* onHover => */}
@@ -110,11 +108,11 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
                         {quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}/{x.amount}
                       </h2>
                       <span>
-                        <IconButton onClick={() => handleIncrement(x.tokenId, x.amount)}>
-                          <AddIcon className={classes.icon} />
-                        </IconButton>
                         <IconButton onClick={() => handleDecrement(x.tokenId)}>
                           <RemoveIcon className={classes.icon} />
+                        </IconButton>
+                        <IconButton onClick={() => handleIncrement(x.tokenId, x.amount)}>
+                          <AddIcon className={classes.icon} />
                         </IconButton>
                       </span>
                     </span>
@@ -125,6 +123,7 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
           </div>
           <Button
             onClick={handleSubmit}
+            disabled={pool?.depositInfo.pending}
             style={{
               background: "#00A651",
               color: "white",
@@ -135,10 +134,8 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
               fontWeight: "lighter",
               borderRadius: "8.68972px",
             }}>
-            DEPOSIT
+            {pool?.depositInfo.pending ? "PENDING..." : "DEPOSIT"}
           </Button>
-          {/* </RadioGroup>
-          </FormControl> */}
         </Box>
       </Modal>
     </>

@@ -17,11 +17,6 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
   const [apy, setApy] = useState("-");
   const deposit = pool?.stakedAmount === "0.00";
 
-  const handleModalClose = async (tokenId) => {
-    setModalOpen(false);
-    await pool?.depositInfo.deposit([], [], [], [], [{ tokenId: tokenId, amount: 1 }]);
-  };
-
   const handleDeposit = async () => {
     if (!pool?.cardHandlerApproval.isApproved) {
       pool?.cardHandlerApproval.approve();
@@ -116,7 +111,6 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
                 poolId={poolId}
                 rarity={poolId + 1}
                 nftList={nftList}
-                handleClose={handleModalClose}
                 open={modalOpen}
                 setOpen={setModalOpen}
               />
