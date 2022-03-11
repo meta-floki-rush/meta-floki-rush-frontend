@@ -8,7 +8,7 @@ import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
 import { getApy } from "@react-dapp/utils";
 
-const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
+const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
   const pool = usePool(poolId);
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,7 +33,7 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
       if (image) setPoolImage(image);
 
       let nftAmount = 0;
-      poolNftList.filter((e) => e.rarity === rarity).map((e) => (nftAmount += e.amount));
+      poolNftList.map((e) => (nftAmount += e.amount));
       const apy = getApy(
         nftPrice,
         pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(0) ?? "0.8",
@@ -47,14 +47,13 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
 
   return (
     <>
-      <div
-        className={classes.cards}
-        //  style={{ padding: !loder ? `0px !important` : "12px" }}
-      >
+      <div className={classes.cards}>
         <img src={poolImage} className={classes.flokyImage} alt="floky image" />
         <div className={classes.actionArea}>
           <span className={classes.rarityContent}>
-            <span>{checkRarity(rarity).name}</span>
+            <span>
+              {special && "Special"} {checkRarity(rarity).name}
+            </span>
             <img className={classes.rarity_image} src={checkRarity(rarity).image} alt="rarity image" />
           </span>
           <div className={classes.priceContainer}>
@@ -100,7 +99,7 @@ const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy
               ? "Pending..."
               : "Withdraw"}
           </Button>
-          <FlokyModal poolId={poolId} rarity={poolId + 1} nftList={nftList} open={modalOpen} setOpen={setModalOpen} />
+          <FlokyModal poolId={poolId} rarity={rarity} nftList={nftList} open={modalOpen} setOpen={setModalOpen} />
         </div>
       </div>
     </>

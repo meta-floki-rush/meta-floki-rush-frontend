@@ -83,7 +83,7 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
   return (
     <>
       <Modal
-        onBackdropClick={() => setOpen(false)}
+        onBackdropClick={() => (pool?.depositInfo.pending ? null : setOpen(false))}
         open={open}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">

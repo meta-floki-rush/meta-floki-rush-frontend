@@ -19,53 +19,75 @@ const NftStaking = () => {
         <>
           <StakingCard
             key={0}
-            staticApy="720"
             rarity={1}
+            staticApy="720"
             nftPrice={"20000000000000000000000"}
-            nftList={userNfts.results}
+            nftList={userNfts.results?.filter((e) => e.rarity === 1)}
             poolNftList={poolNfts.results}
             loading={loading}
             poolId={0}
           />
           <StakingCard
             key={1}
-            staticApy="960"
             rarity={2}
+            staticApy="960"
             nftPrice={"7000000000000000000000000"}
-            nftList={userNfts.results}
+            nftList={userNfts.results?.filter((e) => e.rarity === 2)}
             poolNftList={poolNfts.results}
             loading={loading}
             poolId={1}
           />
           <StakingCard
             key={2}
-            staticApy="1200"
             rarity={3}
+            staticApy="1200"
             nftPrice={"0.4"}
-            nftList={userNfts.results}
+            nftList={userNfts.results?.filter((e) => e.rarity === 3)}
             poolNftList={poolNfts.results}
             loading={loading}
             poolId={2}
           />
           <StakingCard
             key={3}
-            staticApy="1440"
             rarity={4}
+            staticApy="1440"
             nftPrice={"0.4"}
-            nftList={userNfts.results}
+            nftList={userNfts.results?.filter((e) => e.rarity === 4)}
             poolNftList={poolNfts.results}
             loading={loading}
             poolId={3}
           />
           <StakingCard
             key={4}
-            staticApy="3000"
             rarity={5}
+            staticApy="3000"
             nftPrice={"0.4"}
-            nftList={userNfts.results}
+            nftList={userNfts.results?.filter((e) => e.rarity === 5)}
             poolNftList={poolNfts.results}
             loading={loading}
             poolId={4}
+          />
+          <StakingCard
+            key={5}
+            special
+            rarity={2}
+            staticApy="1000"
+            nftPrice={"0.4"}
+            nftList={userNfts.results?.filter((e) => e.tokenId === 15)}
+            poolNftList={poolNfts.results}
+            loading={loading}
+            poolId={5}
+          />
+          <StakingCard
+            key={6}
+            rarity={3}
+            special
+            staticApy="1000"
+            nftPrice={"0.4"}
+            nftList={userNfts.results?.filter((e) => e.tokenId === 16 || e.tokenId === 17)}
+            poolNftList={poolNfts.results}
+            loading={loading}
+            poolId={6}
           />
         </>
       )}
