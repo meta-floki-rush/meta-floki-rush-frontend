@@ -3,15 +3,19 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Button, Grid, Tab, Tabs, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
+import { usePool } from "@nftvillage/farms-sdk";
 import React from "react";
 import squirrel from "../../../../assets/images/account-image.png";
+import { TOKEN_STAKING_POOL_IDS } from "../../../../config/config";
+import { Box } from "@mui/system";
 import WalletButtonBase from "../../../../components/WalletButtonBase/WalletButtonBase";
 import useStyles from "../../Style";
 import FarmsTab from "../FarmsTab";
 
 const TokenCard = () => {
   const classes = useStyles();
+  const pool = usePool(TOKEN_STAKING_POOL_IDS[0]);
+  console.log(pool);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
