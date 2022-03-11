@@ -72,8 +72,8 @@ const TokenCard = () => {
         </div>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
+            <Tab label="Item One" value={0} />
+            <Tab label="Item Two" value={1} />
           </Tabs>
         </Box>
         <TabPanel value={value}>Item One</TabPanel>
