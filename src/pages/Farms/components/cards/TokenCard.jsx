@@ -1,15 +1,25 @@
-import { Button } from "@mui/material";
+import TabPanel from "@mui/lab/TabPanel";
+import { Button, Tab, Tabs } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { usePool } from "@nftvillage/farms-sdk";
 import React from "react";
 import squirrel from "../../../../assets/images/account-image.png";
 import { TOKEN_STAKING_POOL_IDS } from "../../../../config/config";
+import { Box } from "@mui/system";
+import WalletButtonBase from "../../../../components/WalletButtonBase/WalletButtonBase";
 import useStyles from "../../Style";
+import FarmsTab from "../FarmsTab";
 
 const TokenCard = () => {
   const classes = useStyles();
   const pool = usePool(TOKEN_STAKING_POOL_IDS[0]);
   console.log(pool);
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className={classes.tokanCardContainer}>
       <div>
@@ -41,9 +51,15 @@ const TokenCard = () => {
           </div> */}
         </div>
         <div className={classes.priceSec}>
-          <span>
-            <span>{pool?.stakedAmount}</span>
-            <span>Stacked</span>
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "start",
+              flexDirection: "column",
+            }}>
+            <span>0</span>
+            <span>stacked</span>
           </span>
           <Button
             style={{
@@ -59,7 +75,16 @@ const TokenCard = () => {
             {pool?.harvestInfo.pending ? "Pending.." : "Harvest"}
           </Button>
         </div>
-        <Button
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Item One" value={0} />
+            <Tab label="Item Two" value={1} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value}>Item One</TabPanel>
+        <TabPanel value={value}>Item Two</TabPanel>
+
+        <WalletButtonBase
           variant="contained"
           disableElevation
           size="large"
@@ -77,9 +102,25 @@ const TokenCard = () => {
             : !pool?.stakedTokenApproval.isApproved
             ? "Approve"
             : "Deposit"}
-        </Button>
+        </WalletButtonBase>
       </div>
     </div>
+  );
+};
+
+const Deposit = () => {
+  return (
+    <>
+      <h1>Deposit</h1>
+    </>
+  );
+};
+
+const Withdraw = () => {
+  return (
+    <>
+      <h1>Withdraw</h1>
+    </>
   );
 };
 

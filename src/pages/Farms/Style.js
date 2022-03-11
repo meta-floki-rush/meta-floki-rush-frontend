@@ -333,6 +333,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     paddingTop: "29px",
+    marginBottom: "20px",
   },
 
   dataContainer: {

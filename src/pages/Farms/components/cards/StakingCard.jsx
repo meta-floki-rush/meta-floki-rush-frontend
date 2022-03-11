@@ -8,10 +8,19 @@ import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
 import { getApy } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
+import { notify } from "reapop";
+import notificationError from "../../../../assets/images/notificationError.png";
+import { NotificationComponent } from "../../../../components/Notification/Notification";
 
 const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
-  const pool = usePool(poolId);
+  const handlerError = (message) => {
+    notify({
+      // @ts-ignore
+      message: <NotificationComponent title="Error!" message={message} image={notificationError} />,
+    });
+  };
+  const pool = usePool(poolId, handlerError);
   const [modalOpen, setModalOpen] = useState(false);
   const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
   const [apy, setApy] = useState("-");

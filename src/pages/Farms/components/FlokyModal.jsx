@@ -11,13 +11,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styled from "@emotion/styled";
-import { Badge, IconButton } from "@mui/material";
+import { Badge, CircularProgress, IconButton } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { POOL_CARD_ADDRESS } from "../../../config/config";
 import { useInventoryERC1155 } from "@nftvillage/marketplace-sdk";
 import { usePool } from "@nftvillage/farms-sdk";
 import theme from "../../../utils/theme";
+import notificationError from "../../../assets/images/notificationError.png";
+
+import { notify, dismissNotification } from "reapop";
+import { NotificationComponent } from "../../../components/Notification/Notification";
 const style = {
   position: "absolute",
   top: "50%",
@@ -32,8 +36,13 @@ const style = {
 };
 
 export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity, nftList }) {
-  const pool = usePool(poolId);
-
+  const handleError = (message) => {
+    dismissNotification();
+    notify({
+      message: <NotificationComponent title="Error!" message={message} image={notificationError} />,
+    });
+  };
+  const pool = usePool(poolId, handleError);
   const [quantity, setQuantity] = React.useState(
     nftList
       ?.filter((e) => e.rarity === rarity)
@@ -80,13 +89,31 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
   };
 
   return (
-    <>
+    <div>
       <Modal
         onBackdropClick={() => (pool?.depositInfo.pending ? null : setOpen(false))}
         open={open}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
+           {pool?.depositInfo.pending && ( 
+          <Box
+            style={{
+              position: "fixed",
+              width: "100%",
+              top: "0px",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 99999,
+              left: "0px",
+              background: "#00000052",
+            }}>
+            <CircularProgress thickness={5} />
+          </Box>
+       )} 
+
           <h2>Select your Floki to stake</h2>
 
           <div className={classes.ImageContainer}>
@@ -101,7 +128,6 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
                       <img src={x.image} className={classes.flokyImg} alt="floky image" />
                     </Badge>
 
-                    {/* onHover => */}
                     <span className={classes.tokenQuantity}>
                       <h2>
                         {quantity?.find((item) => item?.tokenId === x.tokenId)?.amount}/{x.amount}
@@ -115,7 +141,6 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
                         </IconButton>
                       </span>
                     </span>
-                    {/* <= onHover */}
                   </span>
                 ))
             )}
@@ -137,6 +162,6 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
           </Button>
         </Box>
       </Modal>
-    </>
+    </div>
   );
 }
