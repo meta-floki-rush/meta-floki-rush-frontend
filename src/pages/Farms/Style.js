@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     // flexWrap: "wrap",
   },
   flokyImage: {
-    width: "184px",
+    width: "158px",
   },
   card_Content: {
     display: "flex",
@@ -306,6 +306,63 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: "#ffff !important",
+  },
+  timer: {
+    margin: "13px",
+  },
+  media: {
+    display: "flex",
+    alignitems: "center",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    height: "100%",
+    fontWeight: "900",
+    color: "#000",
+    letterSpacing: "2px",
+    fontSize: "16px",
+    fontStyle: "italic",
+  },
+  squirrel: {
+    width: "118px",
+    transform: "scaleX(-1)",
+  },
+  tokanCardContainer: {
+    width: "391px",
+    height: "351px",
+    background: "#dbd4d1",
+    display: "flex",
+    justifyContent: "space-around",
+    paddingTop: "29px",
+  },
+
+  dataContainer: {
+    width: "100%",
+    maxWidth: "205px",
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  dataTable: {
+    width: "100%",
+    display: "flex",
+    justifyContent: " space-around",
+    alignIitems: "start",
+    flexDirection: "column",
+    height: "119px",
+  },
+  dataRow: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "start",
+  },
+
+  priceSec: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 }));
 export default useStyles;
