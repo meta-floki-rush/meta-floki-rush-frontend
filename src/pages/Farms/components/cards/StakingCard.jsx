@@ -9,6 +9,8 @@ import FlokyModal from "../FlokyModal";
 import { getApy } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
 import { notify } from "reapop";
+import notificationError from "../../../../assets/images/notificationError.png";
+import { NotificationComponent } from "../../../../components/Notification/Notification";
 
 const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
@@ -18,9 +20,14 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
   const [apy, setApy] = useState("-");
   const deposit = pool?.stakedAmount === "0.00";
 
-  const handlerError = (message) =>{
+  const handlerError = (message) => {
+    notify({
+      // @ts-ignore
+      message: <NotificationComponent title="Error!" message={message} image={notificationError} />,
+    });
+  };
 
-  }
+  
   const handleDeposit = async () => {
     if (!pool?.cardHandlerApproval.isApproved) {
       pool?.cardHandlerApproval.approve();
