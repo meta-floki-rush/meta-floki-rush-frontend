@@ -135,7 +135,6 @@ const TokenCard = () => {
             </Grid>
           </Grid>
         </TabPanel>
-
         <TabPanel value="2">
           <Grid container spacing={0}>
             <Grid item xs={10}>

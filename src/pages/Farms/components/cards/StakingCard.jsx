@@ -65,8 +65,18 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
         {!loading && (
           <>
             <span className={classes.media}>
-              <img src={poolImage} className={classes.flokyImage} alt="floky image" />
-              <span className={classes.timer}>2d:8h:2m:7s</span>
+              <img
+                // src={poolImage}
+                src={Hades}
+                className={classes.flokyImage}
+                alt="floky image"
+              />
+              <span className={classes.otherImages}>
+                <img className={classes.smallImages} src={Hades} alt="available image" />
+                <img className={classes.smallImages} src={Hades} alt="available image" />
+                <img className={classes.smallImages} src={Hades} alt="available image" />
+                <img className={classes.smallImages} src={Hades} alt="available image" />
+              </span>
             </span>
             <div className={classes.actionArea}>
               <span className={classes.rarityContent}>
@@ -88,12 +98,15 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                       {/* <span>{pool?.rewards[0].rewardTokenSymbol}</span> */}
                       <span>$METAFLOKIR</span>
                     </span>
+
                     <Button className={classes.flokyButton} onClick={() => pool?.harvestInfo.harvest()}>
                       Harvest
                     </Button>
                   </>
                 )}
               </div>
+              <span className={classes.timer}>Time: 2d:8h:2m:7s</span>
+
               <Button
                 onClick={() => handleDeposit()}
                 variant="contained"

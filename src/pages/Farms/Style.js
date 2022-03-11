@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     width: "422px",
     // borderRadius: "12px",
     border: "2px dashed black",
-    height: "259px",
+    height: "309px",
     padding: "21px",
     margin: "19px 2px",
     [theme.breakpoints.down("sm")]: {
@@ -129,7 +129,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     height: "100%",
-    marginLeft: "17px",
   },
   button_container: {
     display: "flex",
@@ -312,7 +311,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     display: "flex",
-    alignitems: "center",
+    alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "column",
     height: "100%",
@@ -376,6 +375,17 @@ const useStyles = makeStyles((theme) => ({
     "& >*": {
       height: "52px",
     },
+  },
+  otherImages: {
+    width: "202px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    overflowX: "auto",
+  },
+  smallImages: {
+    width: "50px",
+    height: "60px",
   },
 }));
 export default useStyles;
