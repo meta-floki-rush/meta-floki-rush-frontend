@@ -13,18 +13,19 @@ const NftStaking = () => {
 
   return (
     <div className={classes.card_Container}>
-      {loading || userNfts.loading || poolNfts.loading ? (
+      {/* {loading || userNfts.loading || poolNfts.loading ? (
         <div>Loading...</div>
       ) : (
-        <>
+        <> */}
           <StakingCard
+            loading={loading || userNfts.loading || poolNfts.loading}
             key={0}
             staticApy="720"
             rarity={1}
             nftPrice={"20000000000000000000000"}
             nftList={userNfts.results}
             poolNftList={poolNfts.results}
-            loading={loading}
+            // loading={loading}
             poolId={0}
           />
           <StakingCard
@@ -67,8 +68,8 @@ const NftStaking = () => {
             loading={loading}
             poolId={4}
           />
-        </>
-      )}
+        {/* </>
+      )} */}
     </div>
   );
 };
