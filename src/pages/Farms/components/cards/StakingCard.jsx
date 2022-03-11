@@ -10,12 +10,16 @@ import { getApy } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
 
 const StakingCard = ({ poolId, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
+  const handlerError = (message)=>{
+    
+  }
   const classes = useStyles();
-  const pool = usePool(poolId);
+  const pool = usePool(poolId,handlerError);
   const [modalOpen, setModalOpen] = useState(false);
   const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
   const [apy, setApy] = useState("-");
   const deposit = pool?.stakedAmount === "0.00";
+
 
   const handleDeposit = async () => {
     if (!pool?.cardHandlerApproval.isApproved) {

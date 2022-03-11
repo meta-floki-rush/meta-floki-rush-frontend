@@ -1,11 +1,20 @@
-import { Button } from "@mui/material";
+import TabPanel from "@mui/lab/TabPanel";
+import { Button, Tab, Tabs } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 import React from "react";
 import squirrel from "../../../../assets/images/account-image.png";
+import WalletButtonBase from "../../../../components/WalletButtonBase/WalletButtonBase";
 import useStyles from "../../Style";
+import FarmsTab from "../FarmsTab";
 
 const TokenCard = () => {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.tokanCardContainer}>
@@ -38,7 +47,13 @@ const TokenCard = () => {
           </div> */}
         </div>
         <div className={classes.priceSec}>
-          <span>
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "start",
+              flexDirection: "column",
+            }}>
             <span>0</span>
             <span>stacked</span>
           </span>
@@ -55,7 +70,16 @@ const TokenCard = () => {
             Harvest
           </Button>
         </div>
-        <Button
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Item One" />
+            <Tab label="Item Two" />
+          </Tabs>
+        </Box>
+        <TabPanel value={value}>Item One</TabPanel>
+        <TabPanel value={value}>Item Two</TabPanel>
+
+        <WalletButtonBase
           variant="contained"
           disableElevation
           size="large"
@@ -69,9 +93,25 @@ const TokenCard = () => {
             borderRadius: "8.68972px",
           }}>
           Approve Tokens
-        </Button>
+        </WalletButtonBase>
       </div>
     </div>
+  );
+};
+
+const Deposit = () => {
+  return (
+    <>
+      <h1>Deposit</h1>
+    </>
+  );
+};
+
+const Withdraw = () => {
+  return (
+    <>
+      <h1>Withdraw</h1>
+    </>
   );
 };
 
