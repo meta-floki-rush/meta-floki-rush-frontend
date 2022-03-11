@@ -14,11 +14,6 @@ import { NotificationComponent } from "../../../../components/Notification/Notif
 
 const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
   const classes = useStyles();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
-  const [apy, setApy] = useState("-");
-  const deposit = pool?.stakedAmount === "0.00";
-
   const handlerError = (message) => {
     notify({
       // @ts-ignore
@@ -26,7 +21,10 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
     });
   };
   const pool = usePool(poolId, handlerError);
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const [poolImage, setPoolImage] = useState(checkRarity(rarity).image);
+  const [apy, setApy] = useState("-");
+  const deposit = pool?.stakedAmount === "0.00";
 
   const handleDeposit = async () => {
     if (!pool?.cardHandlerApproval.isApproved) {
