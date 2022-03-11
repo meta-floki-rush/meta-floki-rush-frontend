@@ -166,6 +166,7 @@ const TokenCard = () => {
                 <span>Your Stack {pool?.stakedAmount} - $METAFLOKIR</span>
               </div>
               <Button
+                onClick={() => pool?.withdrawInfo.withdraw()}
                 style={{
                   background: "#00A651",
                   color: "white",

@@ -66,8 +66,8 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
           <>
             <span className={classes.media}>
               <img
-                // src={poolImage}
-                src={Hades}
+                src={poolImage}
+                // src={Hades}
                 className={classes.flokyImage}
                 alt="floky image"
               />
@@ -131,13 +131,7 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                   ? "Pending..."
                   : "Withdraw"}
               </Button>
-              <FlokyModal
-                poolId={poolId}
-                rarity={poolId + 1}
-                nftList={nftList}
-                open={modalOpen}
-                setOpen={setModalOpen}
-              />
+              <FlokyModal poolId={poolId} rarity={rarity} nftList={nftList} open={modalOpen} setOpen={setModalOpen} />
             </div>
           </>
         )}

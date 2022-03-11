@@ -44,12 +44,10 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
   };
   const pool = usePool(poolId, handleError);
   const [quantity, setQuantity] = React.useState(
-    nftList
-      ?.filter((e) => e.rarity === rarity)
-      .map((item) => ({
-        tokenId: item.tokenId,
-        amount: item.amount,
-      })),
+    nftList.map((item) => ({
+      tokenId: item.tokenId,
+      amount: item.amount,
+    })),
   );
 
   const handleIncrement = (tokenId, amount) => {
@@ -96,23 +94,23 @@ export default function FlokyModal({ poolId, handleClose, open, setOpen, rarity,
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-           {pool?.depositInfo.pending && ( 
-          <Box
-            style={{
-              position: "fixed",
-              width: "100%",
-              top: "0px",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 99999,
-              left: "0px",
-              background: "#00000052",
-            }}>
-            <CircularProgress thickness={5} />
-          </Box>
-       )} 
+          {pool?.depositInfo.pending && (
+            <Box
+              style={{
+                position: "fixed",
+                width: "100%",
+                top: "0px",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 99999,
+                left: "0px",
+                background: "#00000052",
+              }}>
+              <CircularProgress thickness={5} />
+            </Box>
+          )}
 
           <h2>Select your Floki to stake</h2>
 
