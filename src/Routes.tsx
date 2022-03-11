@@ -82,7 +82,7 @@ export const ROUTES: RouteOptions[] = [
     path: ROUTE_PATHS.MARKETPLACE,
   },
   {
-    name: "NFT Staking",
+    name: "Staking",
     Element: Farms,
     path: ROUTE_PATHS.NFT_STAKING,
   },
