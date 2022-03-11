@@ -327,8 +327,9 @@ const useStyles = makeStyles((theme) => ({
     transform: "scaleX(-1)",
   },
   tokanCardContainer: {
-    width: "391px",
-    height: "351px",
+    width: "100%",
+    maxWidth: "391px",
+    height: "284px",
     background: "#dbd4d1",
     display: "flex",
     justifyContent: "space-around",
@@ -364,6 +365,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+
+  priceField: {
+    background: "white",
+    borderRadius: "9px",
+    border: "1px solid black !important",
+    margin: "10px 0px !important",
+
+    "& >*": {
+      height: "52px",
+    },
   },
 }));
 export default useStyles;

@@ -14,10 +14,6 @@ const TokenStaking = ({ loder, id }) => {
   return (
     <div className={classes.card_Container}>
       <TokenCard />
-      <TokenCard />
-      <TokenCard />
-      <TokenCard />
-      <TokenCard />
     </div>
   );
 };
