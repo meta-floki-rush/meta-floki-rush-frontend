@@ -96,7 +96,7 @@ const Vault = () => {
                   }}>
                   Top 50 Holders
                 </h1>
-                <TopHolders rows={topHolders.message ? [] : topHolders ?? []} />
+                <TopHolders rows={topHolders?.message ? [] : topHolders ?? []} />
               </div>
               <ClaimHistory />
               {/* <BottomNav /> */}

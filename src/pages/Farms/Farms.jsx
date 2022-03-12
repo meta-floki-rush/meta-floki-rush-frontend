@@ -9,7 +9,7 @@ const Farms = () => {
 
   const tabs = [
     { title: "NFT Staking", component: <NftStaking />, id: 0 },
-    { title: "Tokan Staking", component: <TokenStaking />, id: 1 },
+    { title: "Token Staking", component: <TokenStaking />, id: 1 },
   ];
 
   return (

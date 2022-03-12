@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useStyles from "../../Style";
 import { usePool } from "@nftvillage/farms-sdk";
 import { Button } from "@mui/material";
 import Hades from "./../../../../assets/images/Hades.png";
 import { checkRarity } from "../../../../utils/checkRarity";
-import { CardActionArea } from "@mui/material";
 import FlokyModal from "../FlokyModal";
 import { getApy } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
@@ -28,12 +27,13 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
   const deposit = pool?.stakedAmount === "0.00";
 
   const handleDeposit = async () => {
-    if (!pool?.cardHandlerApproval.isApproved) {
-      pool?.cardHandlerApproval.approve();
-    } else if (deposit) setModalOpen(true);
-    else {
+    if (!deposit) {
       pool?.withdrawInfo.withdraw();
-    }
+    } else if (!pool?.cardHandlerApproval.isApproved) {
+      pool?.cardHandlerApproval.approve();
+    } else if (!pool?.farmApproval.isApproved) {
+      pool?.farmApproval.approve();
+    } else if (deposit) setModalOpen(true);
   };
 
   useEffect(() => {
@@ -60,10 +60,7 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
 
   return (
     <>
-      <div
-        className={classes.cards}
-        //  style={{ padding: !loder ? `0px !important` : "12px" }}
-      >
+      <div className={classes.cards}>
         {loading && <Skeleton width="100%" height="100%" animation="wave" variant="rectangular" />}
         {!loading && (
           <>
@@ -132,16 +129,19 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                   fontWeight: "lighter",
                   borderRadius: "8.68972px",
                 }}>
-                {pool?.cardHandlerApproval.approvePending
+                {pool?.cardHandlerApproval.approvePending ||
+                pool?.farmApproval.approvePending ||
+                pool?.depositInfo.pending ||
+                pool?.withdrawInfo.pending
                   ? "Pending..."
+                  : !deposit
+                  ? "Withdraw"
                   : !pool?.cardHandlerApproval.isApproved
+                  ? "Approve Floki"
+                  : !pool?.farmApproval.isApproved
                   ? "Approve"
                   : deposit
-                  ? pool?.depositInfo.pending
-                    ? "Pending..."
-                    : "Deposit"
-                  : pool?.withdrawInfo.pending
-                  ? "Pending..."
+                  ? "Deposit"
                   : "Withdraw"}
               </Button>
               <FlokyModal poolId={poolId} rarity={rarity} nftList={nftList} open={modalOpen} setOpen={setModalOpen} />
