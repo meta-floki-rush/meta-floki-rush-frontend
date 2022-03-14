@@ -56,8 +56,11 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
     }
   }, [poolNftList, pool]);
 
-  // const { timeLeft, timeFinished } = useTimer(pool?.details.userInfo.canHarvestAt);
+  const { timeLeft, timeFinished } = useTimer(pool?.details.userInfo.canHarvestAt);
 
+  console.log("pool", pool);
+
+  const canHarvest = timeFinished && pool?.details?.rewardInfo[0]?.rewards.gt(0);
   return (
     <>
       <div className={classes.cards}>
@@ -89,7 +92,7 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                 </span>
                 <img className={classes.rarity_image} src={checkRarity(rarity).image} alt="rarity image" />
               </span>
-              <div className={classes.priceContainer}>
+              <div className={!canHarvest ? classes.TimeContainer : classes.priceContainer}>
                 {pool?.harvestInfo.pending ? (
                   <Button className={classes.pendingButton} disabled={true}>
                     Pending...
@@ -103,18 +106,17 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                       <span>$METAFLOKIR</span>
                     </span>
 
-                    <Button className={classes.flokyButton} onClick={() => pool?.harvestInfo.harvest()}>
-                      Harvest
-                    </Button>
+                    {canHarvest && (
+                      <Button className={classes.flokyButton} onClick={() => pool?.harvestInfo.harvest()}>
+                        Harvest
+                      </Button>
+                    )}
                   </>
                 )}
               </div>
               <span className={classes.timer}>
-                {/* {timeFinished && (
-                  <>
-                    {timeLeft.days}D : {timeLeft.hours}H : {timeLeft.minutes}M : {timeLeft.seconds}S
-                  </>
-                )} */}
+                {!timeFinished &&
+                  `${timeLeft.days}D : ${timeLeft.hours}H : ${timeLeft.minutes}M : ${timeLeft.seconds}S`}
               </span>
 
               <Button

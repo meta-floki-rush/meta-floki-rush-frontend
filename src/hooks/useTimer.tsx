@@ -18,7 +18,7 @@ export const useTimer = (futureTime: number) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = Date.now() / 1000;
-      if (now < futureTime)
+      if (now < futureTime) {
         setTimeLeft(
           getTimeLeft(futureTime - now) ?? {
             days: 0,
@@ -27,12 +27,17 @@ export const useTimer = (futureTime: number) => {
             seconds: 0,
           },
         );
-      else {
+        setTimeFinished(false);
+      } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         setTimeFinished(true);
       }
     }, 1000);
-  }, []);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [futureTime]);
 
   return { timeFinished, timeLeft };
 };

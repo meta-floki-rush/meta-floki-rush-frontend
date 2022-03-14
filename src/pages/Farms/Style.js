@@ -6,12 +6,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "100%",
     maxWidth: "915px",
-    textShadow: "1px 2px 2px red",
+    // textShadow: "1px 2px 2px red",
     fontFamily: "Mali, cursive",
     fontStyle: "normal",
     fontWeight: " 600",
-    lineHeight: "67px",
-    color: "#F59F2A",
+    // lineHeight: "67px",
+    padding: "48px 0px",
+    // color: "#F59F2A",
     textAlign: "center",
 
     [theme.breakpoints.down("md")]: {
@@ -219,6 +220,12 @@ const useStyles = makeStyles((theme) => ({
     top: "0px",
     left: "0px",
   },
+
+  TimeContainer: {
+    width: "156px",
+    height: " 116px",
+  },
+
   pendingButton: {
     transition: "all 0.1s ease-in-out !important",
     opacity: "1",
@@ -308,6 +315,9 @@ const useStyles = makeStyles((theme) => ({
   },
   timer: {
     margin: "13px",
+    fontSize: "13px",
+    fontStyle: "italic",
+    fontWeight: "bold",
   },
   media: {
     display: "flex",
@@ -328,7 +338,7 @@ const useStyles = makeStyles((theme) => ({
   tokanCardContainer: {
     width: "100%",
     maxWidth: "391px",
-    height: "284px",
+    height: "181px",
     background: "#dbd4d1",
     display: "flex",
     justifyContent: "space-around",
@@ -347,7 +357,7 @@ const useStyles = makeStyles((theme) => ({
   dataTable: {
     width: "100%",
     display: "flex",
-    justifyContent: " space-around",
+    justifyContent: " space-evenly",
     alignIitems: "start",
     flexDirection: "column",
     height: "119px",
@@ -373,7 +383,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px 0px !important",
 
     "& >*": {
-      height: "52px",
+      height: "47px",
     },
   },
   otherImages: {
@@ -387,5 +397,6 @@ const useStyles = makeStyles((theme) => ({
     width: "50px",
     height: "60px",
   },
+  balance: {},
 }));
 export default useStyles;
