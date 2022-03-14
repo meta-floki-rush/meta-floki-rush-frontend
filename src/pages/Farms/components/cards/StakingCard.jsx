@@ -12,7 +12,17 @@ import notificationError from "../../../../assets/images/notificationError.png";
 import { NotificationComponent } from "../../../../components/Notification/Notification";
 import { useTimer } from "../../../../hooks/useTimer";
 
-const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, staticApy, loading }) => {
+const StakingCard = ({
+  poolId,
+  special,
+  rewardPerBlock,
+  rarity,
+  nftList,
+  poolNftList,
+  nftPrice,
+  staticApy,
+  loading,
+}) => {
   const classes = useStyles();
   const handlerError = (message) => {
     notify({
@@ -44,12 +54,46 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
       if (image) setPoolImage(image);
 
       let nftAmount = 0;
-      poolNftList.map((e) => (nftAmount += e.amount));
-      const apy = getApy(
-        nftPrice,
-        pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(0) ?? "0.8",
+      poolNftList
+        .filter((e) => {
+          if (e.rarity === rarity) {
+            // rare
+            if (rarity == 2) {
+              return special ? e.tokenId == 15 : e.tokenId != 15;
+            }
+            // super rare
+            else if (rarity == 3)
+              return special ? e.tokenId == 16 || e.tokenId == 17 : e.tokenId != 16 && e.tokenId != 17;
+            return true;
+          }
+          return false;
+        })
+        .map((e) => (nftAmount += e.amount));
+      console.log(
+        rarity,
+        special ? "special" : "normal",
         nftAmount,
-        pool.details.rewardInfo[0].rewardPerBlock.toFixed(0),
+        poolNftList.filter((e) => {
+          if (e.rarity === rarity) {
+            // rare
+            if (rarity == 2) {
+              return special ? e.tokenId == 15 : e.tokenId != 15;
+            }
+            // super rare
+            else if (rarity == 3)
+              return special ? e.tokenId == 16 || e.tokenId == 17 : e.tokenId != 16 && e.tokenId != 17;
+            return true;
+          }
+          return false;
+        }),
+      );
+      const wbnbPrice = pool.details.tokenPrices["0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"].details.price;
+      const apy = getApy(
+        wbnbPrice.times(nftPrice).toFixed(10),
+        pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(10),
+        nftAmount,
+        // pool.details.rewardInfo[0].rewardPerBlock.toFixed(0),
+        rewardPerBlock,
       );
 
       setApy(apy?.toFixed(0));
@@ -97,10 +141,10 @@ const StakingCard = ({ poolId, special, rarity, nftList, poolNftList, nftPrice, 
                 ) : (
                   <>
                     <span className={classes.flokyprice}>
-                      <span>APY : {staticApy ?? apy} %</span>
+                      <span>APY : {apy ?? staticApy} %</span>
                       <span className={classes.price}>{pool?.rewards[0].rewards} </span>
-                      {/* <span>{pool?.rewards[0].rewardTokenSymbol}</span> */}
-                      <span>$METAFLOKIR</span>
+                      <span>{pool?.rewards[0].rewardTokenSymbol}</span>
+                      {/* <span>$METAFLOKIR</span> */}
                     </span>
 
                     <Button className={classes.flokyButton} onClick={() => pool?.harvestInfo.harvest()}>
