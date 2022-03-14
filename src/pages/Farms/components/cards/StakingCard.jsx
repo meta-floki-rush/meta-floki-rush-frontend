@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import Hades from "./../../../../assets/images/Hades.png";
 import { checkRarity } from "../../../../utils/checkRarity";
 import FlokyModal from "../FlokyModal";
-import { getApy } from "@react-dapp/utils";
+import { getApy, toLowerUnit } from "@react-dapp/utils";
 import Skeleton from "@mui/material/Skeleton";
 import { notify } from "reapop";
 import notificationError from "../../../../assets/images/notificationError.png";
@@ -69,31 +69,31 @@ const StakingCard = ({
           return false;
         })
         .map((e) => (nftAmount += e.amount));
-      console.log(
-        rarity,
-        special ? "special" : "normal",
-        nftAmount,
-        poolNftList.filter((e) => {
-          if (e.rarity === rarity) {
-            // rare
-            if (rarity == 2) {
-              return special ? e.tokenId == 15 : e.tokenId != 15;
-            }
-            // super rare
-            else if (rarity == 3)
-              return special ? e.tokenId == 16 || e.tokenId == 17 : e.tokenId != 16 && e.tokenId != 17;
-            return true;
-          }
-          return false;
-        }),
-      );
+      // console.log(
+      //   rarity,
+      //   special ? "special" : "normal",
+      //   nftAmount,
+      //   poolNftList.filter((e) => {
+      //     if (e.rarity === rarity) {
+      //       // rare
+      //       if (rarity == 2) {
+      //         return special ? e.tokenId == 15 : e.tokenId != 15;
+      //       }
+      //       // super rare
+      //       else if (rarity == 3)
+      //         return special ? e.tokenId == 16 || e.tokenId == 17 : e.tokenId != 16 && e.tokenId != 17;
+      //       return true;
+      //     }
+      //     return false;
+      //   }),
+      // );
       const wbnbPrice = pool.details.tokenPrices["0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"].details.price;
       const apy = getApy(
         wbnbPrice.times(nftPrice).toFixed(10),
         pool.details.tokenPrices[pool.details.rewardInfo[0].token]?.details.price?.toFixed(10),
         nftAmount,
-        // pool.details.rewardInfo[0].rewardPerBlock.toFixed(0),
-        rewardPerBlock,
+        toLowerUnit(pool.details.rewardInfo[0].rewardPerBlock, 9).toFixed(0),
+        // rewardPerBlock,
       );
 
       setApy(apy?.toFixed(0));
@@ -101,8 +101,6 @@ const StakingCard = ({
   }, [poolNftList, pool]);
 
   const { timeLeft, timeFinished } = useTimer(pool?.details.userInfo.canHarvestAt);
-
-  console.log("pool", pool);
 
   const canHarvest = timeFinished && pool?.details?.rewardInfo[0]?.rewards.gt(0);
   return (
