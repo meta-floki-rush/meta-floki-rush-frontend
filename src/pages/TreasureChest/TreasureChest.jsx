@@ -55,7 +55,11 @@ const TreasureChest = () => {
               fontFamily: "'Mali', cursive !important",
             }}
             className={classes.title}>
-            <h3>
+            <h3
+              style={{
+                textAlign: "center",
+                margin: "32px 0px",
+              }}>
               Try your luck with <b>0.3 BNB</b>, and Stand a chance to win a Legendary Card!
             </h3>
             <h1 className={classes.heading1}>Gacha Minting</h1>
