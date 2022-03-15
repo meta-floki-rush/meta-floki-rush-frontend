@@ -19,7 +19,7 @@ const FarmsTab = ({ tabs }) => {
   const classes = useStyles();
 
   return (
-    <Box>
+    <Box style={{ width: "100%" }}>
       <TabContext value={value}>
         <Box
           className={classes.tabsList}
