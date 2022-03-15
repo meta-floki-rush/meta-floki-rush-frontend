@@ -25,12 +25,7 @@ const TokenCard = () => {
 
   return (
     <div
-      style={{
-        background: "#dbd4d1",
-        marginBottom: "24px",
-        padding: "24px",
-        borderRadius: "10px",
-      }}>
+      className={classes.tokenCardContainer}>
       <h5 style={{ fontSize: "32px" }}>METAFLOKIR</h5>
       <div className={classes.tokanCardContainer}>
         <div>

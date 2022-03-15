@@ -397,6 +397,24 @@ const useStyles = makeStyles((theme) => ({
     width: "50px",
     height: "60px",
   },
-  balance: {},
+  tabPanel: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+    },
+  },
+
+  tokenCardContainer: {
+    background: "#dbd4d1",
+    marginBottom: "24px",
+    padding: "24px",
+    borderRadius: "10px",
+    [theme.breakpoints.down("md")]: {
+      padding: "27px 2px",
+    },
+  },
 }));
 export default useStyles;
